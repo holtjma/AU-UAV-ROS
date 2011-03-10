@@ -1,0 +1,79 @@
+!SESSION 2011-03-10 16:28:53.334 -----------------------------------------------
+eclipse.buildId=M20080221-1800
+java.version=1.6.0_20
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Framework arguments:  /home/matt/AU-UAV-ROS/AU_UAV_ROS/src/simulator.cpp
+Command-line arguments:  -os linux -ws gtk -arch x86 /home/matt/AU-UAV-ROS/AU_UAV_ROS/src/simulator.cpp
+
+!ENTRY org.eclipse.update.core 4 42 2011-03-10 16:30:26.403
+!MESSAGE Network connection problems encountered during search.
+!SUBENTRY 1 org.eclipse.update.core 4 0 2011-03-10 16:30:26.403
+!MESSAGE Unable to access "http://download.eclipse.org/tools/cdt/releases/europa".
+!STACK 1
+org.eclipse.update.internal.core.CoreExceptionWithRootCause: Unable to access site: "http://download.eclipse.org/tools/cdt/releases/europa" [Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/europa.]
+	at org.eclipse.update.core.Utilities.newCoreException(Utilities.java:226)
+	at org.eclipse.update.internal.core.SiteURLFactory.createSite(SiteURLFactory.java:93)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:334)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:326)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:298)
+	at org.eclipse.update.internal.core.InternalSiteManager.attemptCreateSite(InternalSiteManager.java:222)
+	at org.eclipse.update.internal.core.InternalSiteManager.getSite(InternalSiteManager.java:162)
+	at org.eclipse.update.core.SiteManager.getSite(SiteManager.java:80)
+	at org.eclipse.update.search.UpdateSearchRequest.searchOneSite(UpdateSearchRequest.java:452)
+	at org.eclipse.update.search.UpdateSearchRequest.performSearch(UpdateSearchRequest.java:299)
+	at org.eclipse.update.ui.UpdateJob.runUpdates(UpdateJob.java:207)
+	at org.eclipse.update.ui.UpdateJob.run(UpdateJob.java:168)
+	at org.eclipse.update.internal.ui.views.FindUpdatesAction$TrackedUpdateJob.run(FindUpdatesAction.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+org.eclipse.update.internal.core.CoreExceptionWithRootCause[42]: org.eclipse.update.internal.core.FatalIOException: Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/europa.
+	at org.eclipse.update.internal.core.UpdateManagerUtils.checkConnectionResult(UpdateManagerUtils.java:562)
+	at org.eclipse.update.internal.core.SiteURLFactory.createSite(SiteURLFactory.java:74)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:334)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:326)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:298)
+	at org.eclipse.update.internal.core.InternalSiteManager.attemptCreateSite(InternalSiteManager.java:222)
+	at org.eclipse.update.internal.core.InternalSiteManager.getSite(InternalSiteManager.java:162)
+	at org.eclipse.update.core.SiteManager.getSite(SiteManager.java:80)
+	at org.eclipse.update.search.UpdateSearchRequest.searchOneSite(UpdateSearchRequest.java:452)
+	at org.eclipse.update.search.UpdateSearchRequest.performSearch(UpdateSearchRequest.java:299)
+	at org.eclipse.update.ui.UpdateJob.runUpdates(UpdateJob.java:207)
+	at org.eclipse.update.ui.UpdateJob.run(UpdateJob.java:168)
+	at org.eclipse.update.internal.ui.views.FindUpdatesAction$TrackedUpdateJob.run(FindUpdatesAction.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 2 org.eclipse.update.core 4 42 2011-03-10 16:30:26.404
+!MESSAGE Unable to access site: "http://download.eclipse.org/tools/cdt/releases/europa" [Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/europa.]
+!STACK 0
+org.eclipse.update.internal.core.FatalIOException: Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/europa.
+	at org.eclipse.update.internal.core.UpdateManagerUtils.checkConnectionResult(UpdateManagerUtils.java:562)
+	at org.eclipse.update.internal.core.SiteURLFactory.createSite(SiteURLFactory.java:74)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:334)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:326)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:298)
+	at org.eclipse.update.internal.core.InternalSiteManager.attemptCreateSite(InternalSiteManager.java:222)
+	at org.eclipse.update.internal.core.InternalSiteManager.getSite(InternalSiteManager.java:162)
+	at org.eclipse.update.core.SiteManager.getSite(SiteManager.java:80)
+	at org.eclipse.update.search.UpdateSearchRequest.searchOneSite(UpdateSearchRequest.java:452)
+	at org.eclipse.update.search.UpdateSearchRequest.performSearch(UpdateSearchRequest.java:299)
+	at org.eclipse.update.ui.UpdateJob.runUpdates(UpdateJob.java:207)
+	at org.eclipse.update.ui.UpdateJob.run(UpdateJob.java:168)
+	at org.eclipse.update.internal.ui.views.FindUpdatesAction$TrackedUpdateJob.run(FindUpdatesAction.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 2 org.eclipse.update.core 4 42 2011-03-10 16:30:26.404
+!MESSAGE Unable to access site: "http://download.eclipse.org/tools/cdt/releases/europa" [Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/europa.]
+!STACK 0
+org.eclipse.update.internal.core.FatalIOException: Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/europa.
+	at org.eclipse.update.internal.core.UpdateManagerUtils.checkConnectionResult(UpdateManagerUtils.java:562)
+	at org.eclipse.update.internal.core.SiteURLFactory.createSite(SiteURLFactory.java:74)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:334)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:326)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:298)
+	at org.eclipse.update.internal.core.InternalSiteManager.attemptCreateSite(InternalSiteManager.java:222)
+	at org.eclipse.update.internal.core.InternalSiteManager.getSite(InternalSiteManager.java:162)
+	at org.eclipse.update.core.SiteManager.getSite(SiteManager.java:80)
+	at org.eclipse.update.search.UpdateSearchRequest.searchOneSite(UpdateSearchRequest.java:452)
+	at org.eclipse.update.search.UpdateSearchRequest.performSearch(UpdateSearchRequest.java:299)
+	at org.eclipse.update.ui.UpdateJob.runUpdates(UpdateJob.java:207)
+	at org.eclipse.update.ui.UpdateJob.run(UpdateJob.java:168)
+	at org.eclipse.update.internal.ui.views.FindUpdatesAction$TrackedUpdateJob.run(FindUpdatesAction.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

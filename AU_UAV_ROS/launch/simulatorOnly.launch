@@ -1,0 +1,5 @@
+<launch>
+	<node name="coordinator" pkg="AU_UAV_ROS" type="coordinator" />
+	<node name="collisionAvoidance" pkg="AU_UAV_ROS" type="collisionAvoidance" />
+	<node name="simulator" pkg="AU_UAV_ROS" type="simulator" />
+</launch>

@@ -1,1 +1,17 @@
-Basic directory layout of any ROS package.  gitMakeDir files added to make sure directories were uploaded correctly to git
+Auburn University UAV ROS project
+
+This project is intended to create an environment for both simulation and testing of collision avoidance algorithms on UAVs.
+
+Note: You will still need ROS to execute this on any machine along with some knowledge on rosmake and roslaunch
+
+Added:
+-places for messages and services
+-core C++ files for main executables
+-setup many C++ files for editing, basic functionality, and marked with TODOs
+	*collisionAvoidance.cpp
+	*coordinator.cpp
+	*simulator.cpp
+	*visualization.cpp
+	*XBeeIO.cpp
+-setup CMakeLists for building the data passing executables
+-setup a launch file for a simulator only launch
