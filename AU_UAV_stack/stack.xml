@@ -1,0 +1,9 @@
+<stack>
+  <description brief="AU_UAV_stack">AU_UAV_stack</description>
+  <author>Maintained by Matt</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/AU_UAV_stack</url>
+  <depend stack="ros" />
+
+</stack>
