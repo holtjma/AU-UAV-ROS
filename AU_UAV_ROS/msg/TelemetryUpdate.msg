@@ -1,2 +1,0 @@
-Header telemetryHeader
-string update
