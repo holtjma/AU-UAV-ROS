@@ -22,7 +22,7 @@ TODO: I believe this also assigns numbers to planes for messaging purposes
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 {
 	//TODO: Make this function do something useful
-	ROS_INFO("Received: [%s]", msg->update.c_str());
+	ROS_INFO("Received update #[%d]", msg->currentWaypointIndex);
 }
 
 //service to be run whenever the collision avoidance algorithm decides to make a path change

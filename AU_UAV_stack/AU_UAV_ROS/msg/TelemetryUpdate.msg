@@ -1,2 +1,12 @@
 Header telemetryHeader
-string update
+int16 planeID
+float64 currentLatitude
+float64 currentLongitude
+float64 currentAltitude
+float64 destLatitude
+float64 destLongitude
+float64 destAltitude
+int64 groundSpeed
+int64 targetBearing
+int64 currentWaypointIndex
+int64 distanceToDestination

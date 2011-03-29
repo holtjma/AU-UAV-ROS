@@ -5,11 +5,21 @@ import struct
 import std_msgs.msg
 
 class TelemetryUpdate(roslib.message.Message):
-  _md5sum = "72b8d75e83b2990685728c91cbd65231"
+  _md5sum = "fa8a3a2e041a42c63edd9a70a9a78db7"
   _type = "AU_UAV_ROS/TelemetryUpdate"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """Header telemetryHeader
-string update
+int16 planeID
+float64 currentLatitude
+float64 currentLongitude
+float64 currentAltitude
+float64 destLatitude
+float64 destLongitude
+float64 destAltitude
+int64 groundSpeed
+int64 targetBearing
+int64 currentWaypointIndex
+int64 distanceToDestination
 
 ================================================================================
 MSG: std_msgs/Header
@@ -30,8 +40,8 @@ time stamp
 string frame_id
 
 """
-  __slots__ = ['telemetryHeader','update']
-  _slot_types = ['Header','string']
+  __slots__ = ['telemetryHeader','planeID','currentLatitude','currentLongitude','currentAltitude','destLatitude','destLongitude','destAltitude','groundSpeed','targetBearing','currentWaypointIndex','distanceToDestination']
+  _slot_types = ['Header','int16','float64','float64','float64','float64','float64','float64','int64','int64','int64','int64']
 
   def __init__(self, *args, **kwds):
     """
@@ -41,7 +51,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
     
     The available fields are:
-       telemetryHeader,update
+       telemetryHeader,planeID,currentLatitude,currentLongitude,currentAltitude,destLatitude,destLongitude,destAltitude,groundSpeed,targetBearing,currentWaypointIndex,distanceToDestination
     
     @param args: complete set of field values, in .msg order
     @param kwds: use keyword arguments corresponding to message field names
@@ -52,11 +62,41 @@ string frame_id
       #message fields cannot be None, assign default values for those that are
       if self.telemetryHeader is None:
         self.telemetryHeader = std_msgs.msg._Header.Header()
-      if self.update is None:
-        self.update = ''
+      if self.planeID is None:
+        self.planeID = 0
+      if self.currentLatitude is None:
+        self.currentLatitude = 0.
+      if self.currentLongitude is None:
+        self.currentLongitude = 0.
+      if self.currentAltitude is None:
+        self.currentAltitude = 0.
+      if self.destLatitude is None:
+        self.destLatitude = 0.
+      if self.destLongitude is None:
+        self.destLongitude = 0.
+      if self.destAltitude is None:
+        self.destAltitude = 0.
+      if self.groundSpeed is None:
+        self.groundSpeed = 0
+      if self.targetBearing is None:
+        self.targetBearing = 0
+      if self.currentWaypointIndex is None:
+        self.currentWaypointIndex = 0
+      if self.distanceToDestination is None:
+        self.distanceToDestination = 0
     else:
       self.telemetryHeader = std_msgs.msg._Header.Header()
-      self.update = ''
+      self.planeID = 0
+      self.currentLatitude = 0.
+      self.currentLongitude = 0.
+      self.currentAltitude = 0.
+      self.destLatitude = 0.
+      self.destLongitude = 0.
+      self.destAltitude = 0.
+      self.groundSpeed = 0
+      self.targetBearing = 0
+      self.currentWaypointIndex = 0
+      self.distanceToDestination = 0
 
   def _get_types(self):
     """
@@ -76,9 +116,8 @@ string frame_id
       _x = self.telemetryHeader.frame_id
       length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
-      _x = self.update
-      length = len(_x)
-      buff.write(struct.pack('<I%ss'%length, length, _x))
+      _x = self
+      buff.write(_struct_h6d4q.pack(_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination))
     except struct.error, se: self._check_types(se)
     except TypeError, te: self._check_types(te)
 
@@ -102,12 +141,10 @@ string frame_id
       start = end
       end += length
       self.telemetryHeader.frame_id = str[start:end]
+      _x = self
       start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      start = end
-      end += length
-      self.update = str[start:end]
+      end += 82
+      (_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination,) = _struct_h6d4q.unpack(str[start:end])
       return self
     except struct.error, e:
       raise roslib.message.DeserializationError(e) #most likely buffer underfill
@@ -127,9 +164,8 @@ string frame_id
       _x = self.telemetryHeader.frame_id
       length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
-      _x = self.update
-      length = len(_x)
-      buff.write(struct.pack('<I%ss'%length, length, _x))
+      _x = self
+      buff.write(_struct_h6d4q.pack(_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination))
     except struct.error, se: self._check_types(se)
     except TypeError, te: self._check_types(te)
 
@@ -155,15 +191,14 @@ string frame_id
       start = end
       end += length
       self.telemetryHeader.frame_id = str[start:end]
+      _x = self
       start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      start = end
-      end += length
-      self.update = str[start:end]
+      end += 82
+      (_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination,) = _struct_h6d4q.unpack(str[start:end])
       return self
     except struct.error, e:
       raise roslib.message.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = roslib.message.struct_I
 _struct_3I = struct.Struct("<3I")
+_struct_h6d4q = struct.Struct("<h6d4q")

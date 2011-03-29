@@ -39,10 +39,24 @@ int main(int argc, char **argv)
 		
 		//TODO: make this message construction simulated telemetry data
 		//set update string
-		std::stringstream ss;
+		
+		tUpdate.planeID = 0;
+		tUpdate.currentLatitude = 0;
+		tUpdate.currentLongitude = 0;
+		tUpdate.currentAltitude = 0;
+		tUpdate.destLatitude = 0;
+		tUpdate.destLongitude = 0;
+		tUpdate.destAltitude = 0;
+		tUpdate.groundSpeed = 0;
+		tUpdate.targetBearing = 0;
+		tUpdate.currentWaypointIndex = count;
+		tUpdate.distanceToDestination = 0;
+		ROS_INFO("Posting update %d", tUpdate.currentWaypointIndex);
+		
+		/*std::stringstream ss;
 		ss << "This is a string from sim:" << count;
 		tUpdate.update = ss.str();
-		ROS_INFO("%s", tUpdate.update.c_str());
+		ROS_INFO("%s", tUpdate.update.c_str());*/
 		
 		//publish the message
 		telemetryPub.publish(tUpdate);

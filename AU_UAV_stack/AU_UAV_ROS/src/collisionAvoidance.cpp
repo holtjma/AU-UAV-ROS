@@ -24,7 +24,7 @@ int count;
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 {
 	//TODO:Make this function do something useful, aka an avoidance algorithm
-	ROS_INFO("Received: [%s]", msg->update.c_str());
+	ROS_INFO("Received update #[%d]", msg->currentWaypointIndex);
 	
 	//this 'if' statement will be changed to run when collision avoidance service needs to be used
 	if(rand() % 5 == 0)
