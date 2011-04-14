@@ -18,6 +18,7 @@ namespace AU_UAV_ROS
 		AU_UAV_ROS::Command lastCommand;
 		
 		//current information (used mostly in update)
+		long long int planeID;
 		AU_UAV_ROS::waypoint currentLocation;
 		AU_UAV_ROS::waypoint currentDest;
 		long long int groundSpeed;
@@ -26,9 +27,9 @@ namespace AU_UAV_ROS
 		long long int distanceToDestination;
 		
 	public:
-		SimulatedPlane(AU_UAV_ROS::CreateSimulatedPlane::Request &requestFromUser);
+		SimulatedPlane(long long int planeID, AU_UAV_ROS::CreateSimulatedPlane::Request &requestFromUser);
 	
 		bool handleNewCommand(AU_UAV_ROS::Command newCommand);
-		bool fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate &tUpdate);
+		bool fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate *tUpdate);
 	};
 }

@@ -42,6 +42,12 @@ bool createSimulatedPlane(AU_UAV_ROS::CreateSimulatedPlane::Request &req, AU_UAV
 	if(requestPlaneIDClient.call(srv))
 	{
 		res.planeID = srv.response.planeID;
+		
+		//create and add our plane to the list of simulated planes
+		AU_UAV_ROS::SimulatedPlane newPlane(srv.response.planeID, req);
+		simPlaneList.push_back(newPlane);
+		
+		//plane created successfully
 		return true;
 	}
 	else
@@ -79,27 +85,16 @@ int main(int argc, char **argv)
 	//while the user doesn't kill the process or we get some crazy error
 	while(ros::ok())
 	{
-		//create an update
-		/*AU_UAV_ROS::TelemetryUpdate tUpdate;
+		AU_UAV_ROS::TelemetryUpdate tUpdate;
+		std::list<AU_UAV_ROS::SimulatedPlane>::iterator ii;
 		
-		//TODO: make this message construction simulated telemetry data
-		tUpdate.planeID = 0;
-		tUpdate.currentLatitude = 0;
-		tUpdate.currentLongitude = 0;
-		tUpdate.currentAltitude = 0;
-		tUpdate.destLatitude = waypoint[0];
-		tUpdate.destLongitude = waypoint[1];
-		tUpdate.destAltitude = waypoint[2];
-		tUpdate.groundSpeed = 0;
-		tUpdate.targetBearing = 0;
-		tUpdate.currentWaypointIndex = count;
-		tUpdate.distanceToDestination = 0;
-		ROS_INFO("Posting update %d", tUpdate.currentWaypointIndex);
+		//iterate through all simulated planes and generate an update for each
+		for(ii = simPlaneList.begin(); ii != simPlaneList.end(); ii++)
+		{
+			ii->fillTelemetryUpdate(&tUpdate);
+			telemetryPub.publish(tUpdate);
+		}
 		
-		
-		//publish the message
-		telemetryPub.publish(tUpdate);
-		*/
 		//check for any incoming callbacks and sleep until next update
 		ros::spinOnce();
 		loop_rate.sleep();

@@ -31,7 +31,7 @@ add_java_source_dir(${PROJECT_SOURCE_DIR}/src/JAVA)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-rosbuild_add_executable(simulator src/simulator.cpp)
+rosbuild_add_executable(simulator src/simulator.cpp src/AU_UAV_ROS/SimulatedPlane.cpp)
 rosbuild_add_executable(collisionAvoidance src/collisionAvoidance.cpp)
 rosbuild_add_executable(XBeeIO src/XBeeIO.cpp)
 rosbuild_add_executable(coordinator src/coordinator.cpp src/AU_UAV_ROS/PlaneCoordinator.cpp)
