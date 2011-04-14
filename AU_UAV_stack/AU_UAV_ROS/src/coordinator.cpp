@@ -14,7 +14,12 @@ TODO: I believe this also assigns numbers to planes for messaging purposes
 //ROS headers
 #include "ros/ros.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
+#include "AU_UAV_ROS/Command.h"
 #include "AU_UAV_ROS/AvoidCollision.h"
+
+//publisher is global so callbacks can access it
+ros::Publisher commandPub;
+float waypoint[3] = {1, 2, 3};
 
 //TODO: this executable should also be sending updates to our commands, normal and avoidance commands
 
@@ -23,6 +28,17 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 {
 	//TODO: Make this function do something useful
 	ROS_INFO("Received update #[%d]", msg->currentWaypointIndex);
+	if(waypoint[0] != msg->destLatitude || waypoint[1] != msg->destLongitude || waypoint[2] != msg->destAltitude)
+	{
+		AU_UAV_ROS::Command newCommand;
+		newCommand.planeID = 0;
+		newCommand.latitude = waypoint[0];
+		newCommand.longitude = waypoint[1];
+		newCommand.altitude = waypoint[2];
+		commandPub.publish(newCommand);
+		ROS_INFO("Sent command to plane #%d: (%f, %f, %f)", newCommand.planeID, newCommand.latitude, newCommand.longitude, newCommand.altitude);
+	}
+	
 }
 
 //service to be run whenever the collision avoidance algorithm decides to make a path change
@@ -42,6 +58,7 @@ int main(int argc, char **argv)
 	//Subscribe to telemetry message and advertise avoid collision service
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
 	ros::ServiceServer service = n.advertiseService("avoid_collision", avoidCollision);
+	commandPub = n.advertise<AU_UAV_ROS::Command>("commands", 1000);
 
 	//Needed for ROS to wait for callbacks
 	ros::spin();	

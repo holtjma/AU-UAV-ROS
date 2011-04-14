@@ -12,14 +12,27 @@ understand how this works.
 //ROS headers
 #include "ros/ros.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
+#include "AU_UAV_ROS/Command.h"
+
+float waypoint[3] = {0, 0, 0};
 
 //TODO: we need a callback for receiving commands along with the setup in main(...)
+void commandCallback(const AU_UAV_ROS::Command::ConstPtr& msg)
+{
+	ROS_INFO("Received new message: Plane #%d to (%f, %f, %f)", msg->planeID, msg->latitude, msg->longitude, msg->altitude);
+	waypoint[0] = msg->latitude;
+	waypoint[1] = msg->longitude;
+	waypoint[2] = msg->altitude;
+}
 
 int main(int argc, char **argv)
 {
 	//Standard ROS startup
 	ros::init(argc, argv, "simulator");
 	ros::NodeHandle n;
+	
+	//setup subscribing to command messages
+	ros::Subscriber sub = n.subscribe("commands", 1000, commandCallback);
 	
 	//setup publishing to telemetry message
 	ros::Publisher telemetryPub = n.advertise<AU_UAV_ROS::TelemetryUpdate>("telemetry", 1000);
@@ -38,15 +51,13 @@ int main(int argc, char **argv)
 		AU_UAV_ROS::TelemetryUpdate tUpdate;
 		
 		//TODO: make this message construction simulated telemetry data
-		//set update string
-		
 		tUpdate.planeID = 0;
 		tUpdate.currentLatitude = 0;
 		tUpdate.currentLongitude = 0;
 		tUpdate.currentAltitude = 0;
-		tUpdate.destLatitude = 0;
-		tUpdate.destLongitude = 0;
-		tUpdate.destAltitude = 0;
+		tUpdate.destLatitude = waypoint[0];
+		tUpdate.destLongitude = waypoint[1];
+		tUpdate.destAltitude = waypoint[2];
 		tUpdate.groundSpeed = 0;
 		tUpdate.targetBearing = 0;
 		tUpdate.currentWaypointIndex = count;
