@@ -8,21 +8,47 @@ understand how this works.
 
 //Standard C++ headers
 #include <sstream>
+#include <list>
 
 //ROS headers
 #include "ros/ros.h"
+#include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/Command.h"
+#include "AU_UAV_ROS/RequestPlaneID.h"
+#include "AU_UAV_ROS/CreateSimulatedPlane.h"
+#include "AU_UAV_ROS/SimulatedPlane.h"
 
-float waypoint[3] = {0, 0, 0};
+ros::ServiceClient requestPlaneIDClient;
+
+std::list<AU_UAV_ROS::SimulatedPlane> simPlaneList;
 
 //TODO: we need a callback for receiving commands along with the setup in main(...)
 void commandCallback(const AU_UAV_ROS::Command::ConstPtr& msg)
 {
 	ROS_INFO("Received new message: Plane #%d to (%f, %f, %f)", msg->planeID, msg->latitude, msg->longitude, msg->altitude);
+	/*
 	waypoint[0] = msg->latitude;
 	waypoint[1] = msg->longitude;
 	waypoint[2] = msg->altitude;
+	*/
+}
+
+bool createSimulatedPlane(AU_UAV_ROS::CreateSimulatedPlane::Request &req, AU_UAV_ROS::CreateSimulatedPlane::Response &res)
+{
+	AU_UAV_ROS::RequestPlaneID srv;
+	
+	//check to make sure the client call worked (regardless of return values from service)
+	if(requestPlaneIDClient.call(srv))
+	{
+		res.planeID = srv.response.planeID;
+		return true;
+	}
+	else
+	{
+		ROS_ERROR("Did not receive response from coordinator");
+		return false;
+	}
 }
 
 int main(int argc, char **argv)
@@ -37,6 +63,12 @@ int main(int argc, char **argv)
 	//setup publishing to telemetry message
 	ros::Publisher telemetryPub = n.advertise<AU_UAV_ROS::TelemetryUpdate>("telemetry", 1000);
 	
+	//setup server services
+	ros::ServiceServer createSimulatedPlaneService = n.advertiseService("create_simulated_plane", createSimulatedPlane);
+	
+	//setup client services
+	requestPlaneIDClient = n.serviceClient<AU_UAV_ROS::RequestPlaneID>("request_plane_ID");
+	
 	//TODO:check for validity of 1 Hz
 	//currently updates at 1 Hz, based of Justin Paladino'sestimate of approximately 1 update/sec
 	ros::Rate loop_rate(1);
@@ -48,7 +80,7 @@ int main(int argc, char **argv)
 	while(ros::ok())
 	{
 		//create an update
-		AU_UAV_ROS::TelemetryUpdate tUpdate;
+		/*AU_UAV_ROS::TelemetryUpdate tUpdate;
 		
 		//TODO: make this message construction simulated telemetry data
 		tUpdate.planeID = 0;
@@ -64,14 +96,10 @@ int main(int argc, char **argv)
 		tUpdate.distanceToDestination = 0;
 		ROS_INFO("Posting update %d", tUpdate.currentWaypointIndex);
 		
-		/*std::stringstream ss;
-		ss << "This is a string from sim:" << count;
-		tUpdate.update = ss.str();
-		ROS_INFO("%s", tUpdate.update.c_str());*/
 		
 		//publish the message
 		telemetryPub.publish(tUpdate);
-		
+		*/
 		//check for any incoming callbacks and sleep until next update
 		ros::spinOnce();
 		loop_rate.sleep();

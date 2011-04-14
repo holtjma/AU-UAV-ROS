@@ -16,10 +16,16 @@ TODO: I believe this also assigns numbers to planes for messaging purposes
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/Command.h"
 #include "AU_UAV_ROS/AvoidCollision.h"
+#include "AU_UAV_ROS/RequestPlaneID.h"
+
+//class headers
+#include "AU_UAV_ROS/PlaneCoordinator.h"
 
 //publisher is global so callbacks can access it
 ros::Publisher commandPub;
-float waypoint[3] = {1, 2, 3};
+
+AU_UAV_ROS::PlaneCoordinator planesArray[100];
+int numPlanes = 0;
 
 //TODO: this executable should also be sending updates to our commands, normal and avoidance commands
 
@@ -27,18 +33,28 @@ float waypoint[3] = {1, 2, 3};
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 {
 	//TODO: Make this function do something useful
-	ROS_INFO("Received update #[%d]", msg->currentWaypointIndex);
-	if(waypoint[0] != msg->destLatitude || waypoint[1] != msg->destLongitude || waypoint[2] != msg->destAltitude)
+	ROS_INFO("Received update #[%lld]", msg->currentWaypointIndex);
+	if(msg->planeID < numPlanes)
 	{
-		AU_UAV_ROS::Command newCommand;
-		newCommand.planeID = 0;
-		newCommand.latitude = waypoint[0];
-		newCommand.longitude = waypoint[1];
-		newCommand.altitude = waypoint[2];
-		commandPub.publish(newCommand);
-		ROS_INFO("Sent command to plane #%d: (%f, %f, %f)", newCommand.planeID, newCommand.latitude, newCommand.longitude, newCommand.altitude);
+		//we have a valid plane ID
+		planesArray[msg->planeID].handleNewUpdate(*msg);
+		
+		/*remnants of old test, may be useful in a bit
+		if(waypoint[0] != msg->destLatitude || waypoint[1] != msg->destLongitude || waypoint[2] != msg->destAltitude)
+		{
+			AU_UAV_ROS::Command newCommand;
+			newCommand.planeID = 0;
+			newCommand.latitude = waypoint[0];
+			newCommand.longitude = waypoint[1];
+			newCommand.altitude = waypoint[2];
+			commandPub.publish(newCommand);
+			ROS_INFO("Sent command to plane #%d: (%f, %f, %f)", newCommand.planeID, newCommand.latitude, newCommand.longitude, newCommand.altitude);
+		}*/
 	}
-	
+	else
+	{
+		ROS_ERROR("Received update from invalid plane ID #%d", msg->planeID);
+	}
 }
 
 //service to be run whenever the collision avoidance algorithm decides to make a path change
@@ -47,6 +63,23 @@ bool avoidCollision(AU_UAV_ROS::AvoidCollision::Request &req, AU_UAV_ROS::AvoidC
 	//TODO: Make this function do something useful
 	ROS_INFO("Service Request Recieved: [%s]", req.newCommand.c_str());
 	return true;
+}
+
+//service to run whenever a new plane enters the arena to tell it the ID number it should use
+bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::RequestPlaneID::Response &res)
+{
+	//TODO: Set up any data structures related to a plane that need to be created
+	if(numPlanes < 100)
+	{
+		//anything that needs to happen when a plane is instantiated goes here
+		res.planeID = numPlanes++;
+		return true;
+	}
+	else
+	{
+		ROS_ERROR("Too many plane IDs for coordinator to handle.\n");
+		return false;
+	}
 }
 
 int main(int argc, char **argv)
@@ -58,6 +91,7 @@ int main(int argc, char **argv)
 	//Subscribe to telemetry message and advertise avoid collision service
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
 	ros::ServiceServer service = n.advertiseService("avoid_collision", avoidCollision);
+	ros::ServiceServer newPlaneServer = n.advertiseService("request_plane_ID", requestPlaneID);
 	commandPub = n.advertise<AU_UAV_ROS::Command>("commands", 1000);
 
 	//Needed for ROS to wait for callbacks
