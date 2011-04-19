@@ -7,6 +7,9 @@ This will be the primary UI for now just to control the simulator and coordinato
 #include <stdlib.h>
 
 #include "ros/ros.h"
+#include "AU_UAV_ROS/CreateSimulatedPlane.h"
+
+ros::ServiceClient createSimulatedPlaneClient;
 
 void simulatorMenu(ros::NodeHandle *n)
 {
@@ -25,6 +28,31 @@ void simulatorMenu(ros::NodeHandle *n)
 		{
 			case 1:
 			{
+				double latitude, longitude, altitude;
+				double groundSpeed, bearing;
+				printf("\nEnter starting latitude, longitude, and altitude (format \"1 2 3\"):");
+				scanf("%lf %lf %lf", &latitude, &longitude, &altitude);
+				printf("\nEnter starting ground speed and bearing (format \"4 5\"):");
+				scanf("%lf %lf", &groundSpeed, &bearing);
+				
+				AU_UAV_ROS::CreateSimulatedPlane srv;
+				srv.request.startingLatitude = latitude;
+				srv.request.startingLongitude = longitude;
+				srv.request.startingAltitude = altitude;
+				srv.request.startingGroundSpeed = groundSpeed;
+				srv.request.startingBearing = bearing;
+				
+				printf("\nRequesting to create new plane...\n");
+				
+				if(createSimulatedPlaneClient.call(srv))
+				{
+					printf("New plane with ID #%d has been created!\n", srv.response.planeID);
+				}
+				else
+				{
+					ROS_ERROR("Did not receive response from simulator");
+				}
+				
 				break;
 			}
 			case 2:
@@ -46,6 +74,9 @@ int main(int argc, char **argv)
 	//Standard ROS startup
 	ros::init(argc, argv, "ControlsMenu");
 	ros::NodeHandle n;
+	
+	//setup client services
+	createSimulatedPlaneClient = n.serviceClient<AU_UAV_ROS::CreateSimulatedPlane>("create_simulated_plane");
 	
 	int choice = 0;
 	
