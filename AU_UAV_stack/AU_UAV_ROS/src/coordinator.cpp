@@ -19,6 +19,7 @@ TODO: I believe this also assigns numbers to planes for messaging purposes
 #include "AU_UAV_ROS/RequestPlaneID.h"
 
 //class headers
+#include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/PlaneCoordinator.h"
 
 //publisher is global so callbacks can access it
@@ -33,11 +34,21 @@ int numPlanes = 0;
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 {
 	//TODO: Make this function do something useful
-	ROS_INFO("Received update #[%lld]", msg->currentWaypointIndex);
+	ROS_INFO("Received update #[%d] from plane ID %d", msg->telemetryHeader.seq, msg->planeID);
 	if(msg->planeID < numPlanes)
 	{
+		AU_UAV_ROS::Command commandToSend;
 		//we have a valid plane ID
-		planesArray[msg->planeID].handleNewUpdate(*msg);
+		if(planesArray[msg->planeID].handleNewUpdate(*msg, &commandToSend))
+		{
+			//send new command
+			commandPub.publish(commandToSend);
+			ROS_INFO("Sent command to plane #%d: (%f, %f, %f)", commandToSend.planeID, commandToSend.latitude, commandToSend.longitude, commandToSend.altitude);
+		}
+		else
+		{
+			//don't send a new command
+		}
 		
 		/*remnants of old test, may be useful in a bit
 		if(waypoint[0] != msg->destLatitude || waypoint[1] != msg->destLongitude || waypoint[2] != msg->destAltitude)

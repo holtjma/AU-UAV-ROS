@@ -26,6 +26,9 @@ namespace AU_UAV_ROS
 		long long int currentWaypointIndex;
 		long long int distanceToDestination;
 		
+		//index of sent message
+		int updateIndex;
+		
 	public:
 		SimulatedPlane(long long int planeID, AU_UAV_ROS::CreateSimulatedPlane::Request &requestFromUser);
 	
