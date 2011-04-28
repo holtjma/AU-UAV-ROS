@@ -8,7 +8,7 @@ understand how this works.
 
 //Standard C++ headers
 #include <sstream>
-#include <list>
+#include <map>
 
 //ROS headers
 #include "ros/ros.h"
@@ -21,7 +21,7 @@ understand how this works.
 
 ros::ServiceClient requestPlaneIDClient;
 
-std::list<AU_UAV_ROS::SimulatedPlane> simPlaneList;
+std::map<int, AU_UAV_ROS::SimulatedPlane> simPlaneMap;
 
 //TODO: we need a callback for receiving commands along with the setup in main(...)
 void commandCallback(const AU_UAV_ROS::Command::ConstPtr& msg)
@@ -44,8 +44,8 @@ bool createSimulatedPlane(AU_UAV_ROS::CreateSimulatedPlane::Request &req, AU_UAV
 		res.planeID = srv.response.planeID;
 		
 		//create and add our plane to the list of simulated planes
-		AU_UAV_ROS::SimulatedPlane newPlane(srv.response.planeID, req);
-		simPlaneList.push_back(newPlane);
+		//AU_UAV_ROS::SimulatedPlane newPlane(srv.response.planeID, req);
+		simPlaneMap[srv.response.planeID] = AU_UAV_ROS::SimulatedPlane(srv.response.planeID, req);
 		
 		//plane created successfully
 		return true;
@@ -86,12 +86,12 @@ int main(int argc, char **argv)
 	while(ros::ok())
 	{
 		AU_UAV_ROS::TelemetryUpdate tUpdate;
-		std::list<AU_UAV_ROS::SimulatedPlane>::iterator ii;
+		std::map<int, AU_UAV_ROS::SimulatedPlane>::iterator ii;
 		
 		//iterate through all simulated planes and generate an update for each
-		for(ii = simPlaneList.begin(); ii != simPlaneList.end(); ii++)
+		for(ii = simPlaneMap.begin(); ii != simPlaneMap.end(); ii++)
 		{
-			ii->fillTelemetryUpdate(&tUpdate);
+			ii->second.fillTelemetryUpdate(&tUpdate);
 			telemetryPub.publish(tUpdate);
 		}
 		

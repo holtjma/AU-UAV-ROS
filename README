@@ -15,3 +15,5 @@ Added:
 	*XBeeIO.cpp
 -setup CMakeLists for building the data passing executables
 -setup a launch file for a simulator only launch
+
+rxtx, log4j - standard things to install for ubuntu

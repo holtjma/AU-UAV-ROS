@@ -30,6 +30,7 @@ namespace AU_UAV_ROS
 		int updateIndex;
 		
 	public:
+		SimulatedPlane();
 		SimulatedPlane(long long int planeID, AU_UAV_ROS::CreateSimulatedPlane::Request &requestFromUser);
 	
 		bool handleNewCommand(AU_UAV_ROS::Command newCommand);

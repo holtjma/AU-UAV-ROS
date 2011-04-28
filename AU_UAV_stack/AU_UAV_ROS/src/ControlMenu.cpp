@@ -17,6 +17,7 @@ void simulatorMenu(ros::NodeHandle *n)
 	
 	while(choice != 2)
 	{
+		choice = 0;
 		printf("\nSimulator Menu:\n");
 		printf("1-Add plane\n");
 		printf("2-Exit\n");

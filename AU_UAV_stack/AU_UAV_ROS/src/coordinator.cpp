@@ -17,6 +17,7 @@ TODO: I believe this also assigns numbers to planes for messaging purposes
 #include "AU_UAV_ROS/Command.h"
 #include "AU_UAV_ROS/AvoidCollision.h"
 #include "AU_UAV_ROS/RequestPlaneID.h"
+#include "AU_UAV_ROS/GoToWaypoint.h"
 
 //class headers
 #include "AU_UAV_ROS/standardDefs.h"
@@ -30,12 +31,18 @@ int numPlanes = 0;
 
 //TODO: this executable should also be sending updates to our commands, normal and avoidance commands
 
+bool isValidPlaneID(int id)
+{
+	if(id >= 0 && id < numPlanes) return true;
+	else return false;
+}
+
 //This function is run whenever a new telemetry update from any plane is recieved
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 {
 	//TODO: Make this function do something useful
 	ROS_INFO("Received update #[%d] from plane ID %d", msg->telemetryHeader.seq, msg->planeID);
-	if(msg->planeID < numPlanes)
+	if(isValidPlaneID(msg->planeID))
 	{
 		AU_UAV_ROS::Command commandToSend;
 		//we have a valid plane ID
@@ -72,7 +79,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 bool avoidCollision(AU_UAV_ROS::AvoidCollision::Request &req, AU_UAV_ROS::AvoidCollision::Response &res)
 {
 	//TODO: Make this function do something useful
-	ROS_INFO("Service Request Recieved: [%s]", req.newCommand.c_str());
+	ROS_INFO("Service Request Received: [%s]", req.newCommand.c_str());
 	return true;
 }
 
@@ -93,6 +100,40 @@ bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::Reques
 	}
 }
 
+//service to run whenever the simple control menu requests for a plane to go to a particular point
+bool goToWaypoint(AU_UAV_ROS::GoToWaypoint::Request &req, AU_UAV_ROS::GoToWaypoint::Response &res)
+{
+	ROS_INFO("Service Request Received: Plane #%d go to (%f, %f, %f)", req.planeID, req.latitude, req.longitude, req.altitude);	
+	
+	//check for valid plane ID
+	if(isValidPlaneID(req.planeID))
+	{
+		//construct waypoint
+		struct AU_UAV_ROS::waypoint pointFromService;
+		pointFromService.latitude = req.latitude;
+		pointFromService.longitude = req.longitude;
+		pointFromService.altitude = req.altitude;
+		
+		//attempt to set waypoint
+		if(planesArray[req.planeID].goToPoint(pointFromService))
+		{
+			//success!
+			return true;
+		}
+		else
+		{
+			//this should never happen in the current setup
+			ROS_ERROR("Error in planesArray[%d].goToPoint(...)", req.planeID);
+			return false;
+		}
+	}
+	else
+	{
+		ROS_ERROR("Invalid plane ID in GoToWaypoint service request.\n");
+		return false;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	//Standard ROS startup
@@ -101,8 +142,9 @@ int main(int argc, char **argv)
 	
 	//Subscribe to telemetry message and advertise avoid collision service
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
-	ros::ServiceServer service = n.advertiseService("avoid_collision", avoidCollision);
+	ros::ServiceServer avoidCollisionServer = n.advertiseService("avoid_collision", avoidCollision);
 	ros::ServiceServer newPlaneServer = n.advertiseService("request_plane_ID", requestPlaneID);
+	ros::ServiceServer goToWaypointServer = n.advertiseService("go_to_waypoint", goToWaypoint);
 	commandPub = n.advertise<AU_UAV_ROS::Command>("commands", 1000);
 
 	//Needed for ROS to wait for callbacks

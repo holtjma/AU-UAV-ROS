@@ -20,10 +20,44 @@ double distanceBetween(struct AU_UAV_ROS::waypoint first, struct AU_UAV_ROS::way
 	return sqrt(pow(first.latitude - second.latitude, 2) + pow(first.longitude - second.longitude, 2) + pow(first.altitude - second.altitude, 2));
 }
 
+/*
+standard constructor
+*/
 AU_UAV_ROS::PlaneCoordinator::PlaneCoordinator()
 {
 	//initialize command message index
 	this->commandIndex = 0;
+}
+
+/*
+goToPoint(...)
+This function will take a given waypoint and set that as the current and only destination of the UAV
+
+@return: returns true if the function executes without error
+*/
+bool AU_UAV_ROS::PlaneCoordinator::goToPoint(struct AU_UAV_ROS::waypoint receivedPoint)
+{
+	//clear the queues
+	std::queue<struct AU_UAV_ROS::waypoint> emptyQueue;
+	this->avoidancePath = emptyQueue;
+	this->normalPath = emptyQueue;
+	
+	//add the single waypoint to the normal path
+	this->normalPath.push(receivedPoint);
+	
+	//no ways to error right now so just return true
+	return true;
+}
+
+/*
+loadPathFromFile(...)
+This function will load a single path for a plane from file into the normal path queue for the UAV to fly on
+
+@return: returns true if the function executes without error, typical failure is bad filename
+*/
+bool AU_UAV_ROS::PlaneCoordinator::loadPathfromFile(std::string filename)
+{
+	return false;
 }
 
 /*

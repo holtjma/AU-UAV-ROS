@@ -10,6 +10,12 @@ C) Any collision avoidance waypoints
 
 #include "AU_UAV_ROS/SimulatedPlane.h"
 
+AU_UAV_ROS::SimulatedPlane::SimulatedPlane()
+{
+	//make a bad ID
+	this->planeID = -1;
+}
+
 AU_UAV_ROS::SimulatedPlane::SimulatedPlane(long long int planeID, AU_UAV_ROS::CreateSimulatedPlane::Request &requestFromUser)
 {
 	//data from inputs
