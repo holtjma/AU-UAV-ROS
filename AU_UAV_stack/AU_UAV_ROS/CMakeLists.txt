@@ -21,6 +21,8 @@ rosbuild_genmsg()
 #uncomment if you have defined services
 rosbuild_gensrv()
 
+add_jar_dir(/usr/share/java)
+#add_runtime_classpath(${PROJECT_SOURCE_DIR}/bin)
 add_java_source_dir(${PROJECT_SOURCE_DIR}/src/JAVA)
 
 #common commands for building c++ executables and libraries
@@ -31,8 +33,12 @@ add_java_source_dir(${PROJECT_SOURCE_DIR}/src/JAVA)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
+#C++ executables
 rosbuild_add_executable(simulator src/simulator.cpp src/AU_UAV_ROS/SimulatedPlane.cpp)
 rosbuild_add_executable(collisionAvoidance src/collisionAvoidance.cpp)
-rosbuild_add_executable(XBeeIO src/XBeeIO.cpp)
+#rosbuild_add_executable(XBeeIO src/XBeeIO.cpp)
 rosbuild_add_executable(coordinator src/coordinator.cpp src/AU_UAV_ROS/PlaneCoordinator.cpp)
 rosbuild_add_executable(ControlMenu src/ControlMenu.cpp)
+
+#JAVA executables
+rospack_add_java_executable(XBeeIO com/GCS/xbee/XBeeGCS)

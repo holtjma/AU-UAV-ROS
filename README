@@ -17,3 +17,4 @@ Added:
 -setup a launch file for a simulator only launch
 
 rxtx, log4j - standard things to install for ubuntu
+xbee-api-0.9.jar - also needs to be put into /usr/share/java
