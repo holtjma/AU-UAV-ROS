@@ -45,7 +45,7 @@ public class XBeeGCS {
 		
 		
 		try {
-			xbee.open("/dev/ttyUSB0", 9600);
+			xbee.open("/dev/ttyUSB0", 115200);
 			xbee.addPacketListener(new GCSPacketListener());
 			
 			try {
