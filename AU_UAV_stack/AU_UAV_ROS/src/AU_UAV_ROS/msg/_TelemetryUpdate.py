@@ -5,11 +5,11 @@ import struct
 import std_msgs.msg
 
 class TelemetryUpdate(roslib.message.Message):
-  _md5sum = "64e744b9d67e05545c867fce3eab2e75"
+  _md5sum = "53cd950963d7a5c403c785f8c0a2ffa7"
   _type = "AU_UAV_ROS/TelemetryUpdate"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """Header telemetryHeader
-int16 planeID
+int32 planeID
 float64 currentLatitude
 float64 currentLongitude
 float64 currentAltitude
@@ -41,7 +41,7 @@ string frame_id
 
 """
   __slots__ = ['telemetryHeader','planeID','currentLatitude','currentLongitude','currentAltitude','destLatitude','destLongitude','destAltitude','groundSpeed','targetBearing','currentWaypointIndex','distanceToDestination']
-  _slot_types = ['Header','int16','float64','float64','float64','float64','float64','float64','float64','float64','int64','float64']
+  _slot_types = ['Header','int32','float64','float64','float64','float64','float64','float64','float64','float64','int64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -117,7 +117,7 @@ string frame_id
       length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_h8dqd.pack(_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination))
+      buff.write(_struct_i8dqd.pack(_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination))
     except struct.error, se: self._check_types(se)
     except TypeError, te: self._check_types(te)
 
@@ -143,8 +143,8 @@ string frame_id
       self.telemetryHeader.frame_id = str[start:end]
       _x = self
       start = end
-      end += 82
-      (_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination,) = _struct_h8dqd.unpack(str[start:end])
+      end += 84
+      (_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination,) = _struct_i8dqd.unpack(str[start:end])
       return self
     except struct.error, e:
       raise roslib.message.DeserializationError(e) #most likely buffer underfill
@@ -165,7 +165,7 @@ string frame_id
       length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_h8dqd.pack(_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination))
+      buff.write(_struct_i8dqd.pack(_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination))
     except struct.error, se: self._check_types(se)
     except TypeError, te: self._check_types(te)
 
@@ -193,12 +193,12 @@ string frame_id
       self.telemetryHeader.frame_id = str[start:end]
       _x = self
       start = end
-      end += 82
-      (_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination,) = _struct_h8dqd.unpack(str[start:end])
+      end += 84
+      (_x.planeID, _x.currentLatitude, _x.currentLongitude, _x.currentAltitude, _x.destLatitude, _x.destLongitude, _x.destAltitude, _x.groundSpeed, _x.targetBearing, _x.currentWaypointIndex, _x.distanceToDestination,) = _struct_i8dqd.unpack(str[start:end])
       return self
     except struct.error, e:
       raise roslib.message.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = roslib.message.struct_I
 _struct_3I = struct.Struct("<3I")
-_struct_h8dqd = struct.Struct("<h8dqd")
+_struct_i8dqd = struct.Struct("<i8dqd")

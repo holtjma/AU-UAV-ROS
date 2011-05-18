@@ -1,5 +1,10 @@
 package com.GCS.xbee;
 
+import ros.*;
+import ros.communication.*;
+import ros.pkg.AU_UAV_ROS.msg.TelemetryUpdate;
+import ros.pkg.AU_UAV_ROS.msg.Command;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.ByteBuffer;
@@ -38,15 +43,18 @@ import com.rapplogic.xbee.util.ByteUtils;
  */
 public class XBeeGCS {
 	
-	private final boolean ENABLE_COLLISION_AVOIDANCE = false;
-	
 	private final static Logger log = Logger.getLogger(XBeeGCS.class);	// logger for the log4j system
 	
 	// instance variables
-	private XBee xbee;		// the XBee hooked up to this GCS
+	static private XBee xbee;		// the XBee hooked up to this GCS
 	private HashMap<XBeeAddress64, PlaneData> dataMap;		// collection of all telemetry data indexed by IEEE address
 	private XBeeAddress64 latest;							// latest plane to transmit valid telemetry data
 	private int planeCounter;								// the number of planes
+
+	//ROS Variables
+	static private Ros ros;
+	static private NodeHandle n;
+	private Publisher<ros.pkg.AU_UAV_ROS.msg.TelemetryUpdate> telemetryPub;
 
 	/**
 	 * Initializes XBee serial communication, packet listening thread, GUI, and if wanted, collision avoidance thread.
@@ -54,18 +62,29 @@ public class XBeeGCS {
 	 */
 	public XBeeGCS () throws XBeeException {
 		PropertyConfigurator.configure("log4j.properties");
+		
+		//ROS init
+		ros = Ros.getInstance();
+		ros.init("XBee_IO");
+		n = ros.createNodeHandle();
+		try
+		{
+			telemetryPub = n.advertise("/telemetry", new ros.pkg.AU_UAV_ROS.msg.TelemetryUpdate(), 100);
+		}
+		catch (ros.RosException re)
+		{
+		
+		}
+		
 		// set up the coordinator XBee serial communication
 		xbee = new XBee();
 		xbee.open("/dev/ttyUSB0", 115200);
 		setDataMap(new HashMap<XBeeAddress64, PlaneData>());
 		planeCounter = 0;
-
-		xbee.addPacketListener(new GCSPacketListener());	// packet listener for plane data
-
-		new GUI();	// create a GUI for loading arbitrary waypoints
 		
-		if (ENABLE_COLLISION_AVOIDANCE)
-			new Thread(new CollisionAvoidance(this)).start();
+		System.out.println("Starting packet listener...");
+		xbee.addPacketListener(new GCSPacketListener());	// packet listener for plane data
+		System.out.println("Waiting for packets...");
 	}
 	
 	private void setDataMap(HashMap<XBeeAddress64, PlaneData> dataMap) {
@@ -102,6 +121,7 @@ public class XBeeGCS {
 	 */
 	public void addData(XBeeAddress64 addr, PlaneData data) {
 		if (data != null) {
+			//TODO: REMOVE ++planeCounter in favor of service based numbering
 			// associate a plane number with the incoming data
 			if (!getDataMap().containsKey(addr))
 				data.planeID = ++planeCounter;
@@ -114,6 +134,25 @@ public class XBeeGCS {
 				getDataMap().put(addr, data);
 				getDataMap().notify();
 			}
+			
+			//forward the information on to ros
+			ros.pkg.AU_UAV_ROS.msg.TelemetryUpdate tUpdate = new ros.pkg.AU_UAV_ROS.msg.TelemetryUpdate();
+			tUpdate.currentLatitude = data.currLat / 1000000.0; //change to real lat
+			tUpdate.currentLongitude = data.currLng / 1000000.0; //change to real long
+			tUpdate.currentAltitude = data.currAlt;
+			tUpdate.destLatitude = data.nextLat / 1000000.0;
+			tUpdate.destLongitude = data.nextLng / 1000000.0;
+			tUpdate.destAltitude = data.nextAlt;
+			tUpdate.groundSpeed = data.ground_speed;
+			tUpdate.targetBearing = data.target_bearing;
+			tUpdate.currentWaypointIndex = data.currWP;
+			tUpdate.distanceToDestination = data.WPdistance; //this is in yards i believe
+			tUpdate.planeID = data.planeID;
+			//tUpdate.telemetryHeader.stamp = ros.communication.Time.now();
+			
+			log.info("Forwarding telemetry data to ROS topic.");
+			telemetryPub.publish(tUpdate);
+			
 		}
 	}
 	
@@ -177,6 +216,7 @@ public class XBeeGCS {
 	 * Closes the XBee serial link
 	 */
 	public void exit() {
+		n.shutdown();
 		xbee.close();
 	}
 
@@ -187,78 +227,17 @@ public class XBeeGCS {
 	public static void main(String[] args) {
 		try {
 			new XBeeGCS();
-		} catch (XBeeException e) {
+			ros.spin();
+		} 
+		catch (XBeeException e) {
 			log.fatal("XBeeGCS: Failed to initialize XBee serial link, exiting.");
 			System.exit(-1);
 		}
-	}
-
-	/**
-	 * Generates a GUI for loading arbitrary waypoints to the latest plane.
-	 */
-	private class GUI implements ActionListener {
-		private JTextField text;
-
-		public GUI() {
-			JFrame frame = new JFrame("Load Arbitrary Waypoint");
-
-			text = new JTextField(50);
-			text.addActionListener(this);
-
-			JButton loadButton = new JButton("Load");
-			loadButton.addActionListener(this);
-			
-			JButton exitButton = new JButton("Exit");
-			exitButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					exit();
-					System.exit(0);
-				}
-			});
-
-			JPanel panel = new JPanel();
-			panel.add(text);
-			panel.add(loadButton);
-			panel.add(exitButton);
-
-			frame.add(panel);
-			frame.pack();
-			frame.setVisible(true);
+		
+		finally {
+			xbee.close();
+			n.shutdown();
 		}
-
-		/**
-		 * Reads coordinate from text field and transmits it to the latest plane
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			String string = text.getText();
-			Scanner scanner = new Scanner(string);
-			scanner.useDelimiter(",");
-			Coordinate wp = new Coordinate();
-			try {
-				wp.x = scanner.nextDouble() * 1000000;
-				wp.y = scanner.nextDouble() * 1000000;
-				wp.z = scanner.nextDouble();
-			}
-			catch (InputMismatchException e) {
-				log.error("GUI: input mismatch exception caught.");
-				return;
-			}
-			catch (NoSuchElementException e) {
-				log.error("GUI: 3D point not typed in.");
-				return;
-			}
-			if (getLatest() == null) {
-				log.error("GUI: No planes available to transmit to.");
-				return;
-			}
-			else {
-				log.info("GUI has initiated transmit of " + wp);
-				transmit(getLatest(), wp);
-			}
-		}
-
 	}
 
 	/**
@@ -338,7 +317,7 @@ public class XBeeGCS {
 			pd.target_bearing = planeDataArray[7];
 			pd.currWP = planeDataArray[8];
 			pd.WPdistance = planeDataArray[9];
-
+			
 			return pd;
 		}
 	}

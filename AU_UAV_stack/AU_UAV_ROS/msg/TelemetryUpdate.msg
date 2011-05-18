@@ -1,5 +1,5 @@
 Header telemetryHeader
-int16 planeID
+int32 planeID
 float64 currentLatitude
 float64 currentLongitude
 float64 currentAltitude

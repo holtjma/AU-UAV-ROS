@@ -15,7 +15,7 @@
    (planeID
     :reader planeID
     :initarg :planeID
-    :type cl:fixnum
+    :type cl:integer
     :initform 0)
    (currentLatitude
     :reader currentLatitude
@@ -139,9 +139,11 @@
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <TelemetryUpdate>) ostream)
   "Serializes a message object of type '<TelemetryUpdate>"
   (roslisp-msg-protocol:serialize (cl:slot-value msg 'telemetryHeader) ostream)
-  (cl:let* ((signed (cl:slot-value msg 'planeID)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 65536) signed)))
+  (cl:let* ((signed (cl:slot-value msg 'planeID)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 4294967296) signed)))
     (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
     )
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'currentLatitude))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
@@ -241,7 +243,9 @@
     (cl:let ((unsigned 0))
       (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:slot-value msg 'planeID) (cl:if (cl:< unsigned 32768) unsigned (cl:- unsigned 65536))))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'planeID) (cl:if (cl:< unsigned 2147483648) unsigned (cl:- unsigned 4294967296))))
     (cl:let ((bits 0))
       (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
@@ -352,20 +356,20 @@
   "AU_UAV_ROS/TelemetryUpdate")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<TelemetryUpdate>)))
   "Returns md5sum for a message object of type '<TelemetryUpdate>"
-  "64e744b9d67e05545c867fce3eab2e75")
+  "53cd950963d7a5c403c785f8c0a2ffa7")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'TelemetryUpdate)))
   "Returns md5sum for a message object of type 'TelemetryUpdate"
-  "64e744b9d67e05545c867fce3eab2e75")
+  "53cd950963d7a5c403c785f8c0a2ffa7")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<TelemetryUpdate>)))
   "Returns full string definition for message of type '<TelemetryUpdate>"
-  (cl:format cl:nil "Header telemetryHeader~%int16 planeID~%float64 currentLatitude~%float64 currentLongitude~%float64 currentAltitude~%float64 destLatitude~%float64 destLongitude~%float64 destAltitude~%float64 groundSpeed~%float64 targetBearing~%int64 currentWaypointIndex~%float64 distanceToDestination~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.secs: seconds (stamp_secs) since epoch~%# * stamp.nsecs: nanoseconds since stamp_secs~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header telemetryHeader~%int32 planeID~%float64 currentLatitude~%float64 currentLongitude~%float64 currentAltitude~%float64 destLatitude~%float64 destLongitude~%float64 destAltitude~%float64 groundSpeed~%float64 targetBearing~%int64 currentWaypointIndex~%float64 distanceToDestination~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.secs: seconds (stamp_secs) since epoch~%# * stamp.nsecs: nanoseconds since stamp_secs~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'TelemetryUpdate)))
   "Returns full string definition for message of type 'TelemetryUpdate"
-  (cl:format cl:nil "Header telemetryHeader~%int16 planeID~%float64 currentLatitude~%float64 currentLongitude~%float64 currentAltitude~%float64 destLatitude~%float64 destLongitude~%float64 destAltitude~%float64 groundSpeed~%float64 targetBearing~%int64 currentWaypointIndex~%float64 distanceToDestination~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.secs: seconds (stamp_secs) since epoch~%# * stamp.nsecs: nanoseconds since stamp_secs~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header telemetryHeader~%int32 planeID~%float64 currentLatitude~%float64 currentLongitude~%float64 currentAltitude~%float64 destLatitude~%float64 destLongitude~%float64 destAltitude~%float64 groundSpeed~%float64 targetBearing~%int64 currentWaypointIndex~%float64 distanceToDestination~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.secs: seconds (stamp_secs) since epoch~%# * stamp.nsecs: nanoseconds since stamp_secs~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <TelemetryUpdate>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'telemetryHeader))
-     2
+     4
      8
      8
      8

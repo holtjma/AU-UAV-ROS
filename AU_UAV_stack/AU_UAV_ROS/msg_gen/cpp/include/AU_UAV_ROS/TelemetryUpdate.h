@@ -54,8 +54,8 @@ struct TelemetryUpdate_ : public ros::Message
   typedef  ::std_msgs::Header_<ContainerAllocator>  _telemetryHeader_type;
    ::std_msgs::Header_<ContainerAllocator>  telemetryHeader;
 
-  typedef int16_t _planeID_type;
-  int16_t planeID;
+  typedef int32_t _planeID_type;
+  int32_t planeID;
 
   typedef double _currentLatitude_type;
   double currentLatitude;
@@ -96,7 +96,7 @@ public:
   ROS_DEPRECATED const std::string __getDataType() const { return __s_getDataType_(); }
 
 private:
-  static const char* __s_getMD5Sum_() { return "64e744b9d67e05545c867fce3eab2e75"; }
+  static const char* __s_getMD5Sum_() { return "53cd950963d7a5c403c785f8c0a2ffa7"; }
 public:
   ROS_DEPRECATED static const std::string __s_getMD5Sum() { return __s_getMD5Sum_(); }
 
@@ -104,7 +104,7 @@ public:
 
 private:
   static const char* __s_getMessageDefinition_() { return "Header telemetryHeader\n\
-int16 planeID\n\
+int32 planeID\n\
 float64 currentLatitude\n\
 float64 currentLongitude\n\
 float64 currentAltitude\n\
@@ -219,12 +219,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::AU_UAV_ROS::TelemetryUpdate_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "64e744b9d67e05545c867fce3eab2e75";
+    return "53cd950963d7a5c403c785f8c0a2ffa7";
   }
 
   static const char* value(const  ::AU_UAV_ROS::TelemetryUpdate_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0x64e744b9d67e0554ULL;
-  static const uint64_t static_value2 = 0x5c867fce3eab2e75ULL;
+  static const uint64_t static_value1 = 0x53cd950963d7a5c4ULL;
+  static const uint64_t static_value2 = 0x03c785f8c0a2ffa7ULL;
 };
 
 template<class ContainerAllocator>
@@ -242,7 +242,7 @@ struct Definition< ::AU_UAV_ROS::TelemetryUpdate_<ContainerAllocator> > {
   static const char* value() 
   {
     return "Header telemetryHeader\n\
-int16 planeID\n\
+int32 planeID\n\
 float64 currentLatitude\n\
 float64 currentLongitude\n\
 float64 currentAltitude\n\
@@ -323,7 +323,7 @@ struct Printer< ::AU_UAV_ROS::TelemetryUpdate_<ContainerAllocator> >
 s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.telemetryHeader);
     s << indent << "planeID: ";
-    Printer<int16_t>::stream(s, indent + "  ", v.planeID);
+    Printer<int32_t>::stream(s, indent + "  ", v.planeID);
     s << indent << "currentLatitude: ";
     Printer<double>::stream(s, indent + "  ", v.currentLatitude);
     s << indent << "currentLongitude: ";
