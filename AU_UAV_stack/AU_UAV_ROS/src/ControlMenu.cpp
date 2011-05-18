@@ -33,14 +33,13 @@ void simulatorMenu(ros::NodeHandle *n)
 				double groundSpeed, bearing;
 				printf("\nEnter starting latitude, longitude, and altitude (format \"1 2 3\"):");
 				scanf("%lf %lf %lf", &latitude, &longitude, &altitude);
-				printf("\nEnter starting ground speed and bearing (format \"4 5\"):");
-				scanf("%lf %lf", &groundSpeed, &bearing);
+				printf("\nEnter starting bearing (format \"4\"):");
+				scanf("%lf", &bearing);
 				
 				AU_UAV_ROS::CreateSimulatedPlane srv;
 				srv.request.startingLatitude = latitude;
 				srv.request.startingLongitude = longitude;
 				srv.request.startingAltitude = altitude;
-				srv.request.startingGroundSpeed = groundSpeed;
 				srv.request.startingBearing = bearing;
 				
 				printf("\nRequesting to create new plane...\n");

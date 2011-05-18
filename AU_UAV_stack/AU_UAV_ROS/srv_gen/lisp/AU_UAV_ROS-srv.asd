@@ -10,6 +10,4 @@
     (:file "_package_RequestPlaneID" :depends-on ("_package"))
     (:file "GoToWaypoint" :depends-on ("_package_GoToWaypoint"))
     (:file "_package_GoToWaypoint" :depends-on ("_package"))
-    (:file "AvoidCollision" :depends-on ("_package_AvoidCollision"))
-    (:file "_package_AvoidCollision" :depends-on ("_package"))
   ))

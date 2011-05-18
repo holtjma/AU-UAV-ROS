@@ -21,10 +21,10 @@ namespace AU_UAV_ROS
 		long long int planeID;
 		AU_UAV_ROS::waypoint currentLocation;
 		AU_UAV_ROS::waypoint currentDest;
-		long long int groundSpeed;
-		long long int bearing;
+		double groundSpeed;
+		double bearing;
 		long long int currentWaypointIndex;
-		long long int distanceToDestination;
+		double distanceToDestination;
 		
 		//index of sent message
 		int updateIndex;

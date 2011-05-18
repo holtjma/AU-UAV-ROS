@@ -28,10 +28,10 @@ struct TelemetryUpdate_ : public ros::Message
   , destLatitude(0.0)
   , destLongitude(0.0)
   , destAltitude(0.0)
-  , groundSpeed(0)
-  , targetBearing(0)
+  , groundSpeed(0.0)
+  , targetBearing(0.0)
   , currentWaypointIndex(0)
-  , distanceToDestination(0)
+  , distanceToDestination(0.0)
   {
   }
 
@@ -44,10 +44,10 @@ struct TelemetryUpdate_ : public ros::Message
   , destLatitude(0.0)
   , destLongitude(0.0)
   , destAltitude(0.0)
-  , groundSpeed(0)
-  , targetBearing(0)
+  , groundSpeed(0.0)
+  , targetBearing(0.0)
   , currentWaypointIndex(0)
-  , distanceToDestination(0)
+  , distanceToDestination(0.0)
   {
   }
 
@@ -75,17 +75,17 @@ struct TelemetryUpdate_ : public ros::Message
   typedef double _destAltitude_type;
   double destAltitude;
 
-  typedef int64_t _groundSpeed_type;
-  int64_t groundSpeed;
+  typedef double _groundSpeed_type;
+  double groundSpeed;
 
-  typedef int64_t _targetBearing_type;
-  int64_t targetBearing;
+  typedef double _targetBearing_type;
+  double targetBearing;
 
   typedef int64_t _currentWaypointIndex_type;
   int64_t currentWaypointIndex;
 
-  typedef int64_t _distanceToDestination_type;
-  int64_t distanceToDestination;
+  typedef double _distanceToDestination_type;
+  double distanceToDestination;
 
 
 private:
@@ -96,7 +96,7 @@ public:
   ROS_DEPRECATED const std::string __getDataType() const { return __s_getDataType_(); }
 
 private:
-  static const char* __s_getMD5Sum_() { return "fa8a3a2e041a42c63edd9a70a9a78db7"; }
+  static const char* __s_getMD5Sum_() { return "64e744b9d67e05545c867fce3eab2e75"; }
 public:
   ROS_DEPRECATED static const std::string __s_getMD5Sum() { return __s_getMD5Sum_(); }
 
@@ -111,10 +111,10 @@ float64 currentAltitude\n\
 float64 destLatitude\n\
 float64 destLongitude\n\
 float64 destAltitude\n\
-int64 groundSpeed\n\
-int64 targetBearing\n\
+float64 groundSpeed\n\
+float64 targetBearing\n\
 int64 currentWaypointIndex\n\
-int64 distanceToDestination\n\
+float64 distanceToDestination\n\
 \n\
 ================================================================================\n\
 MSG: std_msgs/Header\n\
@@ -219,12 +219,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::AU_UAV_ROS::TelemetryUpdate_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "fa8a3a2e041a42c63edd9a70a9a78db7";
+    return "64e744b9d67e05545c867fce3eab2e75";
   }
 
   static const char* value(const  ::AU_UAV_ROS::TelemetryUpdate_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0xfa8a3a2e041a42c6ULL;
-  static const uint64_t static_value2 = 0x3edd9a70a9a78db7ULL;
+  static const uint64_t static_value1 = 0x64e744b9d67e0554ULL;
+  static const uint64_t static_value2 = 0x5c867fce3eab2e75ULL;
 };
 
 template<class ContainerAllocator>
@@ -249,10 +249,10 @@ float64 currentAltitude\n\
 float64 destLatitude\n\
 float64 destLongitude\n\
 float64 destAltitude\n\
-int64 groundSpeed\n\
-int64 targetBearing\n\
+float64 groundSpeed\n\
+float64 targetBearing\n\
 int64 currentWaypointIndex\n\
-int64 distanceToDestination\n\
+float64 distanceToDestination\n\
 \n\
 ================================================================================\n\
 MSG: std_msgs/Header\n\
@@ -337,13 +337,13 @@ s << std::endl;
     s << indent << "destAltitude: ";
     Printer<double>::stream(s, indent + "  ", v.destAltitude);
     s << indent << "groundSpeed: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.groundSpeed);
+    Printer<double>::stream(s, indent + "  ", v.groundSpeed);
     s << indent << "targetBearing: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.targetBearing);
+    Printer<double>::stream(s, indent + "  ", v.targetBearing);
     s << indent << "currentWaypointIndex: ";
     Printer<int64_t>::stream(s, indent + "  ", v.currentWaypointIndex);
     s << indent << "distanceToDestination: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.distanceToDestination);
+    Printer<double>::stream(s, indent + "  ", v.distanceToDestination);
   }
 };
 

@@ -23,15 +23,23 @@ ros::ServiceClient requestPlaneIDClient;
 
 std::map<int, AU_UAV_ROS::SimulatedPlane> simPlaneMap;
 
-//TODO: we need a callback for receiving commands along with the setup in main(...)
+/*
+commandCallback:
+This is the callback in place to handle any commands sent.  Note that not all commands will be destined for
+the simulator so it must be verified before proceeding with any commands.
+*/
 void commandCallback(const AU_UAV_ROS::Command::ConstPtr& msg)
 {
-	ROS_INFO("Received new message: Plane #%d to (%f, %f, %f)", msg->planeID, msg->latitude, msg->longitude, msg->altitude);
-	/*
-	waypoint[0] = msg->latitude;
-	waypoint[1] = msg->longitude;
-	waypoint[2] = msg->altitude;
-	*/
+	//check to make sure that the plane ID is in the simulator
+	if(simPlaneMap.find(msg->planeID) != simPlaneMap.end())
+	{
+		ROS_INFO("Received new message: Plane #%d to (%f, %f, %f)", msg->planeID, msg->latitude, msg->longitude, msg->altitude);
+		simPlaneMap[msg->planeID].handleNewCommand(*msg);
+	}
+	else
+	{
+		ROS_INFO("Received message to non-simulated plane $%d", msg->planeID);
+	}
 }
 
 bool createSimulatedPlane(AU_UAV_ROS::CreateSimulatedPlane::Request &req, AU_UAV_ROS::CreateSimulatedPlane::Response &res)

@@ -1,7 +1,6 @@
 float64 startingLatitude
 float64 startingLongitude
 float64 startingAltitude
-int64 startingGroundSpeed
 int64 startingBearing
 ---
 int16 planeID

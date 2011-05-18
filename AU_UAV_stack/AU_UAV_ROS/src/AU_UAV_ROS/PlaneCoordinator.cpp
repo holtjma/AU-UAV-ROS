@@ -35,15 +35,32 @@ This function will take a given waypoint and set that as the current and only de
 
 @return: returns true if the function executes without error
 */
-bool AU_UAV_ROS::PlaneCoordinator::goToPoint(struct AU_UAV_ROS::waypoint receivedPoint)
+bool AU_UAV_ROS::PlaneCoordinator::goToPoint(struct AU_UAV_ROS::waypoint receivedPoint, bool isAvoidanceManeuver, bool isNewQueue)
 {
 	//clear the queues
-	std::queue<struct AU_UAV_ROS::waypoint> emptyQueue;
-	this->avoidancePath = emptyQueue;
-	this->normalPath = emptyQueue;
+	if(isNewQueue)
+	{
+		std::queue<struct AU_UAV_ROS::waypoint> emptyQueue;
+		
+		//always clear the avoidance path if we say to do a new queue
+		this->avoidancePath = emptyQueue;
+		
+		if(!isAvoidanceManeuver)
+		{
+			//only clear the normal path if we specify the normal path
+			this->normalPath = emptyQueue;
+		}
+	}
 	
-	//add the single waypoint to the normal path
-	this->normalPath.push(receivedPoint);
+	//add the single waypoint to the specified path
+	if(isAvoidanceManeuver)
+	{
+		this->avoidancePath.push(receivedPoint);
+	}
+	else
+	{
+		this->normalPath.push(receivedPoint);
+	}
 	
 	//no ways to error right now so just return true
 	return true;
@@ -66,6 +83,9 @@ Takes a received telemetry update and determine if a new command is necessary
 */
 bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate update, AU_UAV_ROS::Command *newCommand)
 {
+	bool isCommand = false;
+	bool isAvoid;
+	
 	//store the last update
 	this->latestUpdate = update;
 	
@@ -81,21 +101,25 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 	planeDest.longitude = update.destLongitude;
 	planeDest.altitude = update.destAltitude;
 	
-	
-	//TODO:check to see if we need to send a new command before returning
 	//first, check the avoidance queue, since survival is priority #1
 	if(!avoidancePath.empty())
 	{
-		//TODO: something!
-		return false;
+		destination = avoidancePath.front();
+		isCommand = true;
+		isAvoid = true;
 	}
-	 
+	
 	//avoidance queue is empty so check normal pathing
-	if(!normalPath.empty())
+	else if(!normalPath.empty())
 	{
 		//get the first waypoint in the normal path
 		destination = normalPath.front();
-		
+		isCommand = true;
+		isAvoid = false;
+	}
+	
+	if(isCommand)
+	{
 		//first, check to make sure the plane has the correct current waypoint
 		if(distanceBetween(destination, planeDest) > COLLISION_THRESHOLD)
 		{
@@ -103,9 +127,9 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 			newCommand->commandHeader.seq = this->commandIndex++;
 			newCommand->commandHeader.stamp = ros::Time::now();
 			newCommand->planeID = this->latestUpdate.planeID;
-			newCommand->latitude = normalPath.front().latitude;
-			newCommand->longitude = normalPath.front().longitude;
-			newCommand->altitude = normalPath.front().altitude;
+			newCommand->latitude = destination.latitude;
+			newCommand->longitude = destination.longitude;
+			newCommand->altitude = destination.altitude;
 			return true;
 		}
 		
@@ -113,24 +137,49 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 		if(distanceBetween(destination, current) < COLLISION_THRESHOLD)
 		{
 			//remove the waypoint from the queue
-			normalPath.pop();
-			
-			//check for more waypoints in the path
-			if(normalPath.empty())
+			if(isAvoid)
 			{
-				//no more pathing commands
-				return false;
+				avoidancePath.pop();
+				
+				//check for more avoidance waypoint
+				if(avoidancePath.empty())
+				{
+					//no more pathing commands
+					return false;
+				}
+				else
+				{
+					//fill data for next normal waypoint
+					newCommand->commandHeader.seq = this->commandIndex++;
+					newCommand->commandHeader.stamp = ros::Time::now();
+					newCommand->planeID = this->latestUpdate.planeID;
+					newCommand->latitude = avoidancePath.front().latitude;
+					newCommand->longitude = avoidancePath.front().longitude;
+					newCommand->altitude = avoidancePath.front().altitude;
+					return true;
+				}
 			}
 			else
 			{
-				//fill data for next normal waypoint
-				newCommand->commandHeader.seq = this->commandIndex++;
-				newCommand->commandHeader.stamp = ros::Time::now();
-				newCommand->planeID = this->latestUpdate.planeID;
-				newCommand->latitude = normalPath.front().latitude;
-				newCommand->longitude = normalPath.front().longitude;
-				newCommand->altitude = normalPath.front().altitude;
-				return true;
+				normalPath.pop();
+				
+				//check for more waypoints in the path
+				if(normalPath.empty())
+				{
+					//no more pathing commands
+					return false;
+				}
+				else
+				{
+					//fill data for next normal waypoint
+					newCommand->commandHeader.seq = this->commandIndex++;
+					newCommand->commandHeader.stamp = ros::Time::now();
+					newCommand->planeID = this->latestUpdate.planeID;
+					newCommand->latitude = normalPath.front().latitude;
+					newCommand->longitude = normalPath.front().longitude;
+					newCommand->altitude = normalPath.front().altitude;
+					return true;
+				}
 			}
 		}
 		

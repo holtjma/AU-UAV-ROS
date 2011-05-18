@@ -37,7 +37,7 @@ namespace AU_UAV_ROS
 		PlaneCoordinator();
 		
 		//command related functions
-		bool goToPoint(struct AU_UAV_ROS::waypoint receivedPoint);
+		bool goToPoint(struct AU_UAV_ROS::waypoint receivedPoint, bool isAvoidanceManeuver, bool isNewQueue);
 		bool loadPathfromFile(std::string filename);
 		
 		//update related functions

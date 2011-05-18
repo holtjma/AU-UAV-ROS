@@ -15,7 +15,7 @@ TODO: I believe this also assigns numbers to planes for messaging purposes
 #include "ros/ros.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/Command.h"
-#include "AU_UAV_ROS/AvoidCollision.h"
+//#include "AU_UAV_ROS/AvoidCollision.h"
 #include "AU_UAV_ROS/RequestPlaneID.h"
 #include "AU_UAV_ROS/GoToWaypoint.h"
 
@@ -75,13 +75,14 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 	}
 }
 
+//NOTE: This is a remnant from an old design, use go to waypoint with the right modifiers
 //service to be run whenever the collision avoidance algorithm decides to make a path change
-bool avoidCollision(AU_UAV_ROS::AvoidCollision::Request &req, AU_UAV_ROS::AvoidCollision::Response &res)
+/*bool avoidCollision(AU_UAV_ROS::AvoidCollision::Request &req, AU_UAV_ROS::AvoidCollision::Response &res)
 {
 	//TODO: Make this function do something useful
 	ROS_INFO("Service Request Received: [%s]", req.newCommand.c_str());
 	return true;
-}
+}*/
 
 //service to run whenever a new plane enters the arena to tell it the ID number it should use
 bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::RequestPlaneID::Response &res)
@@ -115,7 +116,7 @@ bool goToWaypoint(AU_UAV_ROS::GoToWaypoint::Request &req, AU_UAV_ROS::GoToWaypoi
 		pointFromService.altitude = req.altitude;
 		
 		//attempt to set waypoint
-		if(planesArray[req.planeID].goToPoint(pointFromService))
+		if(planesArray[req.planeID].goToPoint(pointFromService, req.isAvoidanceManeuver, req.isNewQueue))
 		{
 			//success!
 			return true;
@@ -142,7 +143,7 @@ int main(int argc, char **argv)
 	
 	//Subscribe to telemetry message and advertise avoid collision service
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
-	ros::ServiceServer avoidCollisionServer = n.advertiseService("avoid_collision", avoidCollision);
+	//ros::ServiceServer avoidCollisionServer = n.advertiseService("avoid_collision", avoidCollision);
 	ros::ServiceServer newPlaneServer = n.advertiseService("request_plane_ID", requestPlaneID);
 	ros::ServiceServer goToWaypointServer = n.advertiseService("go_to_waypoint", goToWaypoint);
 	commandPub = n.advertise<AU_UAV_ROS::Command>("commands", 1000);
