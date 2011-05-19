@@ -87,12 +87,12 @@ int main(int argc, char **argv)
 	//currently updates at 1 Hz, based of Justin Paladino'sestimate of approximately 1 update/sec
 	ros::Rate loop_rate(1);
 	 
-	//keeps count of number of messages sent
-	int count = 0;
-	
 	//while the user doesn't kill the process or we get some crazy error
 	while(ros::ok())
 	{
+		//first check for callbacks
+		ros::spinOnce();
+		
 		AU_UAV_ROS::TelemetryUpdate tUpdate;
 		std::map<int, AU_UAV_ROS::SimulatedPlane>::iterator ii;
 		
@@ -103,12 +103,8 @@ int main(int argc, char **argv)
 			telemetryPub.publish(tUpdate);
 		}
 		
-		//check for any incoming callbacks and sleep until next update
-		ros::spinOnce();
+		//sleep until next update cycle
 		loop_rate.sleep();
-		
-		//increment count
-		count++;
 	}
 	
 	return 0;

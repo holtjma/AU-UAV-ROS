@@ -27,7 +27,10 @@ public class PlaneData {
 	/** Current waypoint index */
 	public int currWP;			
 	/** Distance to next waypoint */
-	public int WPdistance;		
+	public int WPdistance;
+	
+	/**sequence number for monitoring updates */
+	public int seq;		
 	
 	@Override
 	public String toString() {

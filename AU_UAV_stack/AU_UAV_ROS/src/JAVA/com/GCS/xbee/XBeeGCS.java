@@ -4,6 +4,7 @@ import ros.*;
 import ros.communication.*;
 import ros.pkg.AU_UAV_ROS.msg.TelemetryUpdate;
 import ros.pkg.AU_UAV_ROS.msg.Command;
+import ros.pkg.AU_UAV_ROS.srv.RequestPlaneID;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,7 +56,10 @@ public class XBeeGCS {
 	static private Ros ros;
 	static private NodeHandle n;
 	private Publisher<ros.pkg.AU_UAV_ROS.msg.TelemetryUpdate> telemetryPub;
-
+	private ServiceClient<RequestPlaneID.Request, RequestPlaneID.Response, RequestPlaneID> requestPlaneIDService;
+	static private Subscriber.QueueingCallback<ros.pkg.AU_UAV_ROS.msg.Command> callback;
+	private Subscriber<ros.pkg.AU_UAV_ROS.msg.Command> sub;
+				
 	/**
 	 * Initializes XBee serial communication, packet listening thread, GUI, and if wanted, collision avoidance thread.
 	 * @throws XBeeException if failing to initialize XBee serial link.
@@ -70,6 +74,9 @@ public class XBeeGCS {
 		try
 		{
 			telemetryPub = n.advertise("/telemetry", new ros.pkg.AU_UAV_ROS.msg.TelemetryUpdate(), 100);
+			requestPlaneIDService = n.serviceClient("request_plane_ID", new RequestPlaneID(), false);
+			callback = new Subscriber.QueueingCallback<ros.pkg.AU_UAV_ROS.msg.Command>();
+			sub = n.subscribe("/commands", new ros.pkg.AU_UAV_ROS.msg.Command(), callback, 100);
 		}
 		catch (ros.RosException re)
 		{
@@ -124,9 +131,26 @@ public class XBeeGCS {
 			//TODO: REMOVE ++planeCounter in favor of service based numbering
 			// associate a plane number with the incoming data
 			if (!getDataMap().containsKey(addr))
-				data.planeID = ++planeCounter;
-			else 
+			{
+				try
+				{
+					data.planeID = requestPlaneIDService.call(new RequestPlaneID.Request()).planeID;
+					data.seq = 0;
+					log.info("New plane with ID #"+data.planeID+" created.");
+					planeCounter++;
+				}
+				catch (RosException re)
+				{
+					log.error("Request Plane ID failed!");
+					return;
+				}
+			}
+			else
+			{
 				data.planeID = getDataMap().get(addr).planeID;
+				data.seq++;
+			}	
+				
 			// update hash map
 			setLatest(addr);
 			log.info(data);
@@ -227,7 +251,33 @@ public class XBeeGCS {
 	public static void main(String[] args) {
 		try {
 			new XBeeGCS();
-			ros.spin();
+			
+			//if you say while true, you can't kill it in a normal manner
+			while(n.ok())
+			{
+				ros.spinOnce();
+				while(!callback.isEmpty())
+				{
+					//TODO:forward the command
+					System.out.println("COMMAND RECEIVED!!!!!!!!");
+					try
+					{
+						callback.pop();
+					}
+					catch (InterruptedException ie)
+					{
+						log.error("InterruptedException while popping Command callback");
+					}
+				}
+				try
+				{
+					Thread.sleep(50);
+				}
+				catch (InterruptedException ie)
+				{
+					//nothing?
+				}
+			}
 		} 
 		catch (XBeeException e) {
 			log.fatal("XBeeGCS: Failed to initialize XBee serial link, exiting.");
