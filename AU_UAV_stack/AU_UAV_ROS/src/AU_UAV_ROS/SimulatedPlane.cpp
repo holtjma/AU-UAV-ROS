@@ -19,6 +19,8 @@ C) Any collision avoidance waypoints
 #define EARTH_RADIUS 6371000
 #define DEGREES_TO_RADIANS (M_PI/180.0)
 #define RADIANS_TO_DEGREES (180.0/M_PI)
+#define LATITUDE_TO_METERS (111200.0)
+#define METERS_TO_LATITUDE (1.0/111200.0)
 
 AU_UAV_ROS::SimulatedPlane::SimulatedPlane()
 {
@@ -101,7 +103,50 @@ bool AU_UAV_ROS::SimulatedPlane::fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate
 	double y = sin(deltaLong)*cos(lat2);
 	double x = cos(lat1)*sin(lat2) - sin(lat1)*cos(lat2)*cos(deltaLong);
 	this->bearing = atan2(y, x)*RADIANS_TO_DEGREES;
-
+	
+	//time to calculate the new positions, God help us
+	/*
+	Algorithm for updating position:
+	1) Estimate new latitude using basic trig and this equation:
+	   lat2 = lat1 + (MPS_SPEED*cos(bearing))*METERS_TO_LATITUDE
+	2) Use law of haversines to find the new longitude
+	   haversin(c) = haversin(a-b) + sin(a)*sin(b)*haversin(C)
+	   where haversin(x) = (sin(x/2.0))^2
+	   where c = MPS_SPEED/EARTH_RADIUS (radians)
+	   where a = 90 - lat1 (degrees)
+	   where b = 90 - lat2 (degrees)
+	   where C = the change in longitude, what we are solving for
+	   
+	   C = 2.0 * arcsin(sqrt((haversin(c) - haversin(a-b))/(sin(a)*sin(b))))
+	*/
+	
+	//make sure we're actually traveling somewhere
+	if(this->currentWaypointIndex >= 0)
+	{
+		//1) Estimate new latitude using basic trig and this equation
+		this->currentLocation.latitude = lat1*RADIANS_TO_DEGREES + (MPS_SPEED*cos(this->bearing*DEGREES_TO_RADIANS))*METERS_TO_LATITUDE;
+		
+		//2) Use the law of haversines to find the new longitude
+		//double temp = pow(sin((MPS_SPEED/EARTH_RADIUS)/2.0), 2);
+		double temp = 7.69303281*pow(10, -13); //always the same, see above calculation
+		printf("%e\n", temp);
+		temp = temp - pow(sin((this->currentLocation.latitude*DEGREES_TO_RADIANS - lat1)/2.0), 2);
+		printf("%e\n", temp);
+		temp = temp / (sin(M_PI/2.0 - lat1)*sin((M_PI/2.0)-this->currentLocation.latitude*DEGREES_TO_RADIANS));
+		printf("%e\n", temp);
+		temp = 2.0 * RADIANS_TO_DEGREES * asin(sqrt(temp));
+		printf("%e\n\n", temp);
+		
+		if(bearing > 0)
+		{
+			this->currentLocation.longitude = long1 + temp;
+		}
+		else
+		{
+			this->currentLocation.longitude = long1 - temp;
+		}
+	}
+		
 	//fill out the actual data
 	tUpdate->planeID = this->planeID;
 	

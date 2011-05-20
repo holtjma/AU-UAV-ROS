@@ -15,6 +15,7 @@ C) Any collision avoidance waypoints
 #include "AU_UAV_ROS/PlaneCoordinator.h"
 #include "AU_UAV_ROS/Command.h"
 
+//TODO: Make this conformed to curvature of earth
 double distanceBetween(struct AU_UAV_ROS::waypoint first, struct AU_UAV_ROS::waypoint second)
 {
 	return sqrt(pow(first.latitude - second.latitude, 2) + pow(first.longitude - second.longitude, 2) + pow(first.altitude - second.altitude, 2));

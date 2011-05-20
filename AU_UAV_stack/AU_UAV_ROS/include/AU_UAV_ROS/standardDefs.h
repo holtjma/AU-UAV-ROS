@@ -8,8 +8,8 @@ This file is meant to contain things that are used across multiple executables t
 
 #include <math.h>
 
-//TODO:five somethings, feet meters yards?
-#define COLLISION_THRESHOLD 5
+//TODO: .0001 somethings with respect to longitude and latitude, needs to be changed
+#define COLLISION_THRESHOLD .0001
 
 namespace AU_UAV_ROS
 {
