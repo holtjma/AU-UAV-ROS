@@ -139,11 +139,11 @@ bool AU_UAV_ROS::SimulatedPlane::fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate
 		
 		if(bearing > 0)
 		{
-			this->currentLocation.longitude = long1 + temp;
+			this->currentLocation.longitude += temp;
 		}
 		else
 		{
-			this->currentLocation.longitude = long1 - temp;
+			this->currentLocation.longitude -= temp;
 		}
 	}
 		
