@@ -1,20 +1,24 @@
-Auburn University UAV ROS project
+Auburn University UAV ATTRACT project
 
-This project is intended to create an environment for both simulation and testing of collision avoidance algorithms on UAVs.
+This project is intended to create an environment for both simulation and testing of collision avoidance
+algorithms on UAVs.
+Features:
+-Simulator - there is a basic point to point simulator for the Easy Star airplane running in UAV mode
+-Coordinator - an automated system for loading waypoints into the UAVs (simulated or real)
+-Control menu - a basic menu in the command line for running the simulator and coordinator
+-Collision avoidance shell - there is a collision avoidance file located in src that can be used as a shell
+for writing your own avoidance algorithm
+-Launch files - inherited from ROS, you can create files to launch all or parts of the system
+-Path files - a basic system for creating a path before running the program
 
-Note: You will still need ROS to execute this on any machine along with some knowledge on rosmake and roslaunch
 
-Added:
--places for messages and services
--core C++ files for main executables
--setup many C++ files for editing, basic functionality, and marked with TODOs
-	*collisionAvoidance.cpp
-	*coordinator.cpp
-	*simulator.cpp
-	*visualization.cpp
-	*XBeeIO.cpp
--setup CMakeLists for building the data passing executables
--setup a launch file for a simulator only launch
+INSTALL:
+This is intended to be run on an Ubuntu device.  However, you may be able to operate it on a Windows or Mac
+based machine with enough tinkering.
 
-rxtx, log4j - standard things to install for ubuntu
+You will still need ROS to execute this on any machine along with some knowledge on rosmake and roslaunch
+ROS Wiki: http://www.ros.org/wiki/
+
+In addition, you will need the following items on your machine in order to run these programs:
+rxtx, log4j, ros-diamondback-client-rosjava - standard things to install for ubuntu
 xbee-api-0.9.jar - also needs to be put into /usr/share/java
