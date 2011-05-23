@@ -17,10 +17,13 @@ understand how this works.
 #include "AU_UAV_ROS/Command.h"
 #include "AU_UAV_ROS/RequestPlaneID.h"
 #include "AU_UAV_ROS/CreateSimulatedPlane.h"
+#include "AU_UAV_ROS/DeleteSimulatedPlane.h"
 #include "AU_UAV_ROS/SimulatedPlane.h"
 
+//Coordinator Services
 ros::ServiceClient requestPlaneIDClient;
 
+//a map of plane IDs to the Simulated Plane with that ID
 std::map<int, AU_UAV_ROS::SimulatedPlane> simPlaneMap;
 
 /*
@@ -33,17 +36,25 @@ void commandCallback(const AU_UAV_ROS::Command::ConstPtr& msg)
 	//check to make sure that the plane ID is in the simulator
 	if(simPlaneMap.find(msg->planeID) != simPlaneMap.end())
 	{
+		//let the simulator handle the new command now
 		ROS_INFO("Received new message: Plane #%d to (%f, %f, %f)", msg->planeID, msg->latitude, msg->longitude, msg->altitude);
 		simPlaneMap[msg->planeID].handleNewCommand(*msg);
 	}
 	else
 	{
+		//we may want to remove this message eventually
 		ROS_INFO("Received message to non-simulated plane $%d", msg->planeID);
 	}
 }
 
-bool createSimulatedPlane(AU_UAV_ROS::CreateSimulatedPlane::Request &req, AU_UAV_ROS::CreateSimulatedPlane::Response &res)
+/*
+createSimulatePlaneCallback
+This is the callback used to handle any users wishing to create a new plane.  This could be used for setting
+up a course as well.
+*/
+bool createSimulatedPlaneCallback(AU_UAV_ROS::CreateSimulatedPlane::Request &req, AU_UAV_ROS::CreateSimulatedPlane::Response &res)
 {
+	//create a service to get a plane ID to use
 	AU_UAV_ROS::RequestPlaneID srv;
 	
 	//check to make sure the client call worked (regardless of return values from service)
@@ -60,7 +71,30 @@ bool createSimulatedPlane(AU_UAV_ROS::CreateSimulatedPlane::Request &req, AU_UAV
 	}
 	else
 	{
+		//if this happens, chances are the coordinator isn't running
 		ROS_ERROR("Did not receive response from coordinator");
+		return false;
+	}
+}
+
+/*
+deleteSimulatedPlaneCallback
+This callback will remove a plane from the simulator and stop it from sending updates. NOTE: this does not
+free up that plane ID in the coordinator.  New planes will still have higher IDs.
+*/
+bool deleteSimulatedPlaneCallback(AU_UAV_ROS::DeleteSimulatedPlane::Request &req, AU_UAV_ROS::DeleteSimulatedPlane::Response &res)
+{
+	//check to make sure the plane is simulated
+	if(simPlaneMap.find(req.planeID) != simPlaneMap.end())
+	{
+		//we found it, erase that bad boy
+		simPlaneMap.erase(req.planeID);
+		return true;
+	}
+	else
+	{
+		//this plane must not be simulated, silly user!
+		ROS_ERROR("No simulated plane with ID #%d", req.planeID);
 		return false;
 	}
 }
@@ -78,7 +112,8 @@ int main(int argc, char **argv)
 	ros::Publisher telemetryPub = n.advertise<AU_UAV_ROS::TelemetryUpdate>("telemetry", 1000);
 	
 	//setup server services
-	ros::ServiceServer createSimulatedPlaneService = n.advertiseService("create_simulated_plane", createSimulatedPlane);
+	ros::ServiceServer createSimulatedPlaneService = n.advertiseService("create_simulated_plane", createSimulatedPlaneCallback);
+	ros::ServiceServer deleteSimulatedPlaneService = n.advertiseService("delete_simulated_plane", deleteSimulatedPlaneCallback);
 	
 	//setup client services
 	requestPlaneIDClient = n.serviceClient<AU_UAV_ROS::RequestPlaneID>("request_plane_ID");
@@ -93,6 +128,7 @@ int main(int argc, char **argv)
 		//first check for callbacks
 		ros::spinOnce();
 		
+		//prep to send some updates
 		AU_UAV_ROS::TelemetryUpdate tUpdate;
 		std::map<int, AU_UAV_ROS::SimulatedPlane>::iterator ii;
 		

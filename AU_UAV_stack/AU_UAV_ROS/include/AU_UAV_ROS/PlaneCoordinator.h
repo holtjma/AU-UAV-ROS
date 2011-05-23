@@ -9,10 +9,12 @@ C) Any collision avoidance waypoints
 #ifndef PLANE_COORDINATOR_H
 #define PLANE_COORDINATOR_H
 
+//normal headers
 #include <stdio.h>
 #include <queue>
 #include <string>
 
+//ROS headers
 #include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/Command.h"
@@ -38,7 +40,7 @@ namespace AU_UAV_ROS
 		
 		//command related functions
 		bool goToPoint(struct AU_UAV_ROS::waypoint receivedPoint, bool isAvoidanceManeuver, bool isNewQueue);
-		bool loadPathfromFile(std::string filename);
+		//bool loadPathfromFile(std::string filename);
 		
 		//update related functions
 		bool handleNewUpdate(AU_UAV_ROS::TelemetryUpdate update, AU_UAV_ROS::Command *newCommand);

@@ -4,6 +4,9 @@ This class is the data structures and functions required to perform plane simula
 instantiated will be considered one "plane" in the system.
 */
 
+#ifndef SIMULATED_PLANE_H
+#define SIMULATED_PLANE_H
+
 #include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/Command.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
@@ -19,10 +22,13 @@ namespace AU_UAV_ROS
 		
 		//current information (used mostly in update)
 		long long int planeID;
+		
 		AU_UAV_ROS::waypoint currentLocation;
 		AU_UAV_ROS::waypoint currentDest;
+		
 		double groundSpeed;
 		double bearing;
+		
 		long long int currentWaypointIndex;
 		double distanceToDestination;
 		
@@ -30,10 +36,18 @@ namespace AU_UAV_ROS
 		int updateIndex;
 		
 	public:
+		//dummy constructor, shouldn't really be used
 		SimulatedPlane();
+		
+		//primary constructor
 		SimulatedPlane(long long int planeID, AU_UAV_ROS::CreateSimulatedPlane::Request &requestFromUser);
 	
+		//function for handling a command from the coordinator
 		bool handleNewCommand(AU_UAV_ROS::Command newCommand);
+		
+		//periodic function for filling in a new telemetry update for this UAV
 		bool fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate *tUpdate);
 	};
 }
+
+#endif

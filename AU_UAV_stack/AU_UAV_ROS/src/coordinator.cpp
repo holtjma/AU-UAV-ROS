@@ -5,7 +5,6 @@ a difference here) and for sending commands to those planes.  It will receive co
 avoidance as well.
 
 TODO: is this where we want to take normal flight commands/read a flight plan?
-TODO: I believe this also assigns numbers to planes for messaging purposes
 */
 
 //Standard C++ headers
@@ -13,39 +12,51 @@ TODO: I believe this also assigns numbers to planes for messaging purposes
 
 //ROS headers
 #include "ros/ros.h"
+#include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/Command.h"
-//#include "AU_UAV_ROS/AvoidCollision.h"
 #include "AU_UAV_ROS/RequestPlaneID.h"
 #include "AU_UAV_ROS/GoToWaypoint.h"
-
-//class headers
-#include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/PlaneCoordinator.h"
+#include "AU_UAV_ROS/LoadPath.h"
 
 //publisher is global so callbacks can access it
 ros::Publisher commandPub;
 
+//coordinator list of UAVs, may want to lengthen this or perhaps change it to a map, not sure
 AU_UAV_ROS::PlaneCoordinator planesArray[100];
+
+//just a count of the number of planes so far, init to zero
 int numPlanes = 0;
 
 //TODO: this executable should also be sending updates to our commands, normal and avoidance commands
 
+/*
+isValidPlanID(...)
+simple function to make sure that an ID sent to us is known by the coordinator
+*/
 bool isValidPlaneID(int id)
 {
 	if(id >= 0 && id < numPlanes) return true;
 	else return false;
 }
 
-//This function is run whenever a new telemetry update from any plane is recieved
+/*
+telemetryCallback(...)
+This function is run whenever a new telemetry update from any plane is recieved.  Mainly, it forwards the
+update onwards and it will send new commands if the plane coordinators deem it necessary.
+*/
 void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 {
-	//TODO: Make this function do something useful
 	ROS_INFO("Received update #[%d] from plane ID %d", msg->telemetryHeader.seq, msg->planeID);
+	
+	//check the make sure the update is valid first
 	if(isValidPlaneID(msg->planeID))
 	{
+		//prep in case a command needs to be sent
 		AU_UAV_ROS::Command commandToSend;
-		//we have a valid plane ID
+		
+		//check whether the update warrants a new command or not
 		if(planesArray[msg->planeID].handleNewUpdate(*msg, &commandToSend))
 		{
 			//send new command
@@ -56,33 +67,12 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 		{
 			//don't send a new command
 		}
-		
-		/*remnants of old test, may be useful in a bit
-		if(waypoint[0] != msg->destLatitude || waypoint[1] != msg->destLongitude || waypoint[2] != msg->destAltitude)
-		{
-			AU_UAV_ROS::Command newCommand;
-			newCommand.planeID = 0;
-			newCommand.latitude = waypoint[0];
-			newCommand.longitude = waypoint[1];
-			newCommand.altitude = waypoint[2];
-			commandPub.publish(newCommand);
-			ROS_INFO("Sent command to plane #%d: (%f, %f, %f)", newCommand.planeID, newCommand.latitude, newCommand.longitude, newCommand.altitude);
-		}*/
 	}
 	else
 	{
 		ROS_ERROR("Received update from invalid plane ID #%d", msg->planeID);
 	}
 }
-
-//NOTE: This is a remnant from an old design, use go to waypoint with the right modifiers
-//service to be run whenever the collision avoidance algorithm decides to make a path change
-/*bool avoidCollision(AU_UAV_ROS::AvoidCollision::Request &req, AU_UAV_ROS::AvoidCollision::Response &res)
-{
-	//TODO: Make this function do something useful
-	ROS_INFO("Service Request Received: [%s]", req.newCommand.c_str());
-	return true;
-}*/
 
 //service to run whenever a new plane enters the arena to tell it the ID number it should use
 bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::RequestPlaneID::Response &res)
@@ -135,6 +125,88 @@ bool goToWaypoint(AU_UAV_ROS::GoToWaypoint::Request &req, AU_UAV_ROS::GoToWaypoi
 	}
 }
 
+/*
+loadPathCallback(...)
+This is the callback used when the user requests for a plane to start a certain path.
+*/
+bool loadPathCallback(AU_UAV_ROS::LoadPath::Request &req, AU_UAV_ROS::LoadPath::Response &res)
+{
+	ROS_INFO("Received request: Load path from \"%s\" to plane #%d\n", req.filename.c_str(), req.planeID);
+	
+	//check for a valid plane ID sent
+	if(isValidPlaneID(req.planeID))
+	{
+		//open our file
+		FILE *fp;
+		fp = fopen(req.filename.c_str(), "r");
+		
+		//just as an added measure, lets search the "paths" directory
+		if(fp == NULL)
+		{
+			fp = fopen(("paths/"+req.filename).c_str(), "r");
+		}
+		
+		//check for a good file open
+		if(fp != NULL)
+		{
+			char buffer[256];
+			bool isFirstLine = true;
+			bool isAvoidance = false;
+			
+			//while we have something in the file
+			//while(fscanf(fp, "%s", buffer) != EOF)
+			while(fgets(buffer, sizeof(buffer), fp))
+			{
+				//check first character
+				if(buffer[0] == '#')
+				{
+					//this line is a comment
+					continue;
+				}
+				else
+				{
+					//set some invalid defaults
+					struct AU_UAV_ROS::waypoint temp;
+					temp.latitude = temp.longitude = temp.altitude = -1000;
+					
+					//parse the string
+					sscanf(buffer, "%lf %lf %lf\n", &temp.latitude, &temp.longitude, &temp.altitude);
+					ROS_INFO("%lf %lf %lf", temp.latitude, temp.longitude, temp.altitude);
+					//check for the invalid defaults
+					if(temp.latitude == -1000 || temp.longitude == -1000 || temp.altitude == -1000)
+					{
+						//this means we have a bad file somehow
+						ROS_ERROR("Bad file parse");
+						res.error = "Bad file parse, some points loaded";
+						return false;
+					}
+					
+					//call the goToPoint function for the correct plane
+					planesArray[req.planeID].goToPoint(temp, isAvoidance, isFirstLine);
+					
+					//only clear the queue with the first point
+					if(isFirstLine) isFirstLine = false;
+				}
+			}
+			
+			//end of file, return
+			return true;
+		}
+		else
+		{
+			ROS_ERROR("Invalid filename or location");
+			res.error = "Invalid filename or location";
+			return false;
+		}
+	}
+	else
+	{
+		ROS_ERROR("Invalid plane ID");	
+		res.error = "Invalid plane ID";
+		return false;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	//Standard ROS startup
@@ -143,9 +215,9 @@ int main(int argc, char **argv)
 	
 	//Subscribe to telemetry message and advertise avoid collision service
 	ros::Subscriber sub = n.subscribe("telemetry", 1000, telemetryCallback);
-	//ros::ServiceServer avoidCollisionServer = n.advertiseService("avoid_collision", avoidCollision);
 	ros::ServiceServer newPlaneServer = n.advertiseService("request_plane_ID", requestPlaneID);
 	ros::ServiceServer goToWaypointServer = n.advertiseService("go_to_waypoint", goToWaypoint);
+	ros::ServiceServer loadPathServer = n.advertiseService("load_path", loadPathCallback);
 	commandPub = n.advertise<AU_UAV_ROS::Command>("commands", 1000);
 
 	//Needed for ROS to wait for callbacks

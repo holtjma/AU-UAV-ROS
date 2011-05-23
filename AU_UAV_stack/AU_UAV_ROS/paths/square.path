@@ -1,0 +1,7 @@
+#this is a sample file for a square path
+#latitude longitude altitude
+#if you want to have a comment inside the file, make sure it starts with '#'
+0.001 0.001 0
+0.001 -0.001 0
+-0.001 -0.001 0
+-0.001 0.001 0

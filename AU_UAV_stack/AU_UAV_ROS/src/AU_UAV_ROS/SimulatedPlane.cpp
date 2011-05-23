@@ -6,28 +6,26 @@ B) The waypoints to go to (aka path)
 C) Any collision avoidance waypoints
 */
 
+//basic headers
 #include <stdio.h>
 #include <math.h>
 
+//ROS headers
+#include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/SimulatedPlane.h"
 
-//25 mph = 11.17600 meters / second
-#define MPS_SPEED 11.176 
-#define MPH_SPEED 25
-
-//meters
-#define EARTH_RADIUS 6371000
-#define DEGREES_TO_RADIANS (M_PI/180.0)
-#define RADIANS_TO_DEGREES (180.0/M_PI)
-#define LATITUDE_TO_METERS (111200.0)
-#define METERS_TO_LATITUDE (1.0/111200.0)
-
+//standard constructor, shouldn't really be used
 AU_UAV_ROS::SimulatedPlane::SimulatedPlane()
 {
 	//make a bad ID
 	this->planeID = -1;
 }
 
+/*
+SimulatedPlane(...)
+This is the primary constructor to be used.  Note how all information is extracted from the service request
+for creation of a simulated plane.
+*/
 AU_UAV_ROS::SimulatedPlane::SimulatedPlane(long long int planeID, AU_UAV_ROS::CreateSimulatedPlane::Request &requestFromUser)
 {
 	//data from inputs
@@ -49,9 +47,15 @@ AU_UAV_ROS::SimulatedPlane::SimulatedPlane(long long int planeID, AU_UAV_ROS::Cr
 	this->updateIndex = 0;
 }
 
+/*
+handleNewCommand(...)
+This function takes a command from the coordinator and stores the new information for simulation later.
+That's really all it does, no calculations or anything.
+*/
 bool AU_UAV_ROS::SimulatedPlane::handleNewCommand(AU_UAV_ROS::Command newCommand)
 {
 	ROS_INFO("Handling new command for plane ID #%lld", this->planeID);
+	
 	//check to make sure we're in the right place
 	if(this->planeID != newCommand.planeID)
 	{
@@ -94,12 +98,13 @@ bool AU_UAV_ROS::SimulatedPlane::fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate
 	double deltaLong = long2 - long1;
 	
 	//haversine crazy math, should probably be verified further beyond basic testing
+	//calculate distance from current position to destination
 	double a = pow(sin(deltaLat / 2.0), 2);
 	a = a + cos(lat1)*cos(lat2)*pow(sin(deltaLong/2.0), 2);
 	double c = 2.0 * asin(sqrt(a));
 	this->distanceToDestination = EARTH_RADIUS * c;
 	
-	//calculate bearing
+	//calculate bearing from current position to destination
 	double y = sin(deltaLong)*cos(lat2);
 	double x = cos(lat1)*sin(lat2) - sin(lat1)*cos(lat2)*cos(deltaLong);
 	this->bearing = atan2(y, x)*RADIANS_TO_DEGREES;
@@ -129,14 +134,11 @@ bool AU_UAV_ROS::SimulatedPlane::fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate
 		//2) Use the law of haversines to find the new longitude
 		//double temp = pow(sin((MPS_SPEED/EARTH_RADIUS)/2.0), 2);
 		double temp = 7.69303281*pow(10, -13); //always the same, see above calculation
-		printf("%e\n", temp);
 		temp = temp - pow(sin((this->currentLocation.latitude*DEGREES_TO_RADIANS - lat1)/2.0), 2);
-		printf("%e\n", temp);
 		temp = temp / (sin(M_PI/2.0 - lat1)*sin((M_PI/2.0)-this->currentLocation.latitude*DEGREES_TO_RADIANS));
-		printf("%e\n", temp);
 		temp = 2.0 * RADIANS_TO_DEGREES * asin(sqrt(temp));
-		printf("%e\n\n", temp);
 		
+		//depending on bearing, we should be either gaining or losing longitude
 		if(bearing > 0)
 		{
 			this->currentLocation.longitude += temp;

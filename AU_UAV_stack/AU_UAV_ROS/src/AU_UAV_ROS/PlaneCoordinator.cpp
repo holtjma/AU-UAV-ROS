@@ -6,19 +6,39 @@ B) The waypoints to go to (aka path)
 C) Any collision avoidance waypoints
 */
 
+//normal headers
 #include <stdio.h>
 #include <queue>
 
+//ROS headers
 #include "ros/ros.h"
-
 #include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/PlaneCoordinator.h"
 #include "AU_UAV_ROS/Command.h"
 
-//TODO: Make this conformed to curvature of earth
+/*
+distanceBetween(...)
+Returns the distance in meters between the two waypoints provided.  Note that it does take into account
+the earth's curvature.
+*/
 double distanceBetween(struct AU_UAV_ROS::waypoint first, struct AU_UAV_ROS::waypoint second)
 {
-	return sqrt(pow(first.latitude - second.latitude, 2) + pow(first.longitude - second.longitude, 2) + pow(first.altitude - second.altitude, 2));
+	//difference in latitudes in radians
+	double lat1 = first.latitude*DEGREES_TO_RADIANS;
+	double lat2 = second.latitude*DEGREES_TO_RADIANS;
+	double long1 = first.longitude*DEGREES_TO_RADIANS;
+	double long2 = second.longitude*DEGREES_TO_RADIANS;
+	
+	double deltaLat = lat2 - lat1;
+	double deltaLong = long2 - long1;
+	
+	//haversine crazy math, should probably be verified further beyond basic testing
+	//calculate distance from current position to destination
+	double a = pow(sin(deltaLat / 2.0), 2);
+	a = a + cos(lat1)*cos(lat2)*pow(sin(deltaLong/2.0), 2);
+	a = 2.0 * asin(sqrt(a));
+	
+	return EARTH_RADIUS * a;
 }
 
 /*
@@ -73,23 +93,28 @@ This function will load a single path for a plane from file into the normal path
 
 @return: returns true if the function executes without error, typical failure is bad filename
 */
-bool AU_UAV_ROS::PlaneCoordinator::loadPathfromFile(std::string filename)
+/*bool AU_UAV_ROS::PlaneCoordinator::loadPathfromFile(std::string filename)
 {
+	
 	return false;
 }
-
+*/
 /*
 handleNewUpdate(...)
 Takes a received telemetry update and determine if a new command is necessary
 */
 bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate update, AU_UAV_ROS::Command *newCommand)
 {
+	//this bool is set true only if there is something available to be sent to the UAV
 	bool isCommand = false;
+	
+	//this bool is set if the command available is an avoidance maneuver
 	bool isAvoid;
 	
 	//store the last update
 	this->latestUpdate = update;
 	
+	//data structs to be used by the coordinator
 	struct waypoint destination;
 	struct waypoint current;
 	struct waypoint planeDest;
@@ -102,6 +127,7 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 	planeDest.longitude = update.destLongitude;
 	planeDest.altitude = update.destAltitude;
 	
+	//determine which point we should be going to right now
 	//first, check the avoidance queue, since survival is priority #1
 	if(!avoidancePath.empty())
 	{
@@ -119,6 +145,7 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 		isAvoid = false;
 	}
 	
+	//if we have a command to process, process it
 	if(isCommand)
 	{
 		//first, check to make sure the plane has the correct current waypoint
@@ -145,8 +172,23 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 				//check for more avoidance waypoint
 				if(avoidancePath.empty())
 				{
-					//no more pathing commands
-					return false;
+					//no avoidance left, check for a normal path waypoint
+					if(normalPath.empty())
+					{
+						//no more pathing commands
+						return false;
+					}
+					else
+					{
+						//fill data for next normal waypoint
+						newCommand->commandHeader.seq = this->commandIndex++;
+						newCommand->commandHeader.stamp = ros::Time::now();
+						newCommand->planeID = this->latestUpdate.planeID;
+						newCommand->latitude = normalPath.front().latitude;
+						newCommand->longitude = normalPath.front().longitude;
+						newCommand->altitude = normalPath.front().altitude;
+						return true;
+					}
 				}
 				else
 				{
