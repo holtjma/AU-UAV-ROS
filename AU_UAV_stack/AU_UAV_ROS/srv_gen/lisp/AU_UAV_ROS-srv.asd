@@ -6,6 +6,8 @@
   :components ((:file "_package")
     (:file "CreateSimulatedPlane" :depends-on ("_package_CreateSimulatedPlane"))
     (:file "_package_CreateSimulatedPlane" :depends-on ("_package"))
+    (:file "SaveFlightData" :depends-on ("_package_SaveFlightData"))
+    (:file "_package_SaveFlightData" :depends-on ("_package"))
     (:file "RequestPlaneID" :depends-on ("_package_RequestPlaneID"))
     (:file "_package_RequestPlaneID" :depends-on ("_package"))
     (:file "DeleteSimulatedPlane" :depends-on ("_package_DeleteSimulatedPlane"))
