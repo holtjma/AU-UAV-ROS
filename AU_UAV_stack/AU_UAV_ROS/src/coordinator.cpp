@@ -19,6 +19,7 @@ TODO: is this where we want to take normal flight commands/read a flight plan?
 #include "AU_UAV_ROS/GoToWaypoint.h"
 #include "AU_UAV_ROS/PlaneCoordinator.h"
 #include "AU_UAV_ROS/LoadPath.h"
+#include "AU_UAV_ROS/RequestWaypointInfo.h"
 
 //publisher is global so callbacks can access it
 ros::Publisher commandPub;
@@ -28,8 +29,6 @@ AU_UAV_ROS::PlaneCoordinator planesArray[100];
 
 //just a count of the number of planes so far, init to zero
 int numPlanes = 0;
-
-//TODO: this executable should also be sending updates to our commands, normal and avoidance commands
 
 /*
 isValidPlanID(...)
@@ -77,7 +76,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 //service to run whenever a new plane enters the arena to tell it the ID number it should use
 bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::RequestPlaneID::Response &res)
 {
-	//TODO: Set up any data structures related to a plane that need to be created
+	//we capped the max number of planes at 100 for now
 	if(numPlanes < 100)
 	{
 		//anything that needs to happen when a plane is instantiated goes here
@@ -207,6 +206,33 @@ bool loadPathCallback(AU_UAV_ROS::LoadPath::Request &req, AU_UAV_ROS::LoadPath::
 	}
 }
 
+bool requestWaypointInfoCallback(AU_UAV_ROS::RequestWaypointInfo::Request &req, AU_UAV_ROS::RequestWaypointInfo::Response &res)
+{
+	//check that the request ID is valid
+	if(isValidPlaneID(req.planeID))
+	{
+		//fill out the waypoint to return
+		AU_UAV_ROS::waypoint temp = planesArray[req.planeID].getFrontOfQueue(req.isAvoidanceWaypoint);
+		res.latitude = temp.latitude;
+		res.longitude = temp.longitude;
+		res.altitude = temp.altitude;
+		
+		//check if we need to return the error message
+		if(res.latitude == -1000 && res.longitude == -1000 && res.altitude == -1000)
+		{
+			res.error = "No points in that queue";
+		}
+		
+		return true;
+	}
+	else
+	{
+		ROS_ERROR("Invalid plane ID");
+		res.error = "Invalid plane ID";
+		return false;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	//Standard ROS startup
@@ -218,6 +244,7 @@ int main(int argc, char **argv)
 	ros::ServiceServer newPlaneServer = n.advertiseService("request_plane_ID", requestPlaneID);
 	ros::ServiceServer goToWaypointServer = n.advertiseService("go_to_waypoint", goToWaypoint);
 	ros::ServiceServer loadPathServer = n.advertiseService("load_path", loadPathCallback);
+	ros::ServiceServer requestWaypointInfo = n.advertiseService("request_waypoint_info", requestWaypointInfoCallback);
 	commandPub = n.advertise<AU_UAV_ROS::Command>("commands", 1000);
 
 	//Needed for ROS to wait for callbacks

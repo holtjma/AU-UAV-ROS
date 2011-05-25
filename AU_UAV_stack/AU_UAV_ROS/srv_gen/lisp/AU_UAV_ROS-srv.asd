@@ -12,6 +12,8 @@
     (:file "_package_DeleteSimulatedPlane" :depends-on ("_package"))
     (:file "GoToWaypoint" :depends-on ("_package_GoToWaypoint"))
     (:file "_package_GoToWaypoint" :depends-on ("_package"))
+    (:file "RequestWaypointInfo" :depends-on ("_package_RequestWaypointInfo"))
+    (:file "_package_RequestWaypointInfo" :depends-on ("_package"))
     (:file "LoadPath" :depends-on ("_package_LoadPath"))
     (:file "_package_LoadPath" :depends-on ("_package"))
   ))

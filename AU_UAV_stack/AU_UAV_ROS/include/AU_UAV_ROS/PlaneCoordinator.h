@@ -40,7 +40,7 @@ namespace AU_UAV_ROS
 		
 		//command related functions
 		bool goToPoint(struct AU_UAV_ROS::waypoint receivedPoint, bool isAvoidanceManeuver, bool isNewQueue);
-		//bool loadPathfromFile(std::string filename);
+		struct AU_UAV_ROS::waypoint getFrontOfQueue(bool isAvoidanceQueue);
 		
 		//update related functions
 		bool handleNewUpdate(AU_UAV_ROS::TelemetryUpdate update, AU_UAV_ROS::Command *newCommand);

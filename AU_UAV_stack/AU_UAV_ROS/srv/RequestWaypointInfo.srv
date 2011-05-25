@@ -1,0 +1,7 @@
+int16 planeID
+bool isAvoidanceWaypoint
+---
+string error
+float64 latitude
+float64 longitude
+float64 altitude

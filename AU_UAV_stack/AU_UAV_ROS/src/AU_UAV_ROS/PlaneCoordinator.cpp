@@ -88,6 +88,47 @@ bool AU_UAV_ROS::PlaneCoordinator::goToPoint(struct AU_UAV_ROS::waypoint receive
 }
 
 /*
+getFrontOfQueue(...)
+This function will look at the specified queue (avoidance or normal) and return the waypoint
+at the front of that queue.  In the case of nothing being there, the waypoint returned will be
+(-1000, -1000, -1000) because it is a non-viable waypoint in all three categories.
+*/
+struct AU_UAV_ROS::waypoint AU_UAV_ROS::PlaneCoordinator::getFrontOfQueue(bool isAvoidanceQueue)
+{
+	//setup invalid return as default
+	struct AU_UAV_ROS::waypoint ret;
+	ret.latitude = -1000;
+	ret.longitude = -1000;
+	ret.altitude = -1000;
+	
+	//get the right queue
+	if(isAvoidanceQueue)
+	{
+		if(this->avoidancePath.empty())
+		{
+			//do nothing, invalid return already set
+		}
+		else
+		{
+			ret = this->avoidancePath.front();
+		}
+	}
+	else
+	{
+		if(this->normalPath.empty())
+		{
+			//do nothing, invalid return already set
+		}
+		else
+		{
+			ret = this->normalPath.front();
+		}
+	}
+	
+	return ret;
+}		
+
+/*
 loadPathFromFile(...)
 This function will load a single path for a plane from file into the normal path queue for the UAV to fly on
 
