@@ -12,6 +12,7 @@ TODO: is this where we want to take normal flight commands/read a flight plan?
 
 //ROS headers
 #include "ros/ros.h"
+#include "ros/package.h"
 #include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/Command.h"
@@ -138,17 +139,7 @@ bool loadPathCallback(AU_UAV_ROS::LoadPath::Request &req, AU_UAV_ROS::LoadPath::
 		system("ls");
 		//open our file
 		FILE *fp;
-		fp = fopen(req.filename.c_str(), "r");
-		
-		//TODO: add a better way to find this files, cause frankly this way is terrible
-		
-		//just as an added measure, lets search the "paths" directory
-		//this case is for if we run it from the normal place
-		if(fp == NULL)
-		{
-			fp = fopen(("paths/"+req.filename).c_str(), "r");
-			ROS_ERROR("%s",("paths/"+req.filename).c_str());
-		}
+		fp = fopen((ros::package::getPath("AU_UAV_ROS")+"/paths/"+req.filename).c_str(), "r");
 		
 		//check for a good file open
 		if(fp != NULL)
