@@ -14,6 +14,7 @@ This will be the primary UI for now just to control the simulator and coordinato
 #include "AU_UAV_ROS/DeleteSimulatedPlane.h"
 #include "AU_UAV_ROS/GoToWaypoint.h"
 #include "AU_UAV_ROS/LoadPath.h"
+#include "AU_UAV_ROS/LoadCourse.h"
 
 //services to the simulator
 ros::ServiceClient createSimulatedPlaneClient;
@@ -22,6 +23,7 @@ ros::ServiceClient deleteSimulatedPlaneClient;
 //services to the coordinator
 ros::ServiceClient goToWaypointClient;
 ros::ServiceClient loadPathClient;
+ros::ServiceClient loadCourseClient;
 
 /*
 simulatorMenu()
@@ -133,12 +135,13 @@ void pathMenu()
 	int choice = 0;
 	
 	//loop until the user asks to go back
-	while(choice != 3)
+	while(choice != 4)
 	{
 		printf("\nPath Planning Menu:\n");
 		printf("1-Go to waypoint\n");
 		printf("2-Load path\n");
-		printf("3-Back\n");
+		printf("3-Load course\n");
+		printf("4-Back\n");
 		printf("Choice:");
 		scanf("%d", &choice);
 		system("clear");
@@ -205,8 +208,32 @@ void pathMenu()
 				break;
 			}
 			
-			//we don't have to do anything for the go back case
+			//load a course for our UAVs
 			case 3:
+			{
+				//create the service
+				AU_UAV_ROS::LoadCourse srv;
+				
+				//get the file input
+				char filename[256];
+				printf("\nEnter the filename:");
+				scanf("%s", filename);
+				
+				srv.request.filename = filename;
+				
+				if(loadCourseClient.call(srv))
+				{
+					printf("Course loaded successfully!\n");
+				}
+				else
+				{
+					ROS_ERROR("Error loading course");
+				}
+				break;
+			}
+			
+			//we don't have to do anything for the go back case
+			case 4:
 			{
 				break;
 			}
@@ -236,6 +263,7 @@ int main(int argc, char **argv)
 	deleteSimulatedPlaneClient = n.serviceClient<AU_UAV_ROS::DeleteSimulatedPlane>("delete_simulated_plane");
 	goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
 	loadPathClient = n.serviceClient<AU_UAV_ROS::LoadPath>("load_path");
+	loadCourseClient = n.serviceClient<AU_UAV_ROS::LoadCourse>("load_course");
 	
 	//set up the menu
 	int choice = 0;

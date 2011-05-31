@@ -1,0 +1,22 @@
+#this is a sample file for a course
+#format: 
+#planeID latitude longitude altitude
+#if you want to have a comment inside the file, make sure it starts with '#'
+#blank lines are also allowed in these files
+#I suggest a file layout that starts with the first points for all of them since this
+#is a linear parsing scheme.  Then you may want to cluster the points from then on
+#based on the plane ID.  See below.
+
+#first points
+0	.001	.001	100
+1	.002	.002	200
+2	.0015	.0015	150
+
+#planeID 0
+0	-.001	.001	100
+
+#planeID 1
+1	.002	-.002	200
+
+#planeID 2
+2	-.0015	-.0015	150
