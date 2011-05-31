@@ -1,5 +1,6 @@
 int16 planeID
 bool isAvoidanceWaypoint
+int16 positionInQueue
 ---
 string error
 float64 latitude

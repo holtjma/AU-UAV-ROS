@@ -183,9 +183,9 @@ void pathMenu()
 				AU_UAV_ROS::LoadPath srv;
 				
 				//get user inputs
-				std::string filename;
+				char filename[256];
 				printf("\nEnter the filename:");
-				std::cin >> filename;
+				scanf("%s", filename);
 				
 				int planeID;
 				printf("\nEnter the plane ID:");
@@ -196,13 +196,12 @@ void pathMenu()
 				
 				if(loadPathClient.call(srv))
 				{
-					printf("Path laoded successfully!\n");
+					printf("Path loaded successfully!\n");
 				}
 				else
 				{
-					ROS_ERROR("Error loading path: %s", srv.response.error);
+					ROS_ERROR("Error loading path");
 				}
-				
 				break;
 			}
 			
@@ -236,6 +235,7 @@ int main(int argc, char **argv)
 	createSimulatedPlaneClient = n.serviceClient<AU_UAV_ROS::CreateSimulatedPlane>("create_simulated_plane");
 	deleteSimulatedPlaneClient = n.serviceClient<AU_UAV_ROS::DeleteSimulatedPlane>("delete_simulated_plane");
 	goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
+	loadPathClient = n.serviceClient<AU_UAV_ROS::LoadPath>("load_path");
 	
 	//set up the menu
 	int choice = 0;

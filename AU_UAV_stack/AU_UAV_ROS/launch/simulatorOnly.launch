@@ -1,5 +1,5 @@
 <launch>
-	<node name="coordinator" pkg="AU_UAV_ROS" type="coordinator" />
+	<node name="coordinator" pkg="AU_UAV_ROS" type="coordinator"/>
 	<node name="simulator" pkg="AU_UAV_ROS" type="simulator" />
 	<node name="ControlMenu" pkg="AU_UAV_ROS" type="ControlMenu" output="screen" />
 </launch>

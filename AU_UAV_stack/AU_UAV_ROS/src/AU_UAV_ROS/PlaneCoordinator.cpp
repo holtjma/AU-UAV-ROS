@@ -8,7 +8,7 @@ C) Any collision avoidance waypoints
 
 //normal headers
 #include <stdio.h>
-#include <queue>
+#include <list>
 
 //ROS headers
 #include "ros/ros.h"
@@ -61,7 +61,7 @@ bool AU_UAV_ROS::PlaneCoordinator::goToPoint(struct AU_UAV_ROS::waypoint receive
 	//clear the queues
 	if(isNewQueue)
 	{
-		std::queue<struct AU_UAV_ROS::waypoint> emptyQueue;
+		std::list<struct AU_UAV_ROS::waypoint> emptyQueue;
 		
 		//always clear the avoidance path if we say to do a new queue
 		this->avoidancePath = emptyQueue;
@@ -76,11 +76,11 @@ bool AU_UAV_ROS::PlaneCoordinator::goToPoint(struct AU_UAV_ROS::waypoint receive
 	//add the single waypoint to the specified path
 	if(isAvoidanceManeuver)
 	{
-		this->avoidancePath.push(receivedPoint);
+		this->avoidancePath.push_back(receivedPoint);
 	}
 	else
 	{
-		this->normalPath.push(receivedPoint);
+		this->normalPath.push_back(receivedPoint);
 	}
 	
 	//no ways to error right now so just return true
@@ -88,12 +88,12 @@ bool AU_UAV_ROS::PlaneCoordinator::goToPoint(struct AU_UAV_ROS::waypoint receive
 }
 
 /*
-getFrontOfQueue(...)
+getWaypointOfQueue(...)
 This function will look at the specified queue (avoidance or normal) and return the waypoint
-at the front of that queue.  In the case of nothing being there, the waypoint returned will be
+at the position of that queue.  In the case of nothing being there, the waypoint returned will be
 (-1000, -1000, -1000) because it is a non-viable waypoint in all three categories.
 */
-struct AU_UAV_ROS::waypoint AU_UAV_ROS::PlaneCoordinator::getFrontOfQueue(bool isAvoidanceQueue)
+struct AU_UAV_ROS::waypoint AU_UAV_ROS::PlaneCoordinator::getWaypointOfQueue(bool isAvoidanceQueue, int position)
 {
 	//setup invalid return as default
 	struct AU_UAV_ROS::waypoint ret;
@@ -101,45 +101,36 @@ struct AU_UAV_ROS::waypoint AU_UAV_ROS::PlaneCoordinator::getFrontOfQueue(bool i
 	ret.longitude = -1000;
 	ret.altitude = -1000;
 	
+	std::list<struct AU_UAV_ROS::waypoint>::iterator ii;
+	int count = 0;
+	
 	//get the right queue
 	if(isAvoidanceQueue)
 	{
-		if(this->avoidancePath.empty())
+		for(ii = avoidancePath.begin(); ii != avoidancePath.end() && count < position; ii++)
 		{
-			//do nothing, invalid return already set
+			count++;
 		}
-		else
+		if(ii != avoidancePath.end())
 		{
-			ret = this->avoidancePath.front();
+			ret = *ii;
 		}
 	}
 	else
 	{
-		if(this->normalPath.empty())
+		for(ii = normalPath.begin(); ii != normalPath.end() && count < position; ii++)
 		{
-			//do nothing, invalid return already set
+			count++;
 		}
-		else
+		if(ii != normalPath.end())
 		{
-			ret = this->normalPath.front();
+			ret = *ii;
 		}
 	}
 	
 	return ret;
 }		
 
-/*
-loadPathFromFile(...)
-This function will load a single path for a plane from file into the normal path queue for the UAV to fly on
-
-@return: returns true if the function executes without error, typical failure is bad filename
-*/
-/*bool AU_UAV_ROS::PlaneCoordinator::loadPathfromFile(std::string filename)
-{
-	
-	return false;
-}
-*/
 /*
 handleNewUpdate(...)
 Takes a received telemetry update and determine if a new command is necessary
@@ -190,7 +181,7 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 	if(isCommand)
 	{
 		//first, check to make sure the plane has the correct current waypoint
-		if(distanceBetween(destination, planeDest) > COLLISION_THRESHOLD)
+		if(distanceBetween(destination, planeDest) > COLLISION_THRESHOLD || update.currentWaypointIndex == -1)
 		{
 			//the current waypoint is incorrect somehow, send corrective command
 			newCommand->commandHeader.seq = this->commandIndex++;
@@ -208,7 +199,7 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 			//remove the waypoint from the queue
 			if(isAvoid)
 			{
-				avoidancePath.pop();
+				avoidancePath.pop_front();
 				
 				//check for more avoidance waypoint
 				if(avoidancePath.empty())
@@ -245,7 +236,7 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 			}
 			else
 			{
-				normalPath.pop();
+				normalPath.pop_front();
 				
 				//check for more waypoints in the path
 				if(normalPath.empty())

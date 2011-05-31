@@ -128,8 +128,6 @@ public class XBeeGCS {
 	 */
 	public void addData(XBeeAddress64 addr, PlaneData data) {
 		if (data != null) {
-			//TODO: REMOVE ++planeCounter in favor of service based numbering
-			// associate a plane number with the incoming data
 			if (!getDataMap().containsKey(addr))
 			{
 				try
@@ -167,10 +165,12 @@ public class XBeeGCS {
 			tUpdate.destLatitude = data.nextLat / 1000000.0;
 			tUpdate.destLongitude = data.nextLng / 1000000.0;
 			tUpdate.destAltitude = data.nextAlt;
+			//TODO: not sure what this ground speed is in, but we have it as meters/sec, so might need to change it
 			tUpdate.groundSpeed = data.ground_speed;
 			tUpdate.targetBearing = data.target_bearing;
 			tUpdate.currentWaypointIndex = data.currWP;
-			tUpdate.distanceToDestination = data.WPdistance; //this is in yards i believe
+			//TODO: we need to change this to meters
+			tUpdate.distanceToDestination = data.WPdistance;//this is in yards i believe
 			tUpdate.planeID = data.planeID;
 			//tUpdate.telemetryHeader.stamp = ros.communication.Time.now();
 			

@@ -11,7 +11,7 @@ C) Any collision avoidance waypoints
 
 //normal headers
 #include <stdio.h>
-#include <queue>
+#include <list>
 #include <string>
 
 //ROS headers
@@ -28,8 +28,8 @@ namespace AU_UAV_ROS
 		AU_UAV_ROS::TelemetryUpdate latestUpdate;
 		
 		//two queues related to where the plane should go next, note that avoidance takes priority
-		std::queue<struct waypoint> normalPath;
-		std::queue<struct waypoint> avoidancePath;
+		std::list<struct AU_UAV_ROS::waypoint> normalPath;
+		std::list<struct AU_UAV_ROS::waypoint> avoidancePath;
 		
 		//index of the next command to send, starts at 0
 		int commandIndex;
@@ -40,7 +40,7 @@ namespace AU_UAV_ROS
 		
 		//command related functions
 		bool goToPoint(struct AU_UAV_ROS::waypoint receivedPoint, bool isAvoidanceManeuver, bool isNewQueue);
-		struct AU_UAV_ROS::waypoint getFrontOfQueue(bool isAvoidanceQueue);
+		struct AU_UAV_ROS::waypoint getWaypointOfQueue(bool isAvoidanceQueue, int position);
 		
 		//update related functions
 		bool handleNewUpdate(AU_UAV_ROS::TelemetryUpdate update, AU_UAV_ROS::Command *newCommand);

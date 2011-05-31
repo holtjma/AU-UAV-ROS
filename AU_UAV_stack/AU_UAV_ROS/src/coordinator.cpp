@@ -135,14 +135,19 @@ bool loadPathCallback(AU_UAV_ROS::LoadPath::Request &req, AU_UAV_ROS::LoadPath::
 	//check for a valid plane ID sent
 	if(isValidPlaneID(req.planeID))
 	{
+		system("ls");
 		//open our file
 		FILE *fp;
 		fp = fopen(req.filename.c_str(), "r");
 		
+		//TODO: add a better way to find this files, cause frankly this way is terrible
+		
 		//just as an added measure, lets search the "paths" directory
+		//this case is for if we run it from the normal place
 		if(fp == NULL)
 		{
 			fp = fopen(("paths/"+req.filename).c_str(), "r");
+			ROS_ERROR("%s",("paths/"+req.filename).c_str());
 		}
 		
 		//check for a good file open
@@ -193,7 +198,7 @@ bool loadPathCallback(AU_UAV_ROS::LoadPath::Request &req, AU_UAV_ROS::LoadPath::
 		}
 		else
 		{
-			ROS_ERROR("Invalid filename or location");
+			ROS_ERROR("Invalid filename or location: %s", req.filename.c_str());
 			res.error = "Invalid filename or location";
 			return false;
 		}
@@ -206,13 +211,23 @@ bool loadPathCallback(AU_UAV_ROS::LoadPath::Request &req, AU_UAV_ROS::LoadPath::
 	}
 }
 
+/*
+requestWaypointInfoCallback(...)
+This callback allows the avoidance algorithms (or I suppose anything really) to view the waypoint queues
+in the system.  It takes a plane ID, a boolean value that reflects whether it's a request for the avoidance
+queue or the normal queue, and finally a position in that queue.  If there isn't a value at the requested
+place, we fill in the error message and return a point (-1000, -1000, -1000) simply because it's not a valid
+position.
+
+@position - follows normal array standards, aka 0 is the front of the queue
+*/
 bool requestWaypointInfoCallback(AU_UAV_ROS::RequestWaypointInfo::Request &req, AU_UAV_ROS::RequestWaypointInfo::Response &res)
 {
 	//check that the request ID is valid
 	if(isValidPlaneID(req.planeID))
 	{
 		//fill out the waypoint to return
-		AU_UAV_ROS::waypoint temp = planesArray[req.planeID].getFrontOfQueue(req.isAvoidanceWaypoint);
+		AU_UAV_ROS::waypoint temp = planesArray[req.planeID].getWaypointOfQueue(req.isAvoidanceWaypoint, req.positionInQueue);
 		res.latitude = temp.latitude;
 		res.longitude = temp.longitude;
 		res.altitude = temp.altitude;

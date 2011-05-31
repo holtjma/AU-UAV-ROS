@@ -22,3 +22,6 @@ ROS Wiki: http://www.ros.org/wiki/
 In addition, you will need the following items on your machine in order to run these programs:
 rxtx, log4j, ros-diamondback-client-rosjava - standard things to install for ubuntu
 xbee-api-0.9.jar - also needs to be put into /usr/share/java
+
+Developer's TODO list:
+-find a better way to load the files from the launcher, entire paths are annoying at best
