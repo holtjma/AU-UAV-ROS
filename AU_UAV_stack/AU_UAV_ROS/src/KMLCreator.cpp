@@ -11,6 +11,7 @@ This will monitor updates from the planes and then eventually write them to a fi
 
 //ros headers
 #include "ros/ros.h"
+#include "ros/package.h"
 #include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/SaveFlightData.h"
@@ -59,7 +60,7 @@ bool saveFlightData(AU_UAV_ROS::SaveFlightData::Request &req, AU_UAV_ROS::SaveFl
 	isMonitoringTelemetry = false;
 	ROS_INFO("Saving to file %s...", req.filename.c_str());
 	
-	FILE *fp = fopen(req.filename.c_str(), "w");
+	FILE *fp = fopen((ros::package::getPath("AU_UAV_ROS")+"/flightData/"+req.filename).c_str(), "w");
 	if(fp != NULL)
 	{
 		//opening stuff, never changes

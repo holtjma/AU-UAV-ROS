@@ -1,0 +1,10 @@
+#simple flying around Auburn with one UAV
+#start point at south corner
+0 	32.588867	-85.490025	199
+
+#planeID 0
+#go to northwest corner, then the stadium, then the northeast corner, and finally back home
+0	32.592172	-85.4901	199
+0	32.602222	-85.488889	194
+0	32.592283	-85.486297	205
+0 	32.588867	-85.490025	199

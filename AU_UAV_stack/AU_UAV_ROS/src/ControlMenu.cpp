@@ -15,6 +15,7 @@ This will be the primary UI for now just to control the simulator and coordinato
 #include "AU_UAV_ROS/GoToWaypoint.h"
 #include "AU_UAV_ROS/LoadPath.h"
 #include "AU_UAV_ROS/LoadCourse.h"
+#include "AU_UAV_ROS/SaveFlightData.h"
 
 //services to the simulator
 ros::ServiceClient createSimulatedPlaneClient;
@@ -24,6 +25,9 @@ ros::ServiceClient deleteSimulatedPlaneClient;
 ros::ServiceClient goToWaypointClient;
 ros::ServiceClient loadPathClient;
 ros::ServiceClient loadCourseClient;
+
+//services to the KMLCreator
+ros::ServiceClient saveFlightDataClient;
 
 /*
 simulatorMenu()
@@ -264,17 +268,19 @@ int main(int argc, char **argv)
 	goToWaypointClient = n.serviceClient<AU_UAV_ROS::GoToWaypoint>("go_to_waypoint");
 	loadPathClient = n.serviceClient<AU_UAV_ROS::LoadPath>("load_path");
 	loadCourseClient = n.serviceClient<AU_UAV_ROS::LoadCourse>("load_course");
+	saveFlightDataClient = n.serviceClient<AU_UAV_ROS::SaveFlightData>("save_flight_data");
 	
 	//set up the menu
 	int choice = 0;
 	
 	//loop until the user asks to quit
-	while(choice != 3)
+	while(choice != 4)
 	{
 		printf("\nStandard Controller Menu:\n");
 		printf("1-Simulator Controls\n");
 		printf("2-Path Planning\n");
-		printf("3-Exit Program\n");
+		printf("3-Save all data\n");
+		printf("4-Exit Program\n");
 		printf("Choice:");
 		scanf("%d", &choice);
 		system("clear");
@@ -292,6 +298,26 @@ int main(int argc, char **argv)
 				break;
 			}
 			case 3:
+			{
+				char filename[256];
+				printf("\nEnter the filename to save to:");
+				scanf("%s", filename);
+				
+				AU_UAV_ROS::SaveFlightData srv;
+				srv.request.filename = filename;
+				
+				if(saveFlightDataClient.call(srv))
+				{
+					printf("Flight data savedsuccessfully!\n");
+				}
+				else
+				{
+					ROS_ERROR("Error loading course");
+				}
+				
+				break;
+			}
+			case 4:
 			{
 				//nothing to do but leave
 				break;
