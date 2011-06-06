@@ -37,7 +37,10 @@ simple function to make sure that an ID sent to us is known by the coordinator
 */
 bool isValidPlaneID(int id)
 {
-	if(id >= 0 && planesArray.find(id) != planesArray.end()) return true;
+	//if the number id is valid
+	//AND we have that id in the map
+	//AND that UAV is active
+	if(id >= 0 && planesArray.find(id) != planesArray.end() && planesArray[id].isActive) return true;
 	else return false;
 }
 
@@ -84,8 +87,8 @@ bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::Reques
 		int id = 0;
 		while(true)
 		{
-			//check if the ID is occupied
-			if(planesArray.find(id) != planesArray.end())
+			//check if the ID is occupied or inactive
+			if(planesArray.find(id) != planesArray.end() && planesArray[id].isActive)
 			{
 				//this id already exists, increment our id and try again
 				id++;
@@ -94,6 +97,7 @@ bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::Reques
 			{
 				//we found an unused ID, lets steal it
 				planesArray[id] = AU_UAV_ROS::PlaneCoordinator();
+				planesArray[id].isActive = true;
 				numPlanes++;
 				
 				res.planeID = id;
@@ -106,10 +110,11 @@ bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::Reques
 	}
 	else
 	{
-		//we've been given an ID, check if it's open
-		if(planesArray.find(req.requestedID) == planesArray.end())
+		//we've been given an ID, check if it's open or inactive
+		if(planesArray.find(req.requestedID) == planesArray.end() || !planesArray[req.requestedID].isActive)
 		{
 			planesArray[req.requestedID] = AU_UAV_ROS::PlaneCoordinator();
+			planesArray[req.requestedID].isActive = true;
 			numPlanes++;
 			res.planeID = req.requestedID;
 			return true;

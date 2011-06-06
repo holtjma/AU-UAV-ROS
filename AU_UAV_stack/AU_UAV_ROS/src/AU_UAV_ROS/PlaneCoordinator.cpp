@@ -48,6 +48,7 @@ AU_UAV_ROS::PlaneCoordinator::PlaneCoordinator()
 {
 	//initialize command message index
 	this->commandIndex = 0;
+	this->isActive = false;
 }
 
 /*

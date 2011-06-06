@@ -35,6 +35,9 @@ namespace AU_UAV_ROS
 		int commandIndex;
 		
 	public:
+		//this is set if the coordinator has allocated this UAV to somewhere
+		bool isActive;
+		
 		//constructors
 		PlaneCoordinator();
 		
