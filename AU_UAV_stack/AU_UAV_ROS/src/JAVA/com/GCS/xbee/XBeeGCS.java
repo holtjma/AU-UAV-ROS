@@ -132,7 +132,9 @@ public class XBeeGCS {
 			{
 				try
 				{
-					data.planeID = requestPlaneIDService.call(new RequestPlaneID.Request()).planeID;
+					RequestPlaneID.Request req = new RequestPlaneID.Request();
+					req.requestedID = -1;
+					data.planeID = requestPlaneIDService.call(req).planeID;
 					data.seq = 0;
 					log.info("New plane with ID #"+data.planeID+" created.");
 					planeCounter++;

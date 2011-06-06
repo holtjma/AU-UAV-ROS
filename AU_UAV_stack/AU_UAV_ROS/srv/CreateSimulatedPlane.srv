@@ -2,5 +2,6 @@ float64 startingLatitude
 float64 startingLongitude
 float64 startingAltitude
 int64 startingBearing
+int16 requestedID
 ---
 int16 planeID

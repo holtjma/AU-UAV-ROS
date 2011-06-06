@@ -7,9 +7,12 @@ This will be the primary UI for now just to control the simulator and coordinato
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <ctype.h>
 
 //ROS headers
 #include "ros/ros.h"
+#include "ros/package.h"
+#include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/CreateSimulatedPlane.h"
 #include "AU_UAV_ROS/DeleteSimulatedPlane.h"
 #include "AU_UAV_ROS/GoToWaypoint.h"
@@ -28,6 +31,86 @@ ros::ServiceClient loadCourseClient;
 
 //services to the KMLCreator
 ros::ServiceClient saveFlightDataClient;
+
+/*
+createCourseUAVs(...)
+takes a filename and will parse it to determine how many UAVs there are and create them as needed
+*/
+bool createCourseUAVs(std::string filename)
+{
+	//open our file
+	FILE *fp;
+	fp = fopen((ros::package::getPath("AU_UAV_ROS")+"/courses/"+filename).c_str(), "r");
+	
+	//check for a good file open
+	if(fp != NULL)
+	{
+		char buffer[256];
+		
+		std::map<int, bool> isFirstPoint;
+		
+		while(fgets(buffer, sizeof(buffer), fp))
+		{
+			if(buffer[0] == '#' || isBlankLine(buffer))
+			{
+				//this line is a comment
+				continue;
+			}
+			else
+			{
+				//set some invalid defaults
+				int planeID = -1;
+				struct AU_UAV_ROS::waypoint temp;
+				temp.latitude = temp.longitude = temp.altitude = -1000;
+				
+				//parse the string
+				sscanf(buffer, "%d %lf %lf %lf\n", &planeID, &temp.latitude, &temp.longitude, &temp.altitude);
+				
+				//check for the invalid defaults
+				if(planeID == -1 || temp.latitude == -1000 || temp.longitude == -1000 || temp.altitude == -1000)
+				{
+					//this means we have a bad file somehow
+					ROS_ERROR("Bad file parse");
+					return false;
+				}
+				
+				//check our map for an entry, if we dont have one then this is the first time
+				//that this plane ID has been referenced so it's true
+				if(isFirstPoint.find(planeID) == isFirstPoint.end())
+				{
+					isFirstPoint[planeID] = true;
+					
+					//this is the first time we've seen this ID in the file, attempt to create it
+					AU_UAV_ROS::CreateSimulatedPlane srv;
+					srv.request.startingLatitude = temp.latitude;
+					srv.request.startingLongitude = temp.longitude;
+					srv.request.startingAltitude = temp.altitude;
+					srv.request.startingBearing = 0;
+					srv.request.requestedID = planeID;
+				
+					//send the service request
+					printf("\nRequesting to create new plane with ID #%d...\n", planeID);
+					if(createSimulatedPlaneClient.call(srv))
+					{
+						printf("New plane with ID #%d has been created!\n", srv.response.planeID);
+					}
+					else
+					{
+						ROS_ERROR("Did not receive a response from simulator");
+					}
+				}
+				
+				//only clear the queue with the first point
+				if(isFirstPoint[planeID]) isFirstPoint[planeID] = false;
+			}
+		}
+	}
+	else
+	{
+		ROS_ERROR("Invalid filename or location: %s", filename.c_str());
+		return false;
+	}
+}
 
 /*
 simulatorMenu()
@@ -71,6 +154,7 @@ void simulatorMenu()
 				srv.request.startingLongitude = longitude;
 				srv.request.startingAltitude = altitude;
 				srv.request.startingBearing = bearing;
+				srv.request.requestedID = -1;
 				
 				//send the service request
 				printf("\nRequesting to create new plane...\n");
@@ -220,8 +304,22 @@ void pathMenu()
 				
 				//get the file input
 				char filename[256];
+				char createNewPlanes[256] = "blah";
 				printf("\nEnter the filename:");
 				scanf("%s", filename);
+				
+				//get whether we should create planes or not
+				while(!isValidYesNo(createNewPlanes[0]))
+				{
+					printf("\nDo you want to automatically create any non-existent planes (y/n)?");
+					scanf("%s", createNewPlanes);
+				}
+				
+				//check if we need to create some simulated UAVs
+				if(tolower(createNewPlanes[0]) == 'y')
+				{
+					createCourseUAVs(filename);
+				}
 				
 				srv.request.filename = filename;
 				

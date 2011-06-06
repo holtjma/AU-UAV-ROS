@@ -13,7 +13,6 @@ TODO: is this where we want to take normal flight commands/read a flight plan?
 //ROS headers
 #include "ros/ros.h"
 #include "ros/package.h"
-#include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
 #include "AU_UAV_ROS/Command.h"
 #include "AU_UAV_ROS/RequestPlaneID.h"
@@ -27,7 +26,7 @@ TODO: is this where we want to take normal flight commands/read a flight plan?
 ros::Publisher commandPub;
 
 //coordinator list of UAVs, may want to lengthen this or perhaps change it to a map, not sure
-AU_UAV_ROS::PlaneCoordinator planesArray[100];
+std::map<int, AU_UAV_ROS::PlaneCoordinator> planesArray;
 
 //just a count of the number of planes so far, init to zero
 int numPlanes = 0;
@@ -38,38 +37,8 @@ simple function to make sure that an ID sent to us is known by the coordinator
 */
 bool isValidPlaneID(int id)
 {
-	if(id >= 0 && id < numPlanes) return true;
+	if(id >= 0 && planesArray.find(id) != planesArray.end()) return true;
 	else return false;
-}
-
-/*
-isBlankLine(...)
-simple function for parsing to determine is a string is a "blank" line
-*/
-bool isBlankLine(char str[])
-{
-	for(int i = 0; i < strlen(str); i++)
-	{
-		switch(str[i])
-		{
-			case ' ':
-			case '\n':
-			case '\t':
-			{
-				//keep checking
-				break;
-			}
-			default:
-			{
-				//not a blank line character
-				return false;
-				break;
-			}
-		}
-	}
-	
-	//we made it here, must be blank
-	return true;
 }
 
 /*
@@ -108,17 +77,48 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 //service to run whenever a new plane enters the arena to tell it the ID number it should use
 bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::RequestPlaneID::Response &res)
 {
-	//we capped the max number of planes at 100 for now
-	if(numPlanes < 100)
+	//check to see if we've been given an ID
+	if(req.requestedID == -1)
 	{
-		//anything that needs to happen when a plane is instantiated goes here
-		res.planeID = numPlanes++;
-		return true;
+		//we weren't given an ID, so pick the first that's free
+		int id = 0;
+		while(true)
+		{
+			//check if the ID is occupied
+			if(planesArray.find(id) != planesArray.end())
+			{
+				//this id already exists, increment our id and try again
+				id++;
+			}
+			else
+			{
+				//we found an unused ID, lets steal it
+				planesArray[id] = AU_UAV_ROS::PlaneCoordinator();
+				numPlanes++;
+				
+				res.planeID = id;
+				return true;
+			}
+		}
+		
+		//not sure how we'd get here, but better to handle it
+		return false;
 	}
 	else
 	{
-		ROS_ERROR("Too many plane IDs for coordinator to handle.\n");
-		return false;
+		//we've been given an ID, check if it's open
+		if(planesArray.find(req.requestedID) == planesArray.end())
+		{
+			planesArray[req.requestedID] = AU_UAV_ROS::PlaneCoordinator();
+			numPlanes++;
+			res.planeID = req.requestedID;
+			return true;
+		}
+		else
+		{
+			ROS_ERROR("The ID #%d is already taken.\n", req.requestedID);
+			return false;
+		}
 	}
 }
 

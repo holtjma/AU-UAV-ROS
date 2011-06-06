@@ -41,4 +41,16 @@ namespace AU_UAV_ROS
 	};
 }
 
+/*
+isBlankLine(...)
+simple function for parsing to determine is a string is a "blank" line
+*/
+bool isBlankLine(char str[]);
+
+/*
+isValidYesNo(...)
+returns true if the character is a 'y', 'Y', 'n', or 'N'
+*/
+bool isValidYesNo(char c);
+
 #endif
