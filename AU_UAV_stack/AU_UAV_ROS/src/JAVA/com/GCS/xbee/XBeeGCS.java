@@ -12,6 +12,9 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.Iterator;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -48,7 +51,7 @@ public class XBeeGCS {
 	
 	// instance variables
 	static private XBee xbee;		// the XBee hooked up to this GCS
-	private HashMap<XBeeAddress64, PlaneData> dataMap;		// collection of all telemetry data indexed by IEEE address
+	static private HashMap<XBeeAddress64, PlaneData> dataMap;		// collection of all telemetry data indexed by IEEE address
 	private XBeeAddress64 latest;							// latest plane to transmit valid telemetry data
 	private int planeCounter;								// the number of planes
 
@@ -102,7 +105,7 @@ public class XBeeGCS {
 	 * Returns the internal hash map of plane telemetry data indexed by each plane's XBee's 64-bit IEEE address.
 	 * @return the internal hash map of plane telemetry data
 	 */
-	public HashMap<XBeeAddress64, PlaneData> getDataMap() {
+	public static HashMap<XBeeAddress64, PlaneData> getDataMap() {
 		return dataMap;
 	}
 	
@@ -172,7 +175,7 @@ public class XBeeGCS {
 			tUpdate.targetBearing = data.target_bearing;
 			tUpdate.currentWaypointIndex = data.currWP;
 			//TODO: we need to change this to meters
-			tUpdate.distanceToDestination = data.WPdistance;//this is in yards i believe
+			tUpdate.distanceToDestination = data.WPdistance;//not sure what unit this is anymore, supposedly meters but it doesn't work out right
 			tUpdate.planeID = data.planeID;
 			//tUpdate.telemetryHeader.stamp = ros.communication.Time.now();
 			
@@ -194,7 +197,7 @@ public class XBeeGCS {
 	 * @param addr	The 64-bit IEEE address of the node to send the waypoint to
 	 * @param wp	The waypoint to send to the node
 	 */
-	public void transmit(XBeeAddress64 addr, Coordinate wp) {
+	public static void transmit(XBeeAddress64 addr, Coordinate wp) {
 		int waypoint[] = new int[3];
 		int payload[] = new int[16];	//4 int32's
 		
@@ -261,10 +264,41 @@ public class XBeeGCS {
 				while(!callback.isEmpty())
 				{
 					//TODO:forward the command
-					System.out.println("COMMAND RECEIVED!!!!!!!!");
 					try
 					{
-						callback.pop();
+						//pop our command and store it
+						ros.pkg.AU_UAV_ROS.msg.Command command = callback.pop();
+						
+						//we need to see if the plane ID in the command is in our list
+						Set entrySet = getDataMap().entrySet();
+						Iterator ii = entrySet.iterator();
+						while(ii.hasNext())
+						{
+							Map.Entry entry = (Map.Entry) ii.next();
+							PlaneData myPD = (PlaneData)(entry.getValue());
+							if(myPD.planeID == command.planeID)
+							{
+								//we found a matching address and ID
+								log.info("Message forwarding");
+								
+								//get our address from the entry
+								XBeeAddress64 myTarget = (XBeeAddress64)(entry.getKey());
+								
+								//fill out the rest of our info
+								Coordinate myCoor = new Coordinate();
+								myCoor.x = command.latitude*1000000.0;
+								myCoor.y = command.longitude*1000000.0;
+								myCoor.z = command.altitude;
+								
+								//fire away
+								transmit(myTarget, myCoor);
+								break;
+							}
+							//else this isn't the right ID
+						}
+						
+						//when we get here, we've either forwarded the message or we didn't find the ID	
+						//transmit(XBeeAddress64 addr, Coordinate wp)
 					}
 					catch (InterruptedException ie)
 					{

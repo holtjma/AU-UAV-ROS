@@ -8,8 +8,11 @@ Features:
 -Control menu - a basic menu in the command line for running the simulator and coordinator
 -Collision avoidance shell - there is a collision avoidance file located in src that can be used as a shell
 for writing your own avoidance algorithm
+-KMLCreator - this program monitors all telemetry data and will output to a KML file when told to do so.
+ This will allow someone to load a visual representation of points into Google Earth.
 -Launch files - inherited from ROS, you can create files to launch all or parts of the system
 -Path files - a basic system for creating a path before running the program
+-Course files - a basic system for creating a course and loading that into the program
 
 
 INSTALL:
@@ -20,8 +23,9 @@ You will still need ROS to execute this on any machine along with some knowledge
 ROS Wiki: http://www.ros.org/wiki/
 
 In addition, you will need the following items on your machine in order to run these programs:
-rxtx, log4j, ros-diamondback-client-rosjava - standard things to install for ubuntu
+librxtx-java
+liblog4j1.2-java
+ros-diamondback-client-rosjava
+
 xbee-api-0.9.jar - also needs to be put into /usr/share/java
 
-Developer's TODO list:
--find a better way to load the files from the launcher, entire paths are annoying at best
