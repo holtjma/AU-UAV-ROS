@@ -29,3 +29,4 @@ ros-diamondback-client-rosjava
 
 xbee-api-0.9.jar - also needs to be put into /usr/share/java
 
+For the arduino sketches, you will also need the libraries for the ArduIMU which can be downloaded from their main website. http://code.google.com/p/ardu-imu/downloads/detail?name=ArduIMU_1.8.2.zip&can=2&q=
