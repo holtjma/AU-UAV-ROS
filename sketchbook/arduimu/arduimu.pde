@@ -36,7 +36,7 @@
 #define SPEEDFILT 2 // >1 use min speed filter for yaw drift cancellation (m/s), 0=do not use speed filter
 
 /*For debugging propurses*/
-#define PRINT_DEBUG 0   //Will print Debug messages
+#define PRINT_DEBUG 1   //Will print Debug messages
 
 //OUTPUTMODE=1 will print the corrected data, 0 will print uncorrected data of the gyros (with drift), 2 will print accelerometer only data
 #define OUTPUTMODE 1
@@ -240,7 +240,7 @@ long press_alt = 0;					// Pressure altitude in centimeters
 //*****************************************************************************************
 void setup()
 { 
-  Serial.begin(57600, 128, 16);
+  Serial.begin(38400, 128, 16);
   pinMode(2,OUTPUT); //Serial Mux
   if (GPS_CONNECTION == 0){
     digitalWrite(2,HIGH); //Serial Mux
@@ -280,8 +280,6 @@ void setup()
   #endif 
   
   GPS.init();			// GPS Initialization
-  
-  debug_print("GPS initialized...");
   
   debug_handler(0);		//Printing version
   
