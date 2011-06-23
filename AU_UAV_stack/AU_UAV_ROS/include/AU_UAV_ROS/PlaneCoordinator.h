@@ -44,6 +44,7 @@ namespace AU_UAV_ROS
 		//command related functions
 		bool goToPoint(struct AU_UAV_ROS::waypoint receivedPoint, bool isAvoidanceManeuver, bool isNewQueue);
 		struct AU_UAV_ROS::waypoint getWaypointOfQueue(bool isAvoidanceQueue, int position);
+		AU_UAV_ROS::Command getPriorityCommand();
 		
 		//update related functions
 		bool handleNewUpdate(AU_UAV_ROS::TelemetryUpdate update, AU_UAV_ROS::Command *newCommand);

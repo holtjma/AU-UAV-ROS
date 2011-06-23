@@ -127,7 +127,12 @@ bool requestPlaneID(AU_UAV_ROS::RequestPlaneID::Request &req, AU_UAV_ROS::Reques
 	}
 }
 
-//service to run whenever the simple control menu requests for a plane to go to a particular point
+/*
+goToWaypoint(...)
+This is the key waypoint function to be used by any external program for telling the coordinator to add
+something to our queue.  The request gives it a point, a queue, and whether the queue should be erased before
+this new point is added.
+*/
 bool goToWaypoint(AU_UAV_ROS::GoToWaypoint::Request &req, AU_UAV_ROS::GoToWaypoint::Response &res)
 {
 	ROS_INFO("Service Request Received: Plane #%d go to (%f, %f, %f)", req.planeID, req.latitude, req.longitude, req.altitude);	
@@ -145,6 +150,29 @@ bool goToWaypoint(AU_UAV_ROS::GoToWaypoint::Request &req, AU_UAV_ROS::GoToWaypoi
 		if(planesArray[req.planeID].goToPoint(pointFromService, req.isAvoidanceManeuver, req.isNewQueue))
 		{
 			//success!
+			
+			/*
+			if we have a new queue, we want to forward the new point immediately, otherwise just
+			let the normal command sending do it's work
+			*/
+			if(req.isNewQueue)
+			{
+				//get the command
+				AU_UAV_ROS::Command commandToSend = planesArray[req.planeID].getPriorityCommand();
+				commandToSend.planeID = req.planeID;
+				
+				if(commandToSend.latitude == -1000 || commandToSend.longitude == -1000 || commandToSend.altitude == -1000)
+				{
+					//dont send it
+				}
+				else
+				{
+					commandPub.publish(commandToSend);
+					ROS_INFO("Sent command to plane #%d: (%f, %f, %f)", commandToSend.planeID, commandToSend.latitude, commandToSend.longitude, commandToSend.altitude);
+				}
+				
+			}
+			
 			return true;
 		}
 		else

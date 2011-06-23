@@ -130,7 +130,52 @@ struct AU_UAV_ROS::waypoint AU_UAV_ROS::PlaneCoordinator::getWaypointOfQueue(boo
 	}
 	
 	return ret;
-}		
+}	
+
+/*
+getPriorityCommand()
+This function will return a filled out command that represents the highest priority command based on the
+last known information provided by the UAV.  Will return a point with (-1000, -1000, -1000) on an empty
+everything.
+avoidancePath > normalPath
+*/
+AU_UAV_ROS::Command AU_UAV_ROS::PlaneCoordinator::getPriorityCommand()
+{
+	//start with defaults
+	AU_UAV_ROS::Command ret;
+	ret.planeID = -1;
+	ret.latitude = -1000;
+	ret.longitude = -1000;
+	ret.altitude = -1000;
+	
+	//check avoidance queue
+	if(!avoidancePath.empty())
+	{
+		//we have an avoidance point, get that one
+		ret.latitude = avoidancePath.front().latitude;
+		ret.longitude = avoidancePath.front().longitude;
+		ret.altitude = avoidancePath.front().altitude;
+	}
+	else
+	{
+		if(!normalPath.empty())
+		{
+			//we have a normal path point at least, fill it out
+			ret.latitude = normalPath.front().latitude;
+			ret.longitude = normalPath.front().longitude;
+			ret.altitude = normalPath.front().altitude;
+		}
+		else
+		{
+			//normal path is also empty do nothing
+		}
+	}
+	
+	//fill out our header and return this bad boy
+	ret.commandHeader.seq = this->commandIndex++;
+	ret.commandHeader.stamp = ros::Time::now();
+	return ret;
+}	
 
 /*
 handleNewUpdate(...)
