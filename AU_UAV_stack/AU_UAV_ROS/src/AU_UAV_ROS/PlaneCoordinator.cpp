@@ -250,6 +250,13 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 				//check for more avoidance waypoint
 				if(avoidancePath.empty())
 				{
+					//first see if we need to dump any points from the normal path
+					if(!normalPath.empty() && distanceBetween(normalPath.front(), current) < COLLISION_THRESHOLD)
+					{
+						//this means we met the normal path's first point also, pop it
+						normalPath.pop_front();
+					}
+					
 					//no avoidance left, check for a normal path waypoint
 					if(normalPath.empty())
 					{
