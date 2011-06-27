@@ -7,6 +7,8 @@ instantiated will be considered one "plane" in the system.
 #ifndef SIMULATED_PLANE_H
 #define SIMULATED_PLANE_H
 
+#define MAXIMUM_TURNING_ANGLE 22.5 //degrees
+
 #include "AU_UAV_ROS/standardDefs.h"
 #include "AU_UAV_ROS/Command.h"
 #include "AU_UAV_ROS/TelemetryUpdate.h"
@@ -26,8 +28,12 @@ namespace AU_UAV_ROS
 		AU_UAV_ROS::waypoint currentLocation;
 		AU_UAV_ROS::waypoint currentDest;
 		
+		//these two values are sent in the telemetry update
 		double groundSpeed;
 		double bearing;
+		
+		//this is stored as part of the UAV info
+		double actualBearing;
 		
 		long long int currentWaypointIndex;
 		double distanceToDestination;

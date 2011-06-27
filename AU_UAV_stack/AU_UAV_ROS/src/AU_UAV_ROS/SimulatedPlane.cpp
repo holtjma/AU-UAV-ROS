@@ -44,6 +44,9 @@ AU_UAV_ROS::SimulatedPlane::SimulatedPlane(long long int planeID, AU_UAV_ROS::Cr
 	this->currentWaypointIndex = -1;
 	this->distanceToDestination = 0;
 	
+	//set this to be the bearing requested, typically 0 right now though
+	this->actualBearing = requestFromUser.startingBearing;
+	
 	this->updateIndex = 0;
 }
 
@@ -109,6 +112,46 @@ bool AU_UAV_ROS::SimulatedPlane::fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate
 	double x = cos(lat1)*sin(lat2) - sin(lat1)*cos(lat2)*cos(deltaLong);
 	this->bearing = atan2(y, x)*RADIANS_TO_DEGREES;
 	
+	//calculate the real bearing based on our maximum angle change
+	//first create a temporary bearing that is the same as bearing but at a different numerical value
+	double tempBearing;
+	if(this->bearing < 0) tempBearing = this->bearing + 360;
+	else tempBearing = this->bearing - 360;
+	
+	double diff1 = abs(this->actualBearing - this->bearing);
+	double diff2 = abs(this->actualBearing - tempBearing);
+	
+	//check for easy to calculate values first
+	if(diff1 < MAXIMUM_TURNING_ANGLE || diff2 < MAXIMUM_TURNING_ANGLE)
+	{
+		//the difference is less than our maximum angle, set it to the bearing
+		this->actualBearing = this->bearing;
+	}
+	else
+	{
+		//we have a larger difference than we can turn, so turn our maximum
+		double mod;
+		if(diff1 < diff2)
+		{
+			if(this->bearing > this->actualBearing) mod = MAXIMUM_TURNING_ANGLE;
+			else mod = 0 - MAXIMUM_TURNING_ANGLE;
+		}
+		else
+		{
+			if(tempBearing > this->actualBearing) mod = MAXIMUM_TURNING_ANGLE;
+			else mod = 0 - MAXIMUM_TURNING_ANGLE;
+		}
+		
+		//add our mod, either +22.5 or -22.5
+		this->actualBearing = this->actualBearing + mod;
+		
+		//tweak the value to keep it between -180 and 180
+		if(this->actualBearing > 180) this->actualBearing = this->actualBearing - 360;
+		if(this->actualBearing < -180) this->actualBearing = this->actualBearing + 360;
+	}
+	
+	ROS_INFO("Plane has bearing %lf", this->actualBearing);
+	
 	//time to calculate the new positions, God help us
 	/*
 	Algorithm for updating position:
@@ -129,7 +172,7 @@ bool AU_UAV_ROS::SimulatedPlane::fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate
 	if(this->currentWaypointIndex >= 0)
 	{
 		//1) Estimate new latitude using basic trig and this equation
-		this->currentLocation.latitude = lat1*RADIANS_TO_DEGREES + (MPS_SPEED*cos(this->bearing*DEGREES_TO_RADIANS))*METERS_TO_LATITUDE;
+		this->currentLocation.latitude = lat1*RADIANS_TO_DEGREES + (MPS_SPEED*cos(this->actualBearing*DEGREES_TO_RADIANS))*METERS_TO_LATITUDE;
 		
 		//2) Use the law of haversines to find the new longitude
 		//double temp = pow(sin((MPS_SPEED/EARTH_RADIUS)/2.0), 2);
