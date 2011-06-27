@@ -17,31 +17,6 @@ C) Any collision avoidance waypoints
 #include "AU_UAV_ROS/Command.h"
 
 /*
-distanceBetween(...)
-Returns the distance in meters between the two waypoints provided.  Note that it does take into account
-the earth's curvature.
-*/
-double distanceBetween(struct AU_UAV_ROS::waypoint first, struct AU_UAV_ROS::waypoint second)
-{
-	//difference in latitudes in radians
-	double lat1 = first.latitude*DEGREES_TO_RADIANS;
-	double lat2 = second.latitude*DEGREES_TO_RADIANS;
-	double long1 = first.longitude*DEGREES_TO_RADIANS;
-	double long2 = second.longitude*DEGREES_TO_RADIANS;
-	
-	double deltaLat = lat2 - lat1;
-	double deltaLong = long2 - long1;
-	
-	//haversine crazy math, should probably be verified further beyond basic testing
-	//calculate distance from current position to destination
-	double a = pow(sin(deltaLat / 2.0), 2);
-	a = a + cos(lat1)*cos(lat2)*pow(sin(deltaLong/2.0), 2);
-	a = 2.0 * asin(sqrt(a));
-	
-	return EARTH_RADIUS * a;
-}
-
-/*
 standard constructor
 */
 AU_UAV_ROS::PlaneCoordinator::PlaneCoordinator()

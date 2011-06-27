@@ -9,7 +9,8 @@ This file is meant to contain things that are used across multiple executables t
 #include <math.h>
 
 //12 meters - set to this because simulator makes 11 meter jumps
-#define COLLISION_THRESHOLD 12
+#define COLLISION_THRESHOLD 12 //meters
+#define CONFLICT_THRESHOLD 24 //meters
 
 /*UAV SPECIFIC DEFINES*/
 //25 mph = 11.17600 meters / second
@@ -52,5 +53,12 @@ isValidYesNo(...)
 returns true if the character is a 'y', 'Y', 'n', or 'N'
 */
 bool isValidYesNo(char c);
+
+/*
+distanceBetween(...)
+Returns the distance in meters between the two waypoints provided.  Note that it does take into account
+the earth's curvature.
+*/
+double distanceBetween(struct AU_UAV_ROS::waypoint first, struct AU_UAV_ROS::waypoint second);
 
 #endif

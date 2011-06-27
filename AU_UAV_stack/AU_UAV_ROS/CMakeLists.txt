@@ -40,6 +40,7 @@ rosbuild_add_executable(coordinator src/coordinator.cpp src/AU_UAV_ROS/PlaneCoor
 rosbuild_add_executable(ControlMenu src/ControlMenu.cpp src/AU_UAV_ROS/standardDefs.cpp)
 rosbuild_add_executable(KMLCreator src/KMLCreator.cpp)
 rosbuild_add_executable(visualization src/visualization.cpp)
+rosbuild_add_executable(evaluator src/evaluator.cpp src/AU_UAV_ROS/standardDefs.cpp)
 
 #JAVA executables
 rospack_add_java_executable(XBeeIO com/GCS/xbee/XBeeGCS)
