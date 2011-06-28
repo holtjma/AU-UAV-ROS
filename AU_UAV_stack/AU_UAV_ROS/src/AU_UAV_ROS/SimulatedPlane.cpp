@@ -182,7 +182,7 @@ bool AU_UAV_ROS::SimulatedPlane::fillTelemetryUpdate(AU_UAV_ROS::TelemetryUpdate
 		temp = 2.0 * RADIANS_TO_DEGREES * asin(sqrt(temp));
 		
 		//depending on bearing, we should be either gaining or losing longitude
-		if(bearing > 0)
+		if(actualBearing > 0)
 		{
 			this->currentLocation.longitude += temp;
 		}

@@ -406,7 +406,7 @@ int main(int argc, char **argv)
 				
 				if(saveFlightDataClient.call(srv))
 				{
-					printf("Flight data savedsuccessfully!\n");
+					printf("Flight data saved successfully!\n");
 				}
 				else
 				{

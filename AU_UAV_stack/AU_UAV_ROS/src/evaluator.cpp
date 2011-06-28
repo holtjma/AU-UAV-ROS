@@ -63,6 +63,10 @@ int score = 0;
 
 //store the "last" ID
 int lastPlaneID = -1;
+int maxAlivePlane = -1;
+
+//file to store our final score sheet
+char scoresheetFilename[256];
 
 /*
 displayOutput()
@@ -88,12 +92,63 @@ void displayOutput()
 	}
 	printf("\n");
 	printf("Totals:\n");
+	printf("Elapsed time:%lf\n", (ros::Time::now() - startTime).toSec());
 	printf("Waypoints reached: %d\n", waypointsTotal);
 	printf("Number of conflicts: %d\n", numConflicts);
-	printf("Number of collisison: %d\n", numCollisions);
+	printf("Number of collisions: %d\n", numCollisions);
 	printf("Dead plane count: %d\n", deadPlaneCount);
 	if(totalDistTraveled != 0) printf("Distance actual/distance minimum: %lf\n", totalDistTraveled/totalMinDist);
 	printf("Score: %d\n", score);
+}
+
+/*
+endEvaluation()
+This function is called upon termination of the simulation
+*/
+void endEvaluation()
+{
+	//open our file
+	FILE *fp;
+	fp = fopen((ros::package::getPath("AU_UAV_ROS")+"/scores/"+scoresheetFilename).c_str(), "w");
+	
+	//make sure we got a good open
+	if(fp == NULL)
+	{
+		printf("\nERROR SAVING DATA, COPY TERMINAL OUTPUT!!!\n");
+	}
+	else
+	{
+		//dump our data into
+		fprintf(fp, "Plane ID\tDistance Traveled(m)\tMinimum Travel(m)\t\tWaypoints Achieved\tTime of Death(s)\n");
+		fprintf(fp, "--------\t--------------------\t-----------------\t\t------------------\t----------------\n");
+		for(int id = 0; id <= lastPlaneID; id++)
+		{
+			fprintf(fp, "%d\t\t%lf\t\t%lf\t\t\t%d\t\t\t", id, distanceTraveled[id], minimumTravelDistance[id], waypointsAchieved[id]);
+			if(isDead[id])
+			{
+				fprintf(fp, "%lf\n", timeOfDeath[id].toSec());
+			}
+			else
+			{
+				fprintf(fp, "ALIVE\n");
+			}
+		}
+		fprintf(fp, "\n");
+		fprintf(fp, "Totals:\n");
+		fprintf(fp, "Elapsed time:%lf\n", (ros::Time::now() - startTime).toSec());
+		fprintf(fp, "Waypoints reached: %d\n", waypointsTotal);
+		fprintf(fp, "Number of conflicts: %d\n", numConflicts);
+		fprintf(fp, "Number of collisions: %d\n", numCollisions);
+		fprintf(fp, "Dead plane count: %d of %d\n", deadPlaneCount, (lastPlaneID+1));
+		if(totalDistTraveled != 0) fprintf(fp, "Distance actual/distance minimum: %lf\n", totalDistTraveled/totalMinDist);
+		fprintf(fp, "Final Score: %d\n", score);
+	
+		//close the file
+		fclose(fp);
+	}
+	
+	//terminate the program
+	exit(0);
 }
 
 /*
@@ -169,6 +224,9 @@ bool createCourseUAVs(std::string filename)
 					
 					//set our last plane ID to this one
 					lastPlaneID = planeID;
+					maxAlivePlane = planeID;
+					
+					//set up some base values for a new plane
 					latestUpdatesMap[planeID] = AU_UAV_ROS::TelemetryUpdate();
 					latestUpdatesMap[planeID].currentLatitude = temp.latitude;
 					latestUpdatesMap[planeID].currentLongitude = temp.longitude;
@@ -190,6 +248,7 @@ bool createCourseUAVs(std::string filename)
 			}
 		}
 		
+		//if we make it here everything happened according to plan
 		return true;
 	}
 	else
@@ -214,7 +273,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 	latestUpdatesMap[msg->planeID] = *msg;
 	
 	//if all UAVs have an update, run some analysis on this timestep
-	if(msg->planeID == lastPlaneID)
+	if(msg->planeID == maxAlivePlane)
 	{
 		struct AU_UAV_ROS::waypoint current, other;
 		//perform calculations on each plane
@@ -261,10 +320,12 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 				score += WAYPOINT_SCORE;
 			}
 			
-			//TODO: make this have more than 2 planes capable of colliding?
 			//time to check for collisions with any other UAVs
 			for(int otherID = 0; otherID < id; otherID++)
 			{
+				//we assume the wreckage disapates very quickly... lol
+				if(isDead[otherID]) continue;
+				
 				other.latitude = latestUpdatesMap[otherID].currentLatitude;
 				other.longitude = latestUpdatesMap[otherID].currentLongitude;
 				other.altitude = latestUpdatesMap[otherID].currentAltitude;
@@ -324,9 +385,32 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 				isDead[id] = true;
 				deadPlaneCount++;
 			}
+			
+			//if our max plane ID is a dead plane, we no longer receive updates, so we need 
+			//to be waiting on a new max for updating the screen
+			while(maxAlivePlane >= 0 && isDead[maxAlivePlane])
+			{
+				//decrement our valu
+				maxAlivePlane--;
+			}
+			
+			//check to make sure not all planes are dead
+			if(maxAlivePlane < 0)
+			{
+				displayOutput();
+				endEvaluation();
+			}
 		}
 		
+		//dump our info
 		displayOutput();
+		
+		//check for the end of times
+		if((ros::Time::now() - startTime).toSec() > TIME_LIMIT)
+		{
+			//our time is up, time to write to files and wrap everything up
+			endEvaluation();
+		}
 	}
 }
 
@@ -345,10 +429,15 @@ int main(int argc, char **argv)
 	deleteSimulatedPlaneClient = n.serviceClient<AU_UAV_ROS::DeleteSimulatedPlane>("delete_simulated_plane");
 	loadCourseClient = n.serviceClient<AU_UAV_ROS::LoadCourse>("load_course");
 	
+	system("clear");
+	
 	//get the file input
 	char filename[256];
 	printf("\nEnter the filename of the course to load:");
 	scanf("%s", filename);
+	
+	printf("\nEnter the filename for output:");
+	scanf("%s", scoresheetFilename);
 	
 	//create all our UAVs
 	if(createCourseUAVs(filename))
@@ -362,11 +451,12 @@ int main(int argc, char **argv)
 	}
 	
 	srv.request.filename = filename;
-	
+
 	//countdown to success
+	system("clear");
 	printf("\n");
 	printf("Last Plane ID: %d\n", lastPlaneID);
-	printf("Loading course into coordinator in 3...\n");
+	printf("Loading course into coordinator in...\n3...\n");
 	ros::Duration(1.0).sleep();
 	printf("2...\n");
 	ros::Duration(1.0).sleep();
