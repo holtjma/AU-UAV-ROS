@@ -92,36 +92,79 @@ bool saveFlightData(AU_UAV_ROS::SaveFlightData::Request &req, AU_UAV_ROS::SaveFl
 		int count = 0;
 		for(ii = mapOfPaths.begin(); ii != mapOfPaths.end(); ii++)
 		{
-			fprintf(fp, "      <Placemark>\n");
+			//create a folder for each path
+			fprintf(fp, "      <Folder>\n");
 			fprintf(fp, "        <name>UAV #%d</name>\n", ii->first);
 			fprintf(fp, "        <visibility>1</visibility>\n");
-			fprintf(fp, "        <LookAt>\n");
-			fprintf(fp, "          <longitude>%lf</longitude>\n", ii->second.front().longitude);
-			fprintf(fp, "          <latitude>%lf</latitude>\n", ii->second.front().latitude);
-			fprintf(fp, "          <altitude>0</altitude>\n");
-			fprintf(fp, "          <heading>0</heading>\n");
-			fprintf(fp, "          <tilt>0</tilt>\n");
-			fprintf(fp, "          <range>4451.842204068102</range>\n");
-			fprintf(fp, "        </LookAt>\n");
-			fprintf(fp, "        <styleUrl>#lineType%d</styleUrl>\n", count);
+			
+			//create the starting point pin
+			fprintf(fp, "        <Placemark>\n");
+			fprintf(fp, "          <name>Start #%d</name>\n", ii->first);
+			fprintf(fp, "          <visibility>1</visibility>\n");
+			fprintf(fp, "          <LookAt>\n");
+			fprintf(fp, "            <longitude>%lf</longitude>\n", ii->second.front().longitude);
+			fprintf(fp, "            <latitude>%lf</latitude>\n", ii->second.front().latitude);
+			fprintf(fp, "            <altitude>0</altitude>\n");
+			fprintf(fp, "            <heading>0</heading>\n");
+			fprintf(fp, "            <tilt>0</tilt>\n");
+			fprintf(fp, "            <range>4451.842204068102</range>\n");
+			fprintf(fp, "          </LookAt>\n");
+			fprintf(fp, "          <Point>\n");
+			fprintf(fp, "            <coordinates>%lf, %lf</coordinates>\n", ii->second.front().longitude, ii->second.front().latitude);
+			fprintf(fp, "          </Point>\n");
+			fprintf(fp, "        </Placemark>\n");
+			
+			//this is the path placemark
+			fprintf(fp, "        <Placemark>\n");
+			fprintf(fp, "          <name>Telemetry #%d</name>\n", ii->first);
+			fprintf(fp, "          <visibility>1</visibility>\n");
+			fprintf(fp, "          <LookAt>\n");
+			fprintf(fp, "            <longitude>%lf</longitude>\n", ii->second.front().longitude);
+			fprintf(fp, "            <latitude>%lf</latitude>\n", ii->second.front().latitude);
+			fprintf(fp, "            <altitude>0</altitude>\n");
+			fprintf(fp, "            <heading>0</heading>\n");
+			fprintf(fp, "            <tilt>0</tilt>\n");
+			fprintf(fp, "            <range>4451.842204068102</range>\n");
+			fprintf(fp, "          </LookAt>\n");
+			fprintf(fp, "          <styleUrl>#lineType%d</styleUrl>\n", count);
 			count = (count + 1) % MAX_LINE_TYPES;
-			fprintf(fp, "        <LineString>\n");
-			fprintf(fp, "          <extrude>1</extrude>\n");
-			fprintf(fp, "          <tessallate>1</tessallate>\n");
-			fprintf(fp, "          <altitudeMode>absolute</altitudeMode>\n");
-			fprintf(fp, "          <coordinates>\n");
+			fprintf(fp, "          <LineString>\n");
+			fprintf(fp, "            <extrude>1</extrude>\n");
+			fprintf(fp, "            <tessallate>1</tessallate>\n");
+			fprintf(fp, "            <altitudeMode>absolute</altitudeMode>\n");
+			fprintf(fp, "            <coordinates>\n");
 			
 			//for each coordinate saved, we want to write to the file
+			AU_UAV_ROS::waypoint temp;
 			while(!(ii->second.empty()))
 			{
-				AU_UAV_ROS::waypoint temp = ii->second.front();
-				fprintf(fp, "            %lf, %lf, %lf\n", temp.longitude, temp.latitude, temp.altitude);
+				temp = ii->second.front();
+				fprintf(fp, "              %lf, %lf, %lf\n", temp.longitude, temp.latitude, temp.altitude);
 				ii->second.pop();
 			}
+			fprintf(fp, "            </coordinates>\n");
+			fprintf(fp, "          </LineString>\n");
+			fprintf(fp, "        </Placemark>\n");
 			
-			fprintf(fp, "          </coordinates>\n");
-			fprintf(fp, "        </LineString>\n");
-			fprintf(fp, "      </Placemark>\n");      			
+			//create the ending point pin
+			fprintf(fp, "        <Placemark>\n");
+			fprintf(fp, "          <name>End #%d</name>\n", ii->first);
+			fprintf(fp, "          <visibility>1</visibility>\n");
+			fprintf(fp, "          <LookAt>\n");
+			fprintf(fp, "            <longitude>%lf</longitude>\n", temp.longitude);
+			fprintf(fp, "            <latitude>%lf</latitude>\n", temp.latitude);
+			fprintf(fp, "            <altitude>0</altitude>\n");
+			fprintf(fp, "            <heading>0</heading>\n");
+			fprintf(fp, "            <tilt>0</tilt>\n");
+			fprintf(fp, "            <range>4451.842204068102</range>\n");
+			fprintf(fp, "          </LookAt>\n");
+			fprintf(fp, "          <Point>\n");
+			fprintf(fp, "            <coordinates>%lf, %lf</coordinates>\n", temp.longitude, temp.latitude);
+			fprintf(fp, "          </Point>\n");
+			fprintf(fp, "        </Placemark>\n");
+			
+			//wrap up this subfolder
+			fprintf(fp, "      </Folder>\n");      			
 		}
 
 		//closing stuff, never changes
