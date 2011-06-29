@@ -51,8 +51,11 @@ ros::Duration delta;
 std::map<int, bool> isDead;
 std::map<int, ros::Duration> timeOfDeath;
 std::map<int, double> distanceTraveled;
+std::map<int, double> waypointDistTraveled;//this value gets changed only when we reach a new waypoint
+std::map<int, double> distSinceLastWP;//this stores the distance traveled since our last waypoint
 std::map<int, int> waypointsAchieved;
 std::map<int, double> minimumTravelDistance;
+std::map<int, double> waypointMinTravelDist;//this is distance from the last waypoint to the current
 
 //list for deletion
 std::queue<int> planesToDelete;
@@ -85,7 +88,7 @@ void displayOutput()
 	printf("--------\t--------------------\t-----------------\t\t------------------\t----------------\n");
 	for(int id = 0; id <= lastPlaneID; id++)
 	{
-		printf("%d\t\t%lf\t\t%lf\t\t\t%d\t\t\t", id, distanceTraveled[id], minimumTravelDistance[id], waypointsAchieved[id]);
+		printf("%d\t\t%lf\t\t%lf\t\t\t%d\t\t\t", id, waypointDistTraveled[id], minimumTravelDistance[id], waypointsAchieved[id]);
 		if(isDead[id])
 		{
 			printf("%lf\n", timeOfDeath[id].toSec());
@@ -102,7 +105,7 @@ void displayOutput()
 	printf("Number of conflicts: %d\n", numConflicts);
 	printf("Number of collisions: %d\n", numCollisions);
 	printf("Dead plane count: %d\n", deadPlaneCount);
-	if(totalDistTraveled != 0) printf("Distance actual/distance minimum: %lf\n", totalDistTraveled/totalMinDist);
+	if(totalMinDist != 0) printf("Distance actual/distance minimum: %lf\n", totalDistTraveled/totalMinDist);
 	printf("Score: %d\n", score);
 }
 
@@ -128,7 +131,7 @@ void endEvaluation()
 		fprintf(fp, "--------\t--------------------\t-----------------\t\t------------------\t----------------\n");
 		for(int id = 0; id <= lastPlaneID; id++)
 		{
-			fprintf(fp, "%d\t\t%lf\t\t%lf\t\t\t%d\t\t\t", id, distanceTraveled[id], minimumTravelDistance[id], waypointsAchieved[id]);
+			fprintf(fp, "%d\t\t%lf\t\t%lf\t\t\t%d\t\t\t", id, waypointDistTraveled[id], minimumTravelDistance[id], waypointsAchieved[id]);
 			if(isDead[id])
 			{
 				fprintf(fp, "%lf\n", timeOfDeath[id].toSec());
@@ -145,7 +148,7 @@ void endEvaluation()
 		fprintf(fp, "Number of conflicts: %d\n", numConflicts);
 		fprintf(fp, "Number of collisions: %d\n", numCollisions);
 		fprintf(fp, "Dead plane count: %d of %d\n", deadPlaneCount, (lastPlaneID+1));
-		if(totalDistTraveled != 0) fprintf(fp, "Distance actual/distance minimum: %lf\n", totalDistTraveled/totalMinDist);
+		if(totalMinDist != 0) fprintf(fp, "Distance actual/distance minimum: %lf\n", totalDistTraveled/totalMinDist);
 		fprintf(fp, "Final Score: %d\n", score);
 	
 		//close the file
@@ -255,8 +258,11 @@ bool createCourseUAVs(std::string filename)
 					previousUpdatesMap[planeID].currentAltitude = temp.altitude;
 					
 					distanceTraveled[planeID] = 0;
+					waypointDistTraveled[planeID] = 0;
+					distSinceLastWP[planeID] = 0;
 					waypointsAchieved[planeID] = 0;
 					minimumTravelDistance[planeID] = 0;
+					waypointMinTravelDist[planeID] = 0;
 					isDead[planeID] = false;
 				}
 					
@@ -313,7 +319,8 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 			//add the distance traveled
 			double d = distanceBetween(current, other);
 			distanceTraveled[id] = distanceTraveled[id] + d;
-			totalDistTraveled = totalDistTraveled + d;
+			//totalDistTraveled = totalDistTraveled + d;
+			distSinceLastWP[id] = distSinceLastWP[id] + d;
 			
 			//empty any items from the queue we've reached
 			while(!waypointQueues[id].empty() && distanceBetween(waypointQueues[id].front(), current) < COLLISION_THRESHOLD)
@@ -328,16 +335,21 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 				}
 				else
 				{
-					//add this to our minimum distance
-					d = distanceBetween(temp, waypointQueues[id].front());
-					minimumTravelDistance[id] = minimumTravelDistance[id] + d;
-					totalMinDist = totalMinDist + d;
+					//add the last waypoint to our minimum distance
+					minimumTravelDistance[id] = minimumTravelDistance[id] + waypointMinTravelDist[id];
+					totalMinDist = totalMinDist + waypointMinTravelDist[id];
+					waypointMinTravelDist[id] = distanceBetween(temp, waypointQueues[id].front());
 				}
 				
 				//modify scoring values
 				waypointsAchieved[id]++;
 				waypointsTotal++;
 				score += WAYPOINT_SCORE;
+				
+				//set our distance traveled for waypoints
+				waypointDistTraveled[id] = waypointDistTraveled[id] + distSinceLastWP[id];
+				totalDistTraveled = totalDistTraveled + distSinceLastWP[id];
+				distSinceLastWP[id] = 0;
 			}
 			
 			//time to check for collisions with any other UAVs
