@@ -267,6 +267,7 @@ bool createCourseUAVs(std::string filename)
 					
 					//subtract points to make up for the "free" waypoint at the start
 					score = score - 5;
+					waypointsTotal--;
 				}
 					
 				//only clear the queue with the first point
