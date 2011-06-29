@@ -180,6 +180,20 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 	planeDest.longitude = update.destLongitude;
 	planeDest.altitude = update.destAltitude;
 	
+	//first se if we need to dump any points from the avoidance path
+	while(!avoidancePath.empty() && distanceBetween(avoidancePath.front(), current) < COLLISION_THRESHOLD)
+	{
+		//this means we met the normal path's first point also, pop it
+		avoidancePath.pop_front();
+	}
+	
+	//then see if we need to dump any points from the normal path
+	while(!normalPath.empty() && distanceBetween(normalPath.front(), current) < COLLISION_THRESHOLD)
+	{
+		//this means we met the normal path's first point also, pop it
+		normalPath.pop_front();
+	}
+				
 	//determine which point we should be going to right now
 	//first, check the avoidance queue, since survival is priority #1
 	if(!avoidancePath.empty())
@@ -202,7 +216,7 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 	if(isCommand)
 	{
 		//first, check to make sure the plane has the correct current waypoint
-		if(distanceBetween(destination, planeDest) > COLLISION_THRESHOLD || update.currentWaypointIndex == -1)
+		if(distanceBetween(destination, planeDest) > .1 || update.currentWaypointIndex == -1)
 		{
 			//the current waypoint is incorrect somehow, send corrective command
 			newCommand->commandHeader.seq = this->commandIndex++;
@@ -212,78 +226,6 @@ bool AU_UAV_ROS::PlaneCoordinator::handleNewUpdate(AU_UAV_ROS::TelemetryUpdate u
 			newCommand->longitude = destination.longitude;
 			newCommand->altitude = destination.altitude;
 			return true;
-		}
-		
-		//if the plane has arrived at the current waypoint
-		if(distanceBetween(destination, current) < COLLISION_THRESHOLD)
-		{
-			//remove the waypoint from the queue
-			if(isAvoid)
-			{
-				avoidancePath.pop_front();
-				
-				//check for more avoidance waypoint
-				if(avoidancePath.empty())
-				{
-					//first see if we need to dump any points from the normal path
-					if(!normalPath.empty() && distanceBetween(normalPath.front(), current) < COLLISION_THRESHOLD)
-					{
-						//this means we met the normal path's first point also, pop it
-						normalPath.pop_front();
-					}
-					
-					//no avoidance left, check for a normal path waypoint
-					if(normalPath.empty())
-					{
-						//no more pathing commands
-						return false;
-					}
-					else
-					{
-						//fill data for next normal waypoint
-						newCommand->commandHeader.seq = this->commandIndex++;
-						newCommand->commandHeader.stamp = ros::Time::now();
-						newCommand->planeID = this->latestUpdate.planeID;
-						newCommand->latitude = normalPath.front().latitude;
-						newCommand->longitude = normalPath.front().longitude;
-						newCommand->altitude = normalPath.front().altitude;
-						return true;
-					}
-				}
-				else
-				{
-					//fill data for next normal waypoint
-					newCommand->commandHeader.seq = this->commandIndex++;
-					newCommand->commandHeader.stamp = ros::Time::now();
-					newCommand->planeID = this->latestUpdate.planeID;
-					newCommand->latitude = avoidancePath.front().latitude;
-					newCommand->longitude = avoidancePath.front().longitude;
-					newCommand->altitude = avoidancePath.front().altitude;
-					return true;
-				}
-			}
-			else
-			{
-				normalPath.pop_front();
-				
-				//check for more waypoints in the path
-				if(normalPath.empty())
-				{
-					//no more pathing commands
-					return false;
-				}
-				else
-				{
-					//fill data for next normal waypoint
-					newCommand->commandHeader.seq = this->commandIndex++;
-					newCommand->commandHeader.stamp = ros::Time::now();
-					newCommand->planeID = this->latestUpdate.planeID;
-					newCommand->latitude = normalPath.front().latitude;
-					newCommand->longitude = normalPath.front().longitude;
-					newCommand->altitude = normalPath.front().altitude;
-					return true;
-				}
-			}
 		}
 		
 		//if we made it here just return

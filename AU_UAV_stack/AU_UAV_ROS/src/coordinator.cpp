@@ -3,8 +3,6 @@ coordinator
 This will be responsible for storing plane data for both real and simulated planes (will not be able to tell
 a difference here) and for sending commands to those planes.  It will receive commands from collision 
 avoidance as well.
-
-TODO: is this where we want to take normal flight commands/read a flight plan?
 */
 
 //Standard C++ headers
