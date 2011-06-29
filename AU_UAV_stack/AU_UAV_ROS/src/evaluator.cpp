@@ -19,6 +19,7 @@ functions on that data.
 #include "AU_UAV_ROS/LoadCourse.h"
 #include "AU_UAV_ROS/CreateSimulatedPlane.h"
 #include "AU_UAV_ROS/DeleteSimulatedPlane.h"
+#include "AU_UAV_ROS/SaveFlightData.h"
 
 //USER DEFINED EVALUATION SETTINGS
 #define TIME_LIMIT 600 //10 minutes
@@ -32,6 +33,9 @@ ros::ServiceClient deleteSimulatedPlaneClient;
 //services to the coordinator
 ros::ServiceClient loadCourseClient;
 
+//services to the KMLCreator
+ros::ServiceClient saveFlightDataClient;
+
 //keep all our updates listed here
 std::map<int, AU_UAV_ROS::TelemetryUpdate> previousUpdatesMap;
 std::map<int, AU_UAV_ROS::TelemetryUpdate> latestUpdatesMap;
@@ -41,6 +45,7 @@ std::map<int, std::queue<AU_UAV_ROS::waypoint> > waypointQueues;
 
 //when our program starts
 ros::Time startTime;
+ros::Duration delta;
 
 //data about each plane
 std::map<int, bool> isDead;
@@ -107,9 +112,9 @@ This function is called upon termination of the simulation
 */
 void endEvaluation()
 {
-	//open our file
+	//open our scoring file
 	FILE *fp;
-	fp = fopen((ros::package::getPath("AU_UAV_ROS")+"/scores/"+scoresheetFilename).c_str(), "w");
+	fp = fopen((ros::package::getPath("AU_UAV_ROS")+"/scores/"+scoresheetFilename+".score").c_str(), "w");
 	
 	//make sure we got a good open
 	if(fp == NULL)
@@ -145,6 +150,18 @@ void endEvaluation()
 	
 		//close the file
 		fclose(fp);
+	}
+	
+	//try to tell the KML Creator to stop
+	AU_UAV_ROS::SaveFlightData srv;
+	srv.request.filename = (std::string(scoresheetFilename)+".kml");
+	if(saveFlightDataClient.call(srv))
+	{
+		printf("Flight data saved successfully!\n");
+	}
+	else
+	{
+		ROS_ERROR("Error saving flight data");
 	}
 	
 	//terminate the program
@@ -275,6 +292,9 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 	//if all UAVs have an update, run some analysis on this timestep
 	if(msg->planeID == maxAlivePlane)
 	{
+		//get the current time
+		delta = ros::Time::now() - startTime;
+		
 		struct AU_UAV_ROS::waypoint current, other;
 		//perform calculations on each plane
 		for(int id = 0; id <= lastPlaneID; id++)
@@ -381,7 +401,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 				}
 				
 				//mark us dead
-				timeOfDeath[id] = ros::Time::now() - startTime;
+				timeOfDeath[id] = delta;
 				isDead[id] = true;
 				deadPlaneCount++;
 			}
@@ -406,7 +426,7 @@ void telemetryCallback(const AU_UAV_ROS::TelemetryUpdate::ConstPtr& msg)
 		displayOutput();
 		
 		//check for the end of times
-		if((ros::Time::now() - startTime).toSec() > TIME_LIMIT)
+		if((delta).toSec() > TIME_LIMIT)
 		{
 			//our time is up, time to write to files and wrap everything up
 			endEvaluation();
@@ -428,6 +448,7 @@ int main(int argc, char **argv)
 	createSimulatedPlaneClient = n.serviceClient<AU_UAV_ROS::CreateSimulatedPlane>("create_simulated_plane");
 	deleteSimulatedPlaneClient = n.serviceClient<AU_UAV_ROS::DeleteSimulatedPlane>("delete_simulated_plane");
 	loadCourseClient = n.serviceClient<AU_UAV_ROS::LoadCourse>("load_course");
+	saveFlightDataClient = n.serviceClient<AU_UAV_ROS::SaveFlightData>("save_flight_data");
 	
 	system("clear");
 	

@@ -410,7 +410,7 @@ int main(int argc, char **argv)
 				}
 				else
 				{
-					ROS_ERROR("Error loading course");
+					ROS_ERROR("Error saving flight data");
 				}
 				
 				break;

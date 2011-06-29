@@ -135,6 +135,7 @@ bool saveFlightData(AU_UAV_ROS::SaveFlightData::Request &req, AU_UAV_ROS::SaveFl
 	}
 	else
 	{
+		ROS_ERROR("Error opening the file");
 		res.error = "Error opening the file";
 		return false;
 	}

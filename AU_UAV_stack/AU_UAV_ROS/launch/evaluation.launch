@@ -1,0 +1,6 @@
+<launch>
+	<node name="coordinator" pkg="AU_UAV_ROS" type="coordinator"/>
+	<node name="simulator" pkg="AU_UAV_ROS" type="simulator" />
+	<node name="evaluator" pkg="AU_UAV_ROS" type="evaluator" output="screen" />
+	<node name="KMLCreator" pkg="AU_UAV_ROS" type="KMLCreator" output="screen" />
+</launch>
