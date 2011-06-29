@@ -260,10 +260,13 @@ bool createCourseUAVs(std::string filename)
 					distanceTraveled[planeID] = 0;
 					waypointDistTraveled[planeID] = 0;
 					distSinceLastWP[planeID] = 0;
-					waypointsAchieved[planeID] = 0;
+					waypointsAchieved[planeID] = -1; //we get a "free" waypoint
 					minimumTravelDistance[planeID] = 0;
 					waypointMinTravelDist[planeID] = 0;
 					isDead[planeID] = false;
+					
+					//subtract points to make up for the "free" waypoint at the start
+					score = score - 5;
 				}
 					
 				//only clear the queue with the first point
