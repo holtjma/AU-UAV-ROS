@@ -466,6 +466,8 @@ int main(int argc, char **argv)
 	loadCourseClient = n.serviceClient<AU_UAV_ROS::LoadCourse>("load_course");
 	saveFlightDataClient = n.serviceClient<AU_UAV_ROS::SaveFlightData>("save_flight_data");
 	
+	//make sure all other nodes have time to activate
+	sleep(1);
 	system("clear");
 	
 	//get the file input

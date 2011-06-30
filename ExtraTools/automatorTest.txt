@@ -1,0 +1,10 @@
+#This is a sample file for automated course running.
+#Simply type each file name within here.
+#IMPORTANT: Make sure each filename has the .course extension.
+#The '#' sign denotes a comment and blank lines are fine
+
+#32 planes, 500mx500m field
+final_32_500m_1.course
+final_32_500m_2.course
+final_32_500m_3.course
+
