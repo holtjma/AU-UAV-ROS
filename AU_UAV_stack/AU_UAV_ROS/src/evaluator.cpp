@@ -24,7 +24,7 @@ functions on that data.
 //USER DEFINED EVALUATION SETTINGS
 #define TIME_LIMIT 600 //10 minutes
 #define WAYPOINT_SCORE 5 //5 points for each waypoint reached
-#define CONFLICT_SCORE -3 //-3 points for each conflict during flight
+#define CONFLICT_SCORE -1 //-1 point for each conflict during flight
 
 //services to the simulator
 ros::ServiceClient createSimulatedPlaneClient;
@@ -141,6 +141,22 @@ void endEvaluation()
 				fprintf(fp, "ALIVE\n");
 			}
 		}
+		fprintf(fp, "--------\t--------------------\t-----------------\t\t------------------\t----------------\n");
+		ros::Duration averageDeath = ros::Duration(0);
+		for(int x = 0; x <=lastPlaneID; x++)
+		{
+			if(isDead[x])
+			{
+				//we died
+				averageDeath+=timeOfDeath[x];
+			}
+			else
+			{
+				//we lasted the whole time
+				averageDeath+=ros::Duration(TIME_LIMIT);
+			}
+		}
+		fprintf(fp, "Averages:\t%lf\t\t%lf\t\t\t%lf\t\t%lf\n", totalDistTraveled/(lastPlaneID+1), totalMinDist/(lastPlaneID+1), waypointsTotal/(lastPlaneID+1.0), averageDeath.toSec()/(lastPlaneID+1.0));
 		fprintf(fp, "\n");
 		fprintf(fp, "Totals:\n");
 		fprintf(fp, "Elapsed time:%lf\n", (ros::Time::now() - startTime).toSec());
@@ -495,6 +511,8 @@ int main(int argc, char **argv)
 	system("clear");
 	printf("\n");
 	printf("Last Plane ID: %d\n", lastPlaneID);
+	printf("KML File: %s.kml\n", scoresheetFilename);
+	printf("Score File: %s.score\n", scoresheetFilename);
 	printf("Loading course into coordinator in...\n3...\n");
 	ros::Duration(1.0).sleep();
 	printf("2...\n");

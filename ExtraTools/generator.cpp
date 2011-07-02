@@ -14,10 +14,10 @@ Compiled with g++.
 //USER DEFINED SETTINGS - you can put as many options as you want in {}
 
 //coordinates of top-left corner of field
-#define WEST_MOST_LONGITUDE -115.808173
-#define NORTH_MOST_LATITUDE 37.244956
-#define MIN_ALTITUDE 1400
-#define MAX_ALTITUDE 1400
+#define WEST_MOST_LONGITUDE -85.490356
+#define NORTH_MOST_LATITUDE 32.606573
+#define MIN_ALTITUDE 400
+#define MAX_ALTITUDE 400
 
 //number of test cases for each setting
 #define COURSES_PER_SETTING 3

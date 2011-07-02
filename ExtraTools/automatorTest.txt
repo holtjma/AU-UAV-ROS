@@ -3,8 +3,43 @@
 #IMPORTANT: Make sure each filename has the .course extension.
 #The '#' sign denotes a comment and blank lines are fine
 
+#4 planes, 500x500
+final_4_500m_1.course
+final_4_500m_2.course
+final_4_500m_3.course
+
+#8 planes, 500x500
+final_8_500m_1.course
+final_8_500m_2.course
+final_8_500m_3.course
+
+#16 planes, 500x500
+final_16_500m_1.course
+final_16_500m_2.course
+final_16_500m_3.course
+
 #32 planes, 500mx500m field
 final_32_500m_1.course
 final_32_500m_2.course
 final_32_500m_3.course
+
+#4 planes, 1000x1000
+final_4_1000m_1.course
+final_4_1000m_2.course
+final_4_1000m_3.course
+
+#8 planes, 1000x1000
+final_8_1000m_1.course
+final_8_1000m_2.course
+final_8_1000m_3.course
+
+#16 planes, 1000x1000
+final_16_1000m_1.course
+final_16_1000m_2.course
+final_16_1000m_3.course
+
+#32 planes, 1000mx1000m field
+final_32_1000m_1.course
+final_32_1000m_2.course
+final_32_1000m_3.course
 
