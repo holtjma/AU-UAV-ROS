@@ -1,0 +1,3963 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Test</name>
+    <open>1</open>
+    <Style id="lineType0">
+      <LineStyle>
+        <color>7f0000ff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType1">
+      <LineStyle>
+        <color>7f00ff00</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType2">
+      <LineStyle>
+        <color>7fff0000</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType3">
+      <LineStyle>
+        <color>7f00ffff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType4">
+      <LineStyle>
+        <color>7fff00ff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineType5">
+      <LineStyle>
+        <color>7fffff00</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7fffffff</color>
+      </PolyStyle>
+    </Style>
+    <Folder>
+      <name>Paths</name>
+      <visibility>1</visibility>
+      <Folder>
+        <name>UAV #0</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #0</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486812</longitude>
+            <latitude>32.604972</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486812, 32.604972</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #0</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486812</longitude>
+            <latitude>32.604972</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType0</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.486812, 32.604972, 400.000000
+              -85.486812, 32.604972, 400.000000
+              -85.486812, 32.604972, 400.000000
+              -85.486812, 32.604972, 400.000000
+              -85.486812, 32.604972, 400.000000
+              -85.486812, 32.604972, 400.000000
+              -85.486812, 32.604972, 400.000000
+              -85.486766, 32.605065, 400.000000
+              -85.486685, 32.605139, 400.000000
+              -85.486605, 32.605213, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #0</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486605</longitude>
+            <latitude>32.605213</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486605, 32.605213</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #1</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #1</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.490121</longitude>
+            <latitude>32.603183</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.490121, 32.603183</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #1</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.490121</longitude>
+            <latitude>32.603183</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType1</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.490121, 32.603183, 400.000000
+              -85.490121, 32.603183, 400.000000
+              -85.490121, 32.603183, 400.000000
+              -85.490121, 32.603183, 400.000000
+              -85.490121, 32.603183, 400.000000
+              -85.490121, 32.603183, 400.000000
+              -85.490121, 32.603183, 400.000000
+              -85.490075, 32.603276, 400.000000
+              -85.489991, 32.603347, 400.000000
+              -85.489881, 32.603385, 400.000000
+              -85.489761, 32.603385, 400.000000
+              -85.489646, 32.603360, 400.000000
+              -85.489531, 32.603334, 400.000000
+              -85.489415, 32.603309, 400.000000
+              -85.489300, 32.603283, 400.000000
+              -85.489185, 32.603258, 400.000000
+              -85.489069, 32.603232, 400.000000
+              -85.488954, 32.603206, 400.000000
+              -85.488838, 32.603181, 400.000000
+              -85.488723, 32.603155, 400.000000
+              -85.488608, 32.603130, 400.000000
+              -85.488492, 32.603104, 400.000000
+              -85.488377, 32.603079, 400.000000
+              -85.488261, 32.603053, 400.000000
+              -85.488146, 32.603027, 400.000000
+              -85.488031, 32.603002, 400.000000
+              -85.487915, 32.602976, 400.000000
+              -85.487800, 32.602951, 400.000000
+              -85.487685, 32.602925, 400.000000
+              -85.487569, 32.602900, 400.000000
+              -85.487454, 32.602874, 400.000000
+              -85.487338, 32.602848, 400.000000
+              -85.487223, 32.602823, 400.000000
+              -85.487108, 32.602797, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #1</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487108</longitude>
+            <latitude>32.602797</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487108, 32.602797</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #2</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #2</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485616</longitude>
+            <latitude>32.603129</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.485616, 32.603129</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #2</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485616</longitude>
+            <latitude>32.603129</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType2</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.485616, 32.603129, 400.000000
+              -85.485616, 32.603129, 400.000000
+              -85.485616, 32.603129, 400.000000
+              -85.485616, 32.603129, 400.000000
+              -85.485616, 32.603129, 400.000000
+              -85.485616, 32.603129, 400.000000
+              -85.485616, 32.603129, 400.000000
+              -85.485662, 32.603222, 400.000000
+              -85.485746, 32.603293, 400.000000
+              -85.485849, 32.603344, 400.000000
+              -85.485951, 32.603396, 400.000000
+              -85.486053, 32.603447, 400.000000
+              -85.486156, 32.603499, 400.000000
+              -85.486258, 32.603550, 400.000000
+              -85.486361, 32.603602, 400.000000
+              -85.486463, 32.603653, 400.000000
+              -85.486566, 32.603705, 400.000000
+              -85.486668, 32.603756, 400.000000
+              -85.486771, 32.603808, 400.000000
+              -85.486873, 32.603859, 400.000000
+              -85.486976, 32.603911, 400.000000
+              -85.487078, 32.603962, 400.000000
+              -85.487181, 32.604014, 400.000000
+              -85.487283, 32.604065, 400.000000
+              -85.487386, 32.604117, 400.000000
+              -85.487488, 32.604168, 400.000000
+              -85.487590, 32.604220, 400.000000
+              -85.487693, 32.604271, 400.000000
+              -85.487795, 32.604323, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #2</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487795</longitude>
+            <latitude>32.604323</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487795, 32.604323</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #3</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #3</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489865</longitude>
+            <latitude>32.605359</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489865, 32.605359</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #3</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489865</longitude>
+            <latitude>32.605359</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType3</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.489865, 32.605359, 400.000000
+              -85.489865, 32.605359, 400.000000
+              -85.489865, 32.605359, 400.000000
+              -85.489865, 32.605359, 400.000000
+              -85.489865, 32.605359, 400.000000
+              -85.489865, 32.605359, 400.000000
+              -85.489865, 32.605359, 400.000000
+              -85.489819, 32.605452, 400.000000
+              -85.489735, 32.605523, 400.000000
+              -85.489625, 32.605561, 400.000000
+              -85.489505, 32.605561, 400.000000
+              -85.489395, 32.605523, 400.000000
+              -85.489308, 32.605454, 400.000000
+              -85.489221, 32.605386, 400.000000
+              -85.489134, 32.605317, 400.000000
+              -85.489047, 32.605248, 400.000000
+              -85.488959, 32.605180, 400.000000
+              -85.488872, 32.605111, 400.000000
+              -85.488785, 32.605043, 400.000000
+              -85.488698, 32.604974, 400.000000
+              -85.488611, 32.604905, 400.000000
+              -85.488523, 32.604837, 400.000000
+              -85.488436, 32.604768, 400.000000
+              -85.488349, 32.604699, 400.000000
+              -85.488262, 32.604631, 400.000000
+              -85.488175, 32.604562, 400.000000
+              -85.488088, 32.604494, 400.000000
+              -85.488000, 32.604425, 400.000000
+              -85.487913, 32.604356, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #3</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487913</longitude>
+            <latitude>32.604356</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487913, 32.604356</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #4</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #4</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487079</longitude>
+            <latitude>32.602409</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487079, 32.602409</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #4</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487079</longitude>
+            <latitude>32.602409</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType4</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.487079, 32.602409, 400.000000
+              -85.487079, 32.602409, 400.000000
+              -85.487079, 32.602409, 400.000000
+              -85.487079, 32.602409, 400.000000
+              -85.487079, 32.602409, 400.000000
+              -85.487079, 32.602409, 400.000000
+              -85.487079, 32.602409, 400.000000
+              -85.487125, 32.602502, 400.000000
+              -85.487204, 32.602577, 400.000000
+              -85.487282, 32.602653, 400.000000
+              -85.487361, 32.602728, 400.000000
+              -85.487440, 32.602803, 400.000000
+              -85.487519, 32.602879, 400.000000
+              -85.487598, 32.602954, 400.000000
+              -85.487677, 32.603030, 400.000000
+              -85.487756, 32.603105, 400.000000
+              -85.487835, 32.603180, 400.000000
+              -85.487914, 32.603256, 400.000000
+              -85.487993, 32.603331, 400.000000
+              -85.488072, 32.603407, 400.000000
+              -85.488150, 32.603482, 400.000000
+              -85.488229, 32.603557, 400.000000
+              -85.488308, 32.603633, 400.000000
+              -85.488387, 32.603708, 400.000000
+              -85.488466, 32.603783, 400.000000
+              -85.488529, 32.603869, 400.000000
+              -85.488591, 32.603954, 400.000000
+              -85.488654, 32.604040, 400.000000
+              -85.488717, 32.604125, 400.000000
+              -85.488780, 32.604211, 400.000000
+              -85.488842, 32.604296, 400.000000
+              -85.488905, 32.604382, 400.000000
+              -85.488968, 32.604467, 400.000000
+              -85.489031, 32.604553, 400.000000
+              -85.489093, 32.604638, 400.000000
+              -85.489156, 32.604724, 400.000000
+              -85.489219, 32.604809, 400.000000
+              -85.489281, 32.604895, 400.000000
+              -85.489344, 32.604980, 400.000000
+              -85.489407, 32.605066, 400.000000
+              -85.489470, 32.605151, 400.000000
+              -85.489532, 32.605237, 400.000000
+              -85.489595, 32.605322, 400.000000
+              -85.489658, 32.605408, 400.000000
+              -85.489721, 32.605493, 400.000000
+              -85.489783, 32.605579, 400.000000
+              -85.489846, 32.605664, 400.000000
+              -85.489943, 32.605723, 400.000000
+              -85.490059, 32.605746, 400.000000
+              -85.490177, 32.605730, 400.000000
+              -85.490278, 32.605677, 400.000000
+              -85.490348, 32.605596, 400.000000
+              -85.490375, 32.605498, 400.000000
+              -85.490356, 32.605399, 400.000000
+              -85.490294, 32.605313, 400.000000
+              -85.490225, 32.605231, 400.000000
+              -85.490157, 32.605149, 400.000000
+              -85.490089, 32.605066, 400.000000
+              -85.490020, 32.604984, 400.000000
+              -85.489952, 32.604901, 400.000000
+              -85.489884, 32.604819, 400.000000
+              -85.489816, 32.604736, 400.000000
+              -85.489747, 32.604654, 400.000000
+              -85.489679, 32.604572, 400.000000
+              -85.489611, 32.604489, 400.000000
+              -85.489542, 32.604407, 400.000000
+              -85.489474, 32.604324, 400.000000
+              -85.489406, 32.604242, 400.000000
+              -85.489337, 32.604160, 400.000000
+              -85.489269, 32.604077, 400.000000
+              -85.489201, 32.603995, 400.000000
+              -85.489100, 32.603941, 400.000000
+              -85.488983, 32.603923, 400.000000
+              -85.488866, 32.603945, 400.000000
+              -85.488769, 32.604002, 400.000000
+              -85.488704, 32.604087, 400.000000
+              -85.488683, 32.604186, 400.000000
+              -85.488682, 32.604286, 400.000000
+              -85.488681, 32.604387, 400.000000
+              -85.488680, 32.604487, 400.000000
+              -85.488681, 32.604588, 400.000000
+              -85.488680, 32.604688, 400.000000
+              -85.488681, 32.604789, 400.000000
+              -85.488680, 32.604889, 400.000000
+              -85.488681, 32.604990, 400.000000
+              -85.488680, 32.605090, 400.000000
+              -85.488681, 32.605191, 400.000000
+              -85.488680, 32.605291, 400.000000
+              -85.488681, 32.605392, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #4</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488681</longitude>
+            <latitude>32.605392</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488681, 32.605392</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #5</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #5</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488061</longitude>
+            <latitude>32.603488</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488061, 32.603488</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #5</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488061</longitude>
+            <latitude>32.603488</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType5</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.488061, 32.603488, 400.000000
+              -85.488061, 32.603488, 400.000000
+              -85.488061, 32.603488, 400.000000
+              -85.488061, 32.603488, 400.000000
+              -85.488061, 32.603488, 400.000000
+              -85.488061, 32.603488, 400.000000
+              -85.488061, 32.603488, 400.000000
+              -85.488107, 32.603581, 400.000000
+              -85.488191, 32.603652, 400.000000
+              -85.488301, 32.603690, 400.000000
+              -85.488421, 32.603690, 400.000000
+              -85.488531, 32.603652, 400.000000
+              -85.488615, 32.603581, 400.000000
+              -85.488661, 32.603488, 400.000000
+              -85.488660, 32.603387, 400.000000
+              -85.488614, 32.603295, 400.000000
+              -85.488530, 32.603224, 400.000000
+              -85.488419, 32.603185, 400.000000
+              -85.488300, 32.603185, 400.000000
+              -85.488190, 32.603224, 400.000000
+              -85.488106, 32.603295, 400.000000
+              -85.488060, 32.603387, 400.000000
+              -85.488061, 32.603488, 400.000000
+              -85.488107, 32.603581, 400.000000
+              -85.488191, 32.603652, 400.000000
+              -85.488301, 32.603690, 400.000000
+              -85.488421, 32.603690, 400.000000
+              -85.488531, 32.603652, 400.000000
+              -85.488615, 32.603581, 400.000000
+              -85.488661, 32.603488, 400.000000
+              -85.488660, 32.603387, 400.000000
+              -85.488614, 32.603295, 400.000000
+              -85.488530, 32.603224, 400.000000
+              -85.488419, 32.603185, 400.000000
+              -85.488300, 32.603185, 400.000000
+              -85.488190, 32.603224, 400.000000
+              -85.488106, 32.603295, 400.000000
+              -85.488060, 32.603387, 400.000000
+              -85.488061, 32.603488, 400.000000
+              -85.488107, 32.603581, 400.000000
+              -85.488191, 32.603652, 400.000000
+              -85.488301, 32.603690, 400.000000
+              -85.488421, 32.603690, 400.000000
+              -85.488531, 32.603652, 400.000000
+              -85.488615, 32.603581, 400.000000
+              -85.488661, 32.603488, 400.000000
+              -85.488660, 32.603387, 400.000000
+              -85.488614, 32.603295, 400.000000
+              -85.488530, 32.603224, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #5</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488530</longitude>
+            <latitude>32.603224</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488530, 32.603224</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #6</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #6</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489940</longitude>
+            <latitude>32.604442</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489940, 32.604442</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #6</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489940</longitude>
+            <latitude>32.604442</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType0</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.489940, 32.604442, 400.000000
+              -85.489940, 32.604442, 400.000000
+              -85.489940, 32.604442, 400.000000
+              -85.489940, 32.604442, 400.000000
+              -85.489940, 32.604442, 400.000000
+              -85.489940, 32.604442, 400.000000
+              -85.489940, 32.604442, 400.000000
+              -85.489894, 32.604535, 400.000000
+              -85.489810, 32.604606, 400.000000
+              -85.489700, 32.604644, 400.000000
+              -85.489581, 32.604649, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #6</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489581</longitude>
+            <latitude>32.604649</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489581, 32.604649</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #7</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #7</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485018</longitude>
+            <latitude>32.603066</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.485018, 32.603066</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #7</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485018</longitude>
+            <latitude>32.603066</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType1</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.485018, 32.603066, 400.000000
+              -85.485018, 32.603066, 400.000000
+              -85.485018, 32.603066, 400.000000
+              -85.485018, 32.603066, 400.000000
+              -85.485018, 32.603066, 400.000000
+              -85.485018, 32.603066, 400.000000
+              -85.485018, 32.603066, 400.000000
+              -85.485064, 32.603159, 400.000000
+              -85.485148, 32.603230, 400.000000
+              -85.485258, 32.603268, 400.000000
+              -85.485371, 32.603301, 400.000000
+              -85.485484, 32.603334, 400.000000
+              -85.485596, 32.603367, 400.000000
+              -85.485709, 32.603400, 400.000000
+              -85.485822, 32.603433, 400.000000
+              -85.485935, 32.603466, 400.000000
+              -85.486047, 32.603499, 400.000000
+              -85.486160, 32.603532, 400.000000
+              -85.486273, 32.603565, 400.000000
+              -85.486385, 32.603598, 400.000000
+              -85.486498, 32.603631, 400.000000
+              -85.486611, 32.603664, 400.000000
+              -85.486724, 32.603697, 400.000000
+              -85.486836, 32.603730, 400.000000
+              -85.486949, 32.603763, 400.000000
+              -85.487062, 32.603796, 400.000000
+              -85.487174, 32.603828, 400.000000
+              -85.487287, 32.603861, 400.000000
+              -85.487400, 32.603894, 400.000000
+              -85.487513, 32.603927, 400.000000
+              -85.487625, 32.603960, 400.000000
+              -85.487738, 32.603993, 400.000000
+              -85.487851, 32.604026, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #7</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487851</longitude>
+            <latitude>32.604026</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487851, 32.604026</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #8</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #8</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489406</longitude>
+            <latitude>32.604235</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489406, 32.604235</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #8</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489406</longitude>
+            <latitude>32.604235</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType2</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.489406, 32.604235, 400.000000
+              -85.489406, 32.604235, 400.000000
+              -85.489406, 32.604235, 400.000000
+              -85.489406, 32.604235, 400.000000
+              -85.489406, 32.604235, 400.000000
+              -85.489406, 32.604235, 400.000000
+              -85.489406, 32.604235, 400.000000
+              -85.489436, 32.604332, 400.000000
+              -85.489466, 32.604430, 400.000000
+              -85.489496, 32.604527, 400.000000
+              -85.489525, 32.604624, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #8</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489525</longitude>
+            <latitude>32.604624</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489525, 32.604624</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #9</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #9</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489523</longitude>
+            <latitude>32.604667</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489523, 32.604667</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #9</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489523</longitude>
+            <latitude>32.604667</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType3</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.489523, 32.604667, 400.000000
+              -85.489523, 32.604667, 400.000000
+              -85.489523, 32.604667, 400.000000
+              -85.489523, 32.604667, 400.000000
+              -85.489523, 32.604667, 400.000000
+              -85.489523, 32.604667, 400.000000
+              -85.489523, 32.604667, 400.000000
+              -85.489477, 32.604760, 400.000000
+              -85.489393, 32.604831, 400.000000
+              -85.489283, 32.604869, 400.000000
+              -85.489163, 32.604869, 400.000000
+              -85.489053, 32.604831, 400.000000
+              -85.488949, 32.604782, 400.000000
+              -85.488845, 32.604733, 400.000000
+              -85.488741, 32.604684, 400.000000
+              -85.488637, 32.604635, 400.000000
+              -85.488532, 32.604586, 400.000000
+              -85.488428, 32.604537, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #9</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488428</longitude>
+            <latitude>32.604537</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488428, 32.604537</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #10</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #10</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487623</longitude>
+            <latitude>32.603884</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487623, 32.603884</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #10</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487623</longitude>
+            <latitude>32.603884</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType4</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.487623, 32.603884, 400.000000
+              -85.487623, 32.603884, 400.000000
+              -85.487623, 32.603884, 400.000000
+              -85.487623, 32.603884, 400.000000
+              -85.487623, 32.603884, 400.000000
+              -85.487623, 32.603884, 400.000000
+              -85.487669, 32.603977, 400.000000
+              -85.487753, 32.604048, 400.000000
+              -85.487844, 32.604113, 400.000000
+              -85.487934, 32.604179, 400.000000
+              -85.488025, 32.604244, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #10</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488025</longitude>
+            <latitude>32.604244</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488025, 32.604244</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #11</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #11</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486310</longitude>
+            <latitude>32.605107</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486310, 32.605107</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #11</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486310</longitude>
+            <latitude>32.605107</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType5</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.486310, 32.605107, 400.000000
+              -85.486310, 32.605107, 400.000000
+              -85.486310, 32.605107, 400.000000
+              -85.486310, 32.605107, 400.000000
+              -85.486310, 32.605107, 400.000000
+              -85.486310, 32.605107, 400.000000
+              -85.486356, 32.605200, 400.000000
+              -85.486440, 32.605271, 400.000000
+              -85.486550, 32.605309, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #11</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486550</longitude>
+            <latitude>32.605309</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486550, 32.605309</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #12</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #12</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487570</longitude>
+            <latitude>32.603291</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487570, 32.603291</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #12</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487570</longitude>
+            <latitude>32.603291</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType0</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.487570, 32.603291, 400.000000
+              -85.487570, 32.603291, 400.000000
+              -85.487570, 32.603291, 400.000000
+              -85.487570, 32.603291, 400.000000
+              -85.487570, 32.603291, 400.000000
+              -85.487570, 32.603291, 400.000000
+              -85.487616, 32.603384, 400.000000
+              -85.487700, 32.603455, 400.000000
+              -85.487810, 32.603493, 400.000000
+              -85.487921, 32.603531, 400.000000
+              -85.488032, 32.603568, 400.000000
+              -85.488142, 32.603606, 400.000000
+              -85.488253, 32.603643, 400.000000
+              -85.488364, 32.603681, 400.000000
+              -85.488475, 32.603718, 400.000000
+              -85.488585, 32.603755, 400.000000
+              -85.488696, 32.603793, 400.000000
+              -85.488807, 32.603830, 400.000000
+              -85.488917, 32.603868, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #12</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488917</longitude>
+            <latitude>32.603868</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488917, 32.603868</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #13</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #13</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488840</longitude>
+            <latitude>32.604127</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488840, 32.604127</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #13</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488840</longitude>
+            <latitude>32.604127</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType1</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.488840, 32.604127, 400.000000
+              -85.488840, 32.604127, 400.000000
+              -85.488840, 32.604127, 400.000000
+              -85.488840, 32.604127, 400.000000
+              -85.488840, 32.604127, 400.000000
+              -85.488840, 32.604127, 400.000000
+              -85.488794, 32.604220, 400.000000
+              -85.488710, 32.604291, 400.000000
+              -85.488600, 32.604329, 400.000000
+              -85.488486, 32.604359, 400.000000
+              -85.488372, 32.604388, 400.000000
+              -85.488258, 32.604418, 400.000000
+              -85.488143, 32.604447, 400.000000
+              -85.488029, 32.604477, 400.000000
+              -85.487915, 32.604506, 400.000000
+              -85.487801, 32.604536, 400.000000
+              -85.487687, 32.604565, 400.000000
+              -85.487573, 32.604595, 400.000000
+              -85.487459, 32.604624, 400.000000
+              -85.487345, 32.604654, 400.000000
+              -85.487231, 32.604683, 400.000000
+              -85.487117, 32.604713, 400.000000
+              -85.487003, 32.604742, 400.000000
+              -85.486889, 32.604772, 400.000000
+              -85.486775, 32.604801, 400.000000
+              -85.486661, 32.604831, 400.000000
+              -85.486547, 32.604860, 400.000000
+              -85.486433, 32.604889, 400.000000
+              -85.486318, 32.604919, 400.000000
+              -85.486204, 32.604948, 400.000000
+              -85.486090, 32.604978, 400.000000
+              -85.485976, 32.605007, 400.000000
+              -85.485862, 32.605037, 400.000000
+              -85.485743, 32.605027, 400.000000
+              -85.485638, 32.604980, 400.000000
+              -85.485562, 32.604903, 400.000000
+              -85.485527, 32.604807, 400.000000
+              -85.485526, 32.604706, 400.000000
+              -85.485524, 32.604606, 400.000000
+              -85.485523, 32.604505, 400.000000
+              -85.485521, 32.604405, 400.000000
+              -85.485520, 32.604304, 400.000000
+              -85.485519, 32.604204, 400.000000
+              -85.485520, 32.604103, 400.000000
+              -85.485567, 32.604011, 400.000000
+              -85.485652, 32.603940, 400.000000
+              -85.485762, 32.603902, 400.000000
+              -85.485880, 32.603887, 400.000000
+              -85.485998, 32.603873, 400.000000
+              -85.486116, 32.603858, 400.000000
+              -85.486234, 32.603843, 400.000000
+              -85.486352, 32.603828, 400.000000
+              -85.486470, 32.603814, 400.000000
+              -85.486588, 32.603799, 400.000000
+              -85.486706, 32.603784, 400.000000
+              -85.486824, 32.603769, 400.000000
+              -85.486942, 32.603755, 400.000000
+              -85.487060, 32.603740, 400.000000
+              -85.487179, 32.603725, 400.000000
+              -85.487297, 32.603710, 400.000000
+              -85.487415, 32.603696, 400.000000
+              -85.487533, 32.603681, 400.000000
+              -85.487651, 32.603666, 400.000000
+              -85.487769, 32.603651, 400.000000
+              -85.487887, 32.603637, 400.000000
+              -85.488005, 32.603622, 400.000000
+              -85.488123, 32.603607, 400.000000
+              -85.488241, 32.603592, 400.000000
+              -85.488359, 32.603578, 400.000000
+              -85.488477, 32.603563, 400.000000
+              -85.488595, 32.603548, 400.000000
+              -85.488713, 32.603533, 400.000000
+              -85.488831, 32.603519, 400.000000
+              -85.488949, 32.603504, 400.000000
+              -85.489064, 32.603528, 400.000000
+              -85.489160, 32.603588, 400.000000
+              -85.489222, 32.603674, 400.000000
+              -85.489239, 32.603774, 400.000000
+              -85.489214, 32.603872, 400.000000
+              -85.489189, 32.603970, 400.000000
+              -85.489164, 32.604068, 400.000000
+              -85.489138, 32.604167, 400.000000
+              -85.489113, 32.604265, 400.000000
+              -85.489088, 32.604363, 400.000000
+              -85.489063, 32.604461, 400.000000
+              -85.489037, 32.604560, 400.000000
+              -85.489012, 32.604658, 400.000000
+              -85.488987, 32.604756, 400.000000
+              -85.488962, 32.604854, 400.000000
+              -85.488937, 32.604953, 400.000000
+              -85.488911, 32.605051, 400.000000
+              -85.488886, 32.605149, 400.000000
+              -85.488861, 32.605247, 400.000000
+              -85.488836, 32.605345, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #13</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488836</longitude>
+            <latitude>32.605345</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488836, 32.605345</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #14</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #14</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486598</longitude>
+            <latitude>32.605863</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486598, 32.605863</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #14</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486598</longitude>
+            <latitude>32.605863</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType2</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.486598, 32.605863, 400.000000
+              -85.486598, 32.605863, 400.000000
+              -85.486598, 32.605863, 400.000000
+              -85.486598, 32.605863, 400.000000
+              -85.486598, 32.605863, 400.000000
+              -85.486598, 32.605863, 400.000000
+              -85.486644, 32.605956, 400.000000
+              -85.486728, 32.606027, 400.000000
+              -85.486838, 32.606065, 400.000000
+              -85.486957, 32.606076, 400.000000
+              -85.487075, 32.606087, 400.000000
+              -85.487194, 32.606098, 400.000000
+              -85.487313, 32.606109, 400.000000
+              -85.487431, 32.606121, 400.000000
+              -85.487550, 32.606132, 400.000000
+              -85.487668, 32.606143, 400.000000
+              -85.487787, 32.606154, 400.000000
+              -85.487906, 32.606165, 400.000000
+              -85.488024, 32.606176, 400.000000
+              -85.488139, 32.606148, 400.000000
+              -85.488232, 32.606085, 400.000000
+              -85.488289, 32.605997, 400.000000
+              -85.488303, 32.605897, 400.000000
+              -85.488269, 32.605800, 400.000000
+              -85.488222, 32.605708, 400.000000
+              -85.488175, 32.605616, 400.000000
+              -85.488128, 32.605523, 400.000000
+              -85.488080, 32.605431, 400.000000
+              -85.488033, 32.605339, 400.000000
+              -85.487986, 32.605246, 400.000000
+              -85.487939, 32.605154, 400.000000
+              -85.487891, 32.605062, 400.000000
+              -85.487844, 32.604970, 400.000000
+              -85.487797, 32.604877, 400.000000
+              -85.487750, 32.604785, 400.000000
+              -85.487703, 32.604693, 400.000000
+              -85.487655, 32.604600, 400.000000
+              -85.487608, 32.604508, 400.000000
+              -85.487561, 32.604416, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #14</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487561</longitude>
+            <latitude>32.604416</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487561, 32.604416</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #15</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #15</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488285</longitude>
+            <latitude>32.603722</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488285, 32.603722</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #15</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488285</longitude>
+            <latitude>32.603722</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType3</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.488285, 32.603722, 400.000000
+              -85.488285, 32.603722, 400.000000
+              -85.488285, 32.603722, 400.000000
+              -85.488285, 32.603722, 400.000000
+              -85.488285, 32.603722, 400.000000
+              -85.488285, 32.603722, 400.000000
+              -85.488239, 32.603815, 400.000000
+              -85.488190, 32.603907, 400.000000
+              -85.488141, 32.603998, 400.000000
+              -85.488092, 32.604090, 400.000000
+              -85.488044, 32.604181, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #15</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488044</longitude>
+            <latitude>32.604181</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488044, 32.604181</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #16</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #16</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485755</longitude>
+            <latitude>32.604756</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.485755, 32.604756</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #16</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485755</longitude>
+            <latitude>32.604756</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType4</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.485755, 32.604756, 400.000000
+              -85.485755, 32.604756, 400.000000
+              -85.485755, 32.604756, 400.000000
+              -85.485755, 32.604756, 400.000000
+              -85.485755, 32.604756, 400.000000
+              -85.485755, 32.604756, 400.000000
+              -85.485801, 32.604849, 400.000000
+              -85.485885, 32.604920, 400.000000
+              -85.485995, 32.604958, 400.000000
+              -85.486115, 32.604958, 400.000000
+              -85.486225, 32.604920, 400.000000
+              -85.486309, 32.604849, 400.000000
+              -85.486355, 32.604756, 400.000000
+              -85.486387, 32.604659, 400.000000
+              -85.486419, 32.604562, 400.000000
+              -85.486451, 32.604466, 400.000000
+              -85.486483, 32.604369, 400.000000
+              -85.486515, 32.604272, 400.000000
+              -85.486548, 32.604175, 400.000000
+              -85.486580, 32.604078, 400.000000
+              -85.486612, 32.603982, 400.000000
+              -85.486644, 32.603885, 400.000000
+              -85.486676, 32.603788, 400.000000
+              -85.486708, 32.603691, 400.000000
+              -85.486740, 32.603594, 400.000000
+              -85.486772, 32.603498, 400.000000
+              -85.486804, 32.603401, 400.000000
+              -85.486837, 32.603304, 400.000000
+              -85.486869, 32.603207, 400.000000
+              -85.486901, 32.603110, 400.000000
+              -85.486933, 32.603014, 400.000000
+              -85.486965, 32.602917, 400.000000
+              -85.486997, 32.602820, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #16</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486997</longitude>
+            <latitude>32.602820</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486997, 32.602820</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #17</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #17</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489651</longitude>
+            <latitude>32.603219</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489651, 32.603219</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #17</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489651</longitude>
+            <latitude>32.603219</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType5</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.489651, 32.603219, 400.000000
+              -85.489651, 32.603219, 400.000000
+              -85.489651, 32.603219, 400.000000
+              -85.489651, 32.603219, 400.000000
+              -85.489651, 32.603219, 400.000000
+              -85.489651, 32.603219, 400.000000
+              -85.489646, 32.603319, 400.000000
+              -85.489641, 32.603420, 400.000000
+              -85.489635, 32.603520, 400.000000
+              -85.489630, 32.603621, 400.000000
+              -85.489625, 32.603721, 400.000000
+              -85.489620, 32.603821, 400.000000
+              -85.489615, 32.603922, 400.000000
+              -85.489610, 32.604022, 400.000000
+              -85.489605, 32.604123, 400.000000
+              -85.489600, 32.604223, 400.000000
+              -85.489595, 32.604324, 400.000000
+              -85.489590, 32.604424, 400.000000
+              -85.489631, 32.604518, 400.000000
+              -85.489682, 32.604609, 400.000000
+              -85.489732, 32.604700, 400.000000
+              -85.489783, 32.604791, 400.000000
+              -85.489833, 32.604882, 400.000000
+              -85.489884, 32.604973, 400.000000
+              -85.489935, 32.605065, 400.000000
+              -85.489985, 32.605156, 400.000000
+              -85.490036, 32.605247, 400.000000
+              -85.490086, 32.605338, 400.000000
+              -85.490137, 32.605429, 400.000000
+              -85.490187, 32.605520, 400.000000
+              -85.490238, 32.605611, 400.000000
+              -85.490288, 32.605702, 400.000000
+              -85.490377, 32.605770, 400.000000
+              -85.490489, 32.605804, 400.000000
+              -85.490608, 32.605799, 400.000000
+              -85.490716, 32.605757, 400.000000
+              -85.490796, 32.605683, 400.000000
+              -85.490837, 32.605588, 400.000000
+              -85.490832, 32.605488, 400.000000
+              -85.490801, 32.605391, 400.000000
+              -85.490771, 32.605293, 400.000000
+              -85.490741, 32.605196, 400.000000
+              -85.490710, 32.605099, 400.000000
+              -85.490680, 32.605002, 400.000000
+              -85.490650, 32.604905, 400.000000
+              -85.490619, 32.604807, 400.000000
+              -85.490589, 32.604710, 400.000000
+              -85.490559, 32.604613, 400.000000
+              -85.490528, 32.604516, 400.000000
+              -85.490498, 32.604419, 400.000000
+              -85.490467, 32.604321, 400.000000
+              -85.490437, 32.604224, 400.000000
+              -85.490407, 32.604127, 400.000000
+              -85.490376, 32.604030, 400.000000
+              -85.490346, 32.603933, 400.000000
+              -85.490316, 32.603835, 400.000000
+              -85.490285, 32.603738, 400.000000
+              -85.490255, 32.603641, 400.000000
+              -85.490225, 32.603544, 400.000000
+              -85.490194, 32.603446, 400.000000
+              -85.490164, 32.603349, 400.000000
+              -85.490092, 32.603269, 400.000000
+              -85.489989, 32.603219, 400.000000
+              -85.489871, 32.603205, 400.000000
+              -85.489755, 32.603230, 400.000000
+              -85.489660, 32.603291, 400.000000
+              -85.489578, 32.603364, 400.000000
+              -85.489495, 32.603436, 400.000000
+              -85.489413, 32.603509, 400.000000
+              -85.489330, 32.603582, 400.000000
+              -85.489248, 32.603654, 400.000000
+              -85.489165, 32.603727, 400.000000
+              -85.489083, 32.603799, 400.000000
+              -85.489000, 32.603872, 400.000000
+              -85.488918, 32.603945, 400.000000
+              -85.488835, 32.604017, 400.000000
+              -85.488753, 32.604090, 400.000000
+              -85.488670, 32.604162, 400.000000
+              -85.488588, 32.604235, 400.000000
+              -85.488505, 32.604308, 400.000000
+              -85.488423, 32.604380, 400.000000
+              -85.488340, 32.604453, 400.000000
+              -85.488258, 32.604525, 400.000000
+              -85.488175, 32.604598, 400.000000
+              -85.488093, 32.604671, 400.000000
+              -85.488010, 32.604743, 400.000000
+              -85.487928, 32.604816, 400.000000
+              -85.487845, 32.604889, 400.000000
+              -85.487763, 32.604961, 400.000000
+              -85.487680, 32.605034, 400.000000
+              -85.487598, 32.605106, 400.000000
+              -85.487515, 32.605179, 400.000000
+              -85.487433, 32.605252, 400.000000
+              -85.487350, 32.605324, 400.000000
+              -85.487268, 32.605397, 400.000000
+              -85.487185, 32.605469, 400.000000
+              -85.487103, 32.605542, 400.000000
+              -85.487020, 32.605615, 400.000000
+              -85.486938, 32.605687, 400.000000
+              -85.486855, 32.605760, 400.000000
+              -85.486773, 32.605832, 400.000000
+              -85.486690, 32.605905, 400.000000
+              -85.486608, 32.605978, 400.000000
+              -85.486565, 32.606071, 400.000000
+              -85.486567, 32.606172, 400.000000
+              -85.486616, 32.606264, 400.000000
+              -85.486702, 32.606333, 400.000000
+              -85.486813, 32.606370, 400.000000
+              -85.486932, 32.606367, 400.000000
+              -85.487041, 32.606327, 400.000000
+              -85.487124, 32.606254, 400.000000
+              -85.487167, 32.606161, 400.000000
+              -85.487175, 32.606060, 400.000000
+              -85.487183, 32.605960, 400.000000
+              -85.487145, 32.605865, 400.000000
+              -85.487066, 32.605789, 400.000000
+              -85.486959, 32.605745, 400.000000
+              -85.486840, 32.605738, 400.000000
+              -85.486727, 32.605771, 400.000000
+              -85.486622, 32.605818, 400.000000
+              -85.486517, 32.605865, 400.000000
+              -85.486411, 32.605913, 400.000000
+              -85.486306, 32.605960, 400.000000
+              -85.486201, 32.606007, 400.000000
+              -85.486096, 32.606055, 400.000000
+              -85.485990, 32.606102, 400.000000
+              -85.485885, 32.606149, 400.000000
+              -85.485780, 32.606197, 400.000000
+              -85.485661, 32.606207, 400.000000
+              -85.485547, 32.606177, 400.000000
+              -85.485455, 32.606114, 400.000000
+              -85.485399, 32.606025, 400.000000
+              -85.485387, 32.605925, 400.000000
+              -85.485422, 32.605829, 400.000000
+              -85.485458, 32.605733, 400.000000
+              -85.485493, 32.605637, 400.000000
+              -85.485528, 32.605541, 400.000000
+              -85.485564, 32.605445, 400.000000
+              -85.485599, 32.605349, 400.000000
+              -85.485634, 32.605253, 400.000000
+              -85.485670, 32.605157, 400.000000
+              -85.485705, 32.605061, 400.000000
+              -85.485740, 32.604965, 400.000000
+              -85.485776, 32.604869, 400.000000
+              -85.485811, 32.604773, 400.000000
+              -85.485846, 32.604677, 400.000000
+              -85.485882, 32.604581, 400.000000
+              -85.485917, 32.604485, 400.000000
+              -85.485952, 32.604389, 400.000000
+              -85.485988, 32.604293, 400.000000
+              -85.486023, 32.604197, 400.000000
+              -85.486058, 32.604101, 400.000000
+              -85.486094, 32.604005, 400.000000
+              -85.486129, 32.603909, 400.000000
+              -85.486164, 32.603813, 400.000000
+              -85.486200, 32.603717, 400.000000
+              -85.486235, 32.603621, 400.000000
+              -85.486270, 32.603525, 400.000000
+              -85.486306, 32.603429, 400.000000
+              -85.486341, 32.603333, 400.000000
+              -85.486376, 32.603237, 400.000000
+              -85.486412, 32.603141, 400.000000
+              -85.486447, 32.603045, 400.000000
+              -85.486482, 32.602949, 400.000000
+              -85.486517, 32.602853, 400.000000
+              -85.486553, 32.602757, 400.000000
+              -85.486629, 32.602680, 400.000000
+              -85.486734, 32.602633, 400.000000
+              -85.486853, 32.602623, 400.000000
+              -85.486967, 32.602653, 400.000000
+              -85.487077, 32.602692, 400.000000
+              -85.487187, 32.602732, 400.000000
+              -85.487297, 32.602771, 400.000000
+              -85.487407, 32.602810, 400.000000
+              -85.487516, 32.602849, 400.000000
+              -85.487626, 32.602889, 400.000000
+              -85.487736, 32.602928, 400.000000
+              -85.487846, 32.602967, 400.000000
+              -85.487956, 32.603006, 400.000000
+              -85.488066, 32.603046, 400.000000
+              -85.488175, 32.603085, 400.000000
+              -85.488285, 32.603124, 400.000000
+              -85.488395, 32.603163, 400.000000
+              -85.488505, 32.603203, 400.000000
+              -85.488615, 32.603242, 400.000000
+              -85.488725, 32.603281, 400.000000
+              -85.488834, 32.603320, 400.000000
+              -85.488944, 32.603360, 400.000000
+              -85.489054, 32.603399, 400.000000
+              -85.489164, 32.603438, 400.000000
+              -85.489274, 32.603477, 400.000000
+              -85.489384, 32.603517, 400.000000
+              -85.489493, 32.603556, 400.000000
+              -85.489577, 32.603628, 400.000000
+              -85.489622, 32.603721, 400.000000
+              -85.489620, 32.603821, 400.000000
+              -85.489574, 32.603914, 400.000000
+              -85.489488, 32.603984, 400.000000
+              -85.489403, 32.604054, 400.000000
+              -85.489317, 32.604124, 400.000000
+              -85.489231, 32.604194, 400.000000
+              -85.489146, 32.604264, 400.000000
+              -85.489060, 32.604334, 400.000000
+              -85.488975, 32.604404, 400.000000
+              -85.488889, 32.604474, 400.000000
+              -85.488804, 32.604544, 400.000000
+              -85.488718, 32.604614, 400.000000
+              -85.488632, 32.604684, 400.000000
+              -85.488547, 32.604754, 400.000000
+              -85.488461, 32.604824, 400.000000
+              -85.488350, 32.604862, 400.000000
+              -85.488231, 32.604860, 400.000000
+              -85.488122, 32.604820, 400.000000
+              -85.488038, 32.604748, 400.000000
+              -85.487994, 32.604655, 400.000000
+              -85.487996, 32.604554, 400.000000
+              -85.488044, 32.604462, 400.000000
+              -85.488119, 32.604385, 400.000000
+              -85.488195, 32.604307, 400.000000
+              -85.488271, 32.604229, 400.000000
+              -85.488347, 32.604152, 400.000000
+              -85.488423, 32.604074, 400.000000
+              -85.488499, 32.603997, 400.000000
+              -85.488575, 32.603919, 400.000000
+              -85.488651, 32.603842, 400.000000
+              -85.488727, 32.603764, 400.000000
+              -85.488803, 32.603687, 400.000000
+              -85.488878, 32.603609, 400.000000
+              -85.488954, 32.603531, 400.000000
+              -85.489030, 32.603454, 400.000000
+              -85.489106, 32.603376, 400.000000
+              -85.489182, 32.603299, 400.000000
+              -85.489258, 32.603221, 400.000000
+              -85.489334, 32.603144, 400.000000
+              -85.489410, 32.603066, 400.000000
+              -85.489485, 32.602989, 400.000000
+              -85.489561, 32.602911, 400.000000
+              -85.489637, 32.602833, 400.000000
+              -85.489713, 32.602756, 400.000000
+              -85.489789, 32.602678, 400.000000
+              -85.489865, 32.602601, 400.000000
+              -85.489941, 32.602523, 400.000000
+              -85.490046, 32.602476, 400.000000
+              -85.490165, 32.602466, 400.000000
+              -85.490279, 32.602496, 400.000000
+              -85.490371, 32.602560, 400.000000
+              -85.490427, 32.602648, 400.000000
+              -85.490439, 32.602748, 400.000000
+              -85.490404, 32.602844, 400.000000
+              -85.490331, 32.602924, 400.000000
+              -85.490258, 32.603003, 400.000000
+              -85.490184, 32.603083, 400.000000
+              -85.490111, 32.603162, 400.000000
+              -85.490038, 32.603242, 400.000000
+              -85.489965, 32.603321, 400.000000
+              -85.489892, 32.603401, 400.000000
+              -85.489819, 32.603480, 400.000000
+              -85.489746, 32.603559, 400.000000
+              -85.489675, 32.603641, 400.000000
+              -85.489605, 32.603722, 400.000000
+              -85.489535, 32.603803, 400.000000
+              -85.489464, 32.603884, 400.000000
+              -85.489394, 32.603965, 400.000000
+              -85.489324, 32.604046, 400.000000
+              -85.489253, 32.604127, 400.000000
+              -85.489183, 32.604209, 400.000000
+              -85.489112, 32.604290, 400.000000
+              -85.489042, 32.604371, 400.000000
+              -85.488972, 32.604452, 400.000000
+              -85.488901, 32.604533, 400.000000
+              -85.488831, 32.604614, 400.000000
+              -85.488761, 32.604696, 400.000000
+              -85.488702, 32.604783, 400.000000
+              -85.488643, 32.604870, 400.000000
+              -85.488584, 32.604958, 400.000000
+              -85.488525, 32.605045, 400.000000
+              -85.488466, 32.605133, 400.000000
+              -85.488407, 32.605220, 400.000000
+              -85.488348, 32.605307, 400.000000
+              -85.488289, 32.605395, 400.000000
+              -85.488230, 32.605482, 400.000000
+              -85.488171, 32.605569, 400.000000
+              -85.488112, 32.605657, 400.000000
+              -85.488053, 32.605744, 400.000000
+              -85.487994, 32.605832, 400.000000
+              -85.487935, 32.605919, 400.000000
+              -85.487876, 32.606006, 400.000000
+              -85.487817, 32.606094, 400.000000
+              -85.487758, 32.606181, 400.000000
+              -85.487699, 32.606268, 400.000000
+              -85.487640, 32.606356, 400.000000
+              -85.487581, 32.606443, 400.000000
+              -85.487522, 32.606531, 400.000000
+              -85.487508, 32.606630, 400.000000
+              -85.487539, 32.606727, 400.000000
+              -85.487613, 32.606807, 400.000000
+              -85.487716, 32.606856, 400.000000
+              -85.487835, 32.606869, 400.000000
+              -85.487950, 32.606842, 400.000000
+              -85.488044, 32.606780, 400.000000
+              -85.488103, 32.606693, 400.000000
+              -85.488153, 32.606601, 400.000000
+              -85.488202, 32.606510, 400.000000
+              -85.488252, 32.606419, 400.000000
+              -85.488302, 32.606327, 400.000000
+              -85.488352, 32.606236, 400.000000
+              -85.488401, 32.606145, 400.000000
+              -85.488451, 32.606053, 400.000000
+              -85.488501, 32.605962, 400.000000
+              -85.488550, 32.605870, 400.000000
+              -85.488600, 32.605779, 400.000000
+              -85.488650, 32.605688, 400.000000
+              -85.488699, 32.605596, 400.000000
+              -85.488749, 32.605505, 400.000000
+              -85.488799, 32.605414, 400.000000
+              -85.488849, 32.605322, 400.000000
+              -85.488898, 32.605231, 400.000000
+              -85.488948, 32.605140, 400.000000
+              -85.488998, 32.605048, 400.000000
+              -85.489047, 32.604957, 400.000000
+              -85.489097, 32.604865, 400.000000
+              -85.489147, 32.604774, 400.000000
+              -85.489197, 32.604683, 400.000000
+              -85.489246, 32.604591, 400.000000
+              -85.489296, 32.604500, 400.000000
+              -85.489346, 32.604409, 400.000000
+              -85.489395, 32.604317, 400.000000
+              -85.489445, 32.604226, 400.000000
+              -85.489495, 32.604134, 400.000000
+              -85.489544, 32.604043, 400.000000
+              -85.489632, 32.603975, 400.000000
+              -85.489744, 32.603940, 400.000000
+              -85.489863, 32.603943, 400.000000
+              -85.489971, 32.603985, 400.000000
+              -85.490053, 32.604059, 400.000000
+              -85.490094, 32.604153, 400.000000
+              -85.490090, 32.604253, 400.000000
+              -85.490040, 32.604345, 400.000000
+              -85.489961, 32.604420, 400.000000
+              -85.489883, 32.604496, 400.000000
+              -85.489804, 32.604572, 400.000000
+              -85.489726, 32.604647, 400.000000
+              -85.489647, 32.604723, 400.000000
+              -85.489569, 32.604799, 400.000000
+              -85.489490, 32.604874, 400.000000
+              -85.489412, 32.604950, 400.000000
+              -85.489333, 32.605026, 400.000000
+              -85.489255, 32.605101, 400.000000
+              -85.489176, 32.605177, 400.000000
+              -85.489097, 32.605253, 400.000000
+              -85.489019, 32.605328, 400.000000
+              -85.488940, 32.605404, 400.000000
+              -85.488862, 32.605480, 400.000000
+              -85.488755, 32.605524, 400.000000
+              -85.488636, 32.605531, 400.000000
+              -85.488523, 32.605499, 400.000000
+              -85.488433, 32.605433, 400.000000
+              -85.488380, 32.605343, 400.000000
+              -85.488372, 32.605242, 400.000000
+              -85.488374, 32.605142, 400.000000
+              -85.488375, 32.605041, 400.000000
+              -85.488376, 32.604941, 400.000000
+              -85.488378, 32.604840, 400.000000
+              -85.488379, 32.604740, 400.000000
+              -85.488380, 32.604639, 400.000000
+              -85.488382, 32.604539, 400.000000
+              -85.488380, 32.604438, 400.000000
+              -85.488426, 32.604345, 400.000000
+              -85.488510, 32.604274, 400.000000
+              -85.488620, 32.604235, 400.000000
+              -85.488739, 32.604235, 400.000000
+              -85.488859, 32.604235, 400.000000
+              -85.488978, 32.604235, 400.000000
+              -85.489088, 32.604273, 400.000000
+              -85.489173, 32.604344, 400.000000
+              -85.489219, 32.604437, 400.000000
+              -85.489220, 32.604538, 400.000000
+              -85.489174, 32.604631, 400.000000
+              -85.489090, 32.604702, 400.000000
+              -85.488980, 32.604740, 400.000000
+              -85.488861, 32.604747, 400.000000
+              -85.488742, 32.604754, 400.000000
+              -85.488623, 32.604761, 400.000000
+              -85.488504, 32.604767, 400.000000
+              -85.488385, 32.604774, 400.000000
+              -85.488266, 32.604781, 400.000000
+              -85.488146, 32.604788, 400.000000
+              -85.488027, 32.604794, 400.000000
+              -85.487908, 32.604801, 400.000000
+              -85.487789, 32.604808, 400.000000
+              -85.487670, 32.604815, 400.000000
+              -85.487551, 32.604821, 400.000000
+              -85.487432, 32.604828, 400.000000
+              -85.487313, 32.604835, 400.000000
+              -85.487194, 32.604842, 400.000000
+              -85.487075, 32.604848, 400.000000
+              -85.486956, 32.604855, 400.000000
+              -85.486837, 32.604862, 400.000000
+              -85.486718, 32.604869, 400.000000
+              -85.486599, 32.604875, 400.000000
+              -85.486480, 32.604882, 400.000000
+              -85.486361, 32.604889, 400.000000
+              -85.486242, 32.604896, 400.000000
+              -85.486123, 32.604902, 400.000000
+              -85.486004, 32.604909, 400.000000
+              -85.485885, 32.604916, 400.000000
+              -85.485766, 32.604923, 400.000000
+              -85.485647, 32.604929, 400.000000
+              -85.485534, 32.604897, 400.000000
+              -85.485444, 32.604831, 400.000000
+              -85.485391, 32.604741, 400.000000
+              -85.485383, 32.604641, 400.000000
+              -85.485421, 32.604546, 400.000000
+              -85.485499, 32.604470, 400.000000
+              -85.485606, 32.604425, 400.000000
+              -85.485725, 32.604417, 400.000000
+              -85.485844, 32.604409, 400.000000
+              -85.485963, 32.604402, 400.000000
+              -85.486082, 32.604394, 400.000000
+              -85.486201, 32.604386, 400.000000
+              -85.486320, 32.604378, 400.000000
+              -85.486439, 32.604370, 400.000000
+              -85.486558, 32.604362, 400.000000
+              -85.486677, 32.604354, 400.000000
+              -85.486796, 32.604346, 400.000000
+              -85.486915, 32.604338, 400.000000
+              -85.487033, 32.604330, 400.000000
+              -85.487152, 32.604322, 400.000000
+              -85.487271, 32.604314, 400.000000
+              -85.487390, 32.604306, 400.000000
+              -85.487509, 32.604298, 400.000000
+              -85.487628, 32.604290, 400.000000
+              -85.487747, 32.604282, 400.000000
+              -85.487866, 32.604274, 400.000000
+              -85.487985, 32.604267, 400.000000
+              -85.488104, 32.604259, 400.000000
+              -85.488223, 32.604251, 400.000000
+              -85.488342, 32.604243, 400.000000
+              -85.488461, 32.604235, 400.000000
+              -85.488580, 32.604227, 400.000000
+              -85.488699, 32.604219, 400.000000
+              -85.488818, 32.604211, 400.000000
+              -85.488931, 32.604242, 400.000000
+              -85.489022, 32.604307, 400.000000
+              -85.489076, 32.604397, 400.000000
+              -85.489086, 32.604497, 400.000000
+              -85.489049, 32.604592, 400.000000
+              -85.488971, 32.604669, 400.000000
+              -85.488865, 32.604715, 400.000000
+              -85.488754, 32.604752, 400.000000
+              -85.488644, 32.604790, 400.000000
+              -85.488533, 32.604827, 400.000000
+              -85.488422, 32.604865, 400.000000
+              -85.488312, 32.604903, 400.000000
+              -85.488201, 32.604940, 400.000000
+              -85.488091, 32.604978, 400.000000
+              -85.487980, 32.605016, 400.000000
+              -85.487869, 32.605053, 400.000000
+              -85.487759, 32.605091, 400.000000
+              -85.487648, 32.605128, 400.000000
+              -85.487537, 32.605166, 400.000000
+              -85.487427, 32.605204, 400.000000
+              -85.487316, 32.605241, 400.000000
+              -85.487205, 32.605279, 400.000000
+              -85.487095, 32.605316, 400.000000
+              -85.486984, 32.605354, 400.000000
+              -85.486873, 32.605392, 400.000000
+              -85.486763, 32.605429, 400.000000
+              -85.486644, 32.605428, 400.000000
+              -85.486534, 32.605389, 400.000000
+              -85.486450, 32.605317, 400.000000
+              -85.486405, 32.605224, 400.000000
+              -85.486407, 32.605124, 400.000000
+              -85.486454, 32.605031, 400.000000
+              -85.486539, 32.604961, 400.000000
+              -85.486649, 32.604923, 400.000000
+              -85.486768, 32.604910, 400.000000
+              -85.486886, 32.604897, 400.000000
+              -85.487004, 32.604884, 400.000000
+              -85.487123, 32.604871, 400.000000
+              -85.487241, 32.604858, 400.000000
+              -85.487359, 32.604845, 400.000000
+              -85.487478, 32.604832, 400.000000
+              -85.487596, 32.604819, 400.000000
+              -85.487714, 32.604806, 400.000000
+              -85.487832, 32.604792, 400.000000
+              -85.487951, 32.604779, 400.000000
+              -85.488069, 32.604766, 400.000000
+              -85.488187, 32.604753, 400.000000
+              -85.488306, 32.604740, 400.000000
+              -85.488424, 32.604727, 400.000000
+              -85.488538, 32.604698, 400.000000
+              -85.488652, 32.604668, 400.000000
+              -85.488766, 32.604638, 400.000000
+              -85.488880, 32.604609, 400.000000
+              -85.488972, 32.604545, 400.000000
+              -85.489028, 32.604456, 400.000000
+              -85.489039, 32.604356, 400.000000
+              -85.489035, 32.604255, 400.000000
+              -85.489030, 32.604155, 400.000000
+              -85.489026, 32.604055, 400.000000
+              -85.489021, 32.603954, 400.000000
+              -85.489017, 32.603854, 400.000000
+              -85.489013, 32.603753, 400.000000
+              -85.489008, 32.603653, 400.000000
+              -85.489004, 32.603552, 400.000000
+              -85.489000, 32.603452, 400.000000
+              -85.488995, 32.603351, 400.000000
+              -85.488991, 32.603251, 400.000000
+              -85.488987, 32.603151, 400.000000
+              -85.488982, 32.603050, 400.000000
+              -85.488978, 32.602950, 400.000000
+              -85.488974, 32.602849, 400.000000
+              -85.488969, 32.602749, 400.000000
+              -85.488965, 32.602648, 400.000000
+              -85.488961, 32.602548, 400.000000
+              -85.488957, 32.602447, 400.000000
+              -85.488953, 32.602347, 400.000000
+              -85.488949, 32.602247, 400.000000
+              -85.488900, 32.602155, 400.000000
+              -85.488813, 32.602086, 400.000000
+              -85.488701, 32.602051, 400.000000
+              -85.488582, 32.602054, 400.000000
+              -85.488473, 32.602095, 400.000000
+              -85.488385, 32.602164, 400.000000
+              -85.488298, 32.602232, 400.000000
+              -85.488210, 32.602300, 400.000000
+              -85.488122, 32.602368, 400.000000
+              -85.488035, 32.602436, 400.000000
+              -85.487947, 32.602504, 400.000000
+              -85.487859, 32.602573, 400.000000
+              -85.487772, 32.602641, 400.000000
+              -85.487684, 32.602709, 400.000000
+              -85.487596, 32.602777, 400.000000
+              -85.487509, 32.602845, 400.000000
+              -85.487421, 32.602913, 400.000000
+              -85.487333, 32.602982, 400.000000
+              -85.487246, 32.603050, 400.000000
+              -85.487158, 32.603118, 400.000000
+              -85.487070, 32.603186, 400.000000
+              -85.486983, 32.603254, 400.000000
+              -85.486895, 32.603322, 400.000000
+              -85.486807, 32.603391, 400.000000
+              -85.486720, 32.603459, 400.000000
+              -85.486632, 32.603527, 400.000000
+              -85.486544, 32.603595, 400.000000
+              -85.486457, 32.603663, 400.000000
+              -85.486369, 32.603731, 400.000000
+              -85.486281, 32.603800, 400.000000
+              -85.486194, 32.603868, 400.000000
+              -85.486106, 32.603936, 400.000000
+              -85.486018, 32.604004, 400.000000
+              -85.485931, 32.604072, 400.000000
+              -85.485881, 32.604164, 400.000000
+              -85.485876, 32.604264, 400.000000
+              -85.485917, 32.604358, 400.000000
+              -85.485998, 32.604432, 400.000000
+              -85.486106, 32.604474, 400.000000
+              -85.486223, 32.604494, 400.000000
+              -85.486340, 32.604513, 400.000000
+              -85.486457, 32.604533, 400.000000
+              -85.486574, 32.604552, 400.000000
+              -85.486692, 32.604572, 400.000000
+              -85.486809, 32.604591, 400.000000
+              -85.486926, 32.604611, 400.000000
+              -85.487043, 32.604630, 400.000000
+              -85.487160, 32.604650, 400.000000
+              -85.487277, 32.604669, 400.000000
+              -85.487394, 32.604689, 400.000000
+              -85.487511, 32.604708, 400.000000
+              -85.487628, 32.604728, 400.000000
+              -85.487745, 32.604747, 400.000000
+              -85.487862, 32.604767, 400.000000
+              -85.487979, 32.604786, 400.000000
+              -85.488096, 32.604806, 400.000000
+              -85.488213, 32.604825, 400.000000
+              -85.488330, 32.604845, 400.000000
+              -85.488447, 32.604864, 400.000000
+              -85.488564, 32.604883, 400.000000
+              -85.488681, 32.604903, 400.000000
+              -85.488798, 32.604922, 400.000000
+              -85.488915, 32.604942, 400.000000
+              -85.489032, 32.604961, 400.000000
+              -85.489150, 32.604981, 400.000000
+              -85.489267, 32.605000, 400.000000
+              -85.489384, 32.605020, 400.000000
+              -85.489501, 32.605039, 400.000000
+              -85.489618, 32.605059, 400.000000
+              -85.489735, 32.605078, 400.000000
+              -85.489852, 32.605098, 400.000000
+              -85.489969, 32.605078, 400.000000
+              -85.490068, 32.605022, 400.000000
+              -85.490134, 32.604939, 400.000000
+              -85.490157, 32.604840, 400.000000
+              -85.490148, 32.604740, 400.000000
+              -85.490138, 32.604640, 400.000000
+              -85.490129, 32.604539, 400.000000
+              -85.490119, 32.604439, 400.000000
+              -85.490110, 32.604339, 400.000000
+              -85.490100, 32.604239, 400.000000
+              -85.490091, 32.604139, 400.000000
+              -85.490081, 32.604038, 400.000000
+              -85.490072, 32.603938, 400.000000
+              -85.490063, 32.603838, 400.000000
+              -85.490053, 32.603738, 400.000000
+              -85.490044, 32.603638, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #17</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.490044</longitude>
+            <latitude>32.603638</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.490044, 32.603638</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #18</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #18</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487324</longitude>
+            <latitude>32.604837</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487324, 32.604837</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #18</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487324</longitude>
+            <latitude>32.604837</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType0</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.487324, 32.604837, 400.000000
+              -85.487324, 32.604837, 400.000000
+              -85.487324, 32.604837, 400.000000
+              -85.487324, 32.604837, 400.000000
+              -85.487324, 32.604837, 400.000000
+              -85.487324, 32.604837, 400.000000
+              -85.487370, 32.604930, 400.000000
+              -85.487454, 32.605001, 400.000000
+              -85.487564, 32.605039, 400.000000
+              -85.487684, 32.605039, 400.000000
+              -85.487794, 32.605001, 400.000000
+              -85.487884, 32.604935, 400.000000
+              -85.487975, 32.604870, 400.000000
+              -85.488065, 32.604804, 400.000000
+              -85.488155, 32.604738, 400.000000
+              -85.488246, 32.604673, 400.000000
+              -85.488336, 32.604607, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #18</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488336</longitude>
+            <latitude>32.604607</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488336, 32.604607</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #19</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #19</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489481</longitude>
+            <latitude>32.605782</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489481, 32.605782</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #19</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489481</longitude>
+            <latitude>32.605782</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType1</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.489481, 32.605782, 400.000000
+              -85.489481, 32.605782, 400.000000
+              -85.489481, 32.605782, 400.000000
+              -85.489481, 32.605782, 400.000000
+              -85.489481, 32.605782, 400.000000
+              -85.489481, 32.605782, 400.000000
+              -85.489435, 32.605875, 400.000000
+              -85.489351, 32.605946, 400.000000
+              -85.489241, 32.605984, 400.000000
+              -85.489121, 32.605984, 400.000000
+              -85.489011, 32.605946, 400.000000
+              -85.488927, 32.605875, 400.000000
+              -85.488876, 32.605784, 400.000000
+              -85.488826, 32.605693, 400.000000
+              -85.488775, 32.605602, 400.000000
+              -85.488725, 32.605511, 400.000000
+              -85.488674, 32.605420, 400.000000
+              -85.488623, 32.605329, 400.000000
+              -85.488573, 32.605238, 400.000000
+              -85.488522, 32.605147, 400.000000
+              -85.488472, 32.605056, 400.000000
+              -85.488421, 32.604965, 400.000000
+              -85.488370, 32.604874, 400.000000
+              -85.488320, 32.604782, 400.000000
+              -85.488269, 32.604691, 400.000000
+              -85.488219, 32.604600, 400.000000
+              -85.488168, 32.604509, 400.000000
+              -85.488118, 32.604418, 400.000000
+              -85.488067, 32.604327, 400.000000
+              -85.488017, 32.604236, 400.000000
+              -85.487966, 32.604145, 400.000000
+              -85.487915, 32.604054, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #19</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487915</longitude>
+            <latitude>32.604054</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487915, 32.604054</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #20</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #20</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489182</longitude>
+            <latitude>32.603776</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489182, 32.603776</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #20</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489182</longitude>
+            <latitude>32.603776</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType2</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.489182, 32.603776, 400.000000
+              -85.489182, 32.603776, 400.000000
+              -85.489182, 32.603776, 400.000000
+              -85.489182, 32.603776, 400.000000
+              -85.489182, 32.603776, 400.000000
+              -85.489136, 32.603869, 400.000000
+              -85.489052, 32.603940, 400.000000
+              -85.488951, 32.603993, 400.000000
+              -85.488849, 32.604046, 400.000000
+              -85.488748, 32.604099, 400.000000
+              -85.488647, 32.604152, 400.000000
+              -85.488545, 32.604205, 400.000000
+              -85.488444, 32.604259, 400.000000
+              -85.488343, 32.604312, 400.000000
+              -85.488242, 32.604365, 400.000000
+              -85.488140, 32.604418, 400.000000
+              -85.488039, 32.604471, 400.000000
+              -85.487938, 32.604524, 400.000000
+              -85.487836, 32.604577, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #20</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487836</longitude>
+            <latitude>32.604577</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487836, 32.604577</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #21</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #21</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486278</longitude>
+            <latitude>32.604325</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486278, 32.604325</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #21</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486278</longitude>
+            <latitude>32.604325</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType3</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.486278, 32.604325, 400.000000
+              -85.486278, 32.604325, 400.000000
+              -85.486278, 32.604325, 400.000000
+              -85.486278, 32.604325, 400.000000
+              -85.486278, 32.604325, 400.000000
+              -85.486324, 32.604418, 400.000000
+              -85.486408, 32.604489, 400.000000
+              -85.486518, 32.604527, 400.000000
+              -85.486638, 32.604527, 400.000000
+              -85.486748, 32.604489, 400.000000
+              -85.486832, 32.604418, 400.000000
+              -85.486884, 32.604327, 400.000000
+              -85.486936, 32.604237, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #21</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486936</longitude>
+            <latitude>32.604237</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486936, 32.604237</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #22</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #22</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488146</longitude>
+            <latitude>32.604460</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488146, 32.604460</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #22</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488146</longitude>
+            <latitude>32.604460</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType4</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.488146, 32.604460, 400.000000
+              -85.488146, 32.604460, 400.000000
+              -85.488146, 32.604460, 400.000000
+              -85.488146, 32.604460, 400.000000
+              -85.488146, 32.604460, 400.000000
+              -85.488192, 32.604553, 400.000000
+              -85.488276, 32.604624, 400.000000
+              -85.488386, 32.604662, 400.000000
+              -85.488506, 32.604662, 400.000000
+              -85.488616, 32.604624, 400.000000
+              -85.488700, 32.604553, 400.000000
+              -85.488757, 32.604465, 400.000000
+              -85.488814, 32.604376, 400.000000
+              -85.488872, 32.604288, 400.000000
+              -85.488929, 32.604200, 400.000000
+              -85.488986, 32.604112, 400.000000
+              -85.488999, 32.604012, 400.000000
+              -85.488965, 32.603915, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #22</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488965</longitude>
+            <latitude>32.603915</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488965, 32.603915</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #23</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #23</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.490110</longitude>
+            <latitude>32.604118</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.490110, 32.604118</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #23</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.490110</longitude>
+            <latitude>32.604118</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType5</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.490110, 32.604118, 400.000000
+              -85.490110, 32.604118, 400.000000
+              -85.490110, 32.604118, 400.000000
+              -85.490110, 32.604118, 400.000000
+              -85.490110, 32.604118, 400.000000
+              -85.490064, 32.604211, 400.000000
+              -85.489980, 32.604282, 400.000000
+              -85.489879, 32.604335, 400.000000
+              -85.489777, 32.604388, 400.000000
+              -85.489676, 32.604441, 400.000000
+              -85.489574, 32.604493, 400.000000
+              -85.489473, 32.604546, 400.000000
+              -85.489371, 32.604599, 400.000000
+              -85.489270, 32.604652, 400.000000
+              -85.489168, 32.604705, 400.000000
+              -85.489067, 32.604758, 400.000000
+              -85.488965, 32.604811, 400.000000
+              -85.488864, 32.604864, 400.000000
+              -85.488762, 32.604917, 400.000000
+              -85.488661, 32.604969, 400.000000
+              -85.488560, 32.605022, 400.000000
+              -85.488458, 32.605075, 400.000000
+              -85.488357, 32.605128, 400.000000
+              -85.488255, 32.605181, 400.000000
+              -85.488154, 32.605234, 400.000000
+              -85.488052, 32.605287, 400.000000
+              -85.487951, 32.605340, 400.000000
+              -85.487833, 32.605356, 400.000000
+              -85.487717, 32.605333, 400.000000
+              -85.487620, 32.605274, 400.000000
+              -85.487557, 32.605189, 400.000000
+              -85.487538, 32.605089, 400.000000
+              -85.487527, 32.604989, 400.000000
+              -85.487516, 32.604889, 400.000000
+              -85.487506, 32.604789, 400.000000
+              -85.487495, 32.604689, 400.000000
+              -85.487484, 32.604589, 400.000000
+              -85.487473, 32.604489, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #23</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487473</longitude>
+            <latitude>32.604489</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487473, 32.604489</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #24</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #24</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487954</longitude>
+            <latitude>32.604055</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487954, 32.604055</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #24</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487954</longitude>
+            <latitude>32.604055</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType0</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.487954, 32.604055, 400.000000
+              -85.487954, 32.604055, 400.000000
+              -85.487954, 32.604055, 400.000000
+              -85.487954, 32.604055, 400.000000
+              -85.487954, 32.604055, 400.000000
+              -85.487908, 32.604148, 400.000000
+              -85.487824, 32.604219, 400.000000
+              -85.487728, 32.604279, 400.000000
+              -85.487633, 32.604339, 400.000000
+              -85.487537, 32.604399, 400.000000
+              -85.487442, 32.604459, 400.000000
+              -85.487346, 32.604520, 400.000000
+              -85.487250, 32.604580, 400.000000
+              -85.487155, 32.604640, 400.000000
+              -85.487059, 32.604700, 400.000000
+              -85.486963, 32.604760, 400.000000
+              -85.486868, 32.604820, 400.000000
+              -85.486772, 32.604880, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #24</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486772</longitude>
+            <latitude>32.604880</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486772, 32.604880</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #25</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #25</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486673</longitude>
+            <latitude>32.603704</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486673, 32.603704</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #25</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486673</longitude>
+            <latitude>32.603704</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType1</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.486673, 32.603704, 400.000000
+              -85.486673, 32.603704, 400.000000
+              -85.486673, 32.603704, 400.000000
+              -85.486673, 32.603704, 400.000000
+              -85.486673, 32.603704, 400.000000
+              -85.486719, 32.603797, 400.000000
+              -85.486803, 32.603868, 400.000000
+              -85.486892, 32.603935, 400.000000
+              -85.486981, 32.604001, 400.000000
+              -85.487071, 32.604068, 400.000000
+              -85.487160, 32.604135, 400.000000
+              -85.487249, 32.604202, 400.000000
+              -85.487338, 32.604269, 400.000000
+              -85.487427, 32.604335, 400.000000
+              -85.487516, 32.604402, 400.000000
+              -85.487606, 32.604469, 400.000000
+              -85.487695, 32.604536, 400.000000
+              -85.487784, 32.604602, 400.000000
+              -85.487873, 32.604669, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #25</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.487873</longitude>
+            <latitude>32.604669</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.487873, 32.604669</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #26</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #26</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486908</longitude>
+            <latitude>32.603354</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486908, 32.603354</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #26</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486908</longitude>
+            <latitude>32.603354</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType2</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.486908, 32.603354, 400.000000
+              -85.486908, 32.603354, 400.000000
+              -85.486908, 32.603354, 400.000000
+              -85.486908, 32.603354, 400.000000
+              -85.486908, 32.603354, 400.000000
+              -85.486911, 32.603454, 400.000000
+              -85.486913, 32.603555, 400.000000
+              -85.486916, 32.603655, 400.000000
+              -85.486918, 32.603756, 400.000000
+              -85.486921, 32.603856, 400.000000
+              -85.486923, 32.603957, 400.000000
+              -85.486926, 32.604057, 400.000000
+              -85.486929, 32.604158, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #26</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486929</longitude>
+            <latitude>32.604158</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486929, 32.604158</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #27</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #27</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.490196</longitude>
+            <latitude>32.602211</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.490196, 32.602211</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #27</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.490196</longitude>
+            <latitude>32.602211</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType3</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.490196, 32.602211, 400.000000
+              -85.490196, 32.602211, 400.000000
+              -85.490196, 32.602211, 400.000000
+              -85.490196, 32.602211, 400.000000
+              -85.490196, 32.602211, 400.000000
+              -85.490150, 32.602304, 400.000000
+              -85.490066, 32.602375, 400.000000
+              -85.489967, 32.602431, 400.000000
+              -85.489869, 32.602488, 400.000000
+              -85.489770, 32.602544, 400.000000
+              -85.489671, 32.602601, 400.000000
+              -85.489573, 32.602657, 400.000000
+              -85.489474, 32.602714, 400.000000
+              -85.489375, 32.602770, 400.000000
+              -85.489277, 32.602827, 400.000000
+              -85.489178, 32.602883, 400.000000
+              -85.489079, 32.602940, 400.000000
+              -85.488981, 32.602996, 400.000000
+              -85.488882, 32.603053, 400.000000
+              -85.488783, 32.603110, 400.000000
+              -85.488685, 32.603166, 400.000000
+              -85.488586, 32.603223, 400.000000
+              -85.488487, 32.603279, 400.000000
+              -85.488389, 32.603336, 400.000000
+              -85.488290, 32.603392, 400.000000
+              -85.488191, 32.603449, 400.000000
+              -85.488093, 32.603505, 400.000000
+              -85.487994, 32.603562, 400.000000
+              -85.487895, 32.603618, 400.000000
+              -85.487797, 32.603675, 400.000000
+              -85.487698, 32.603731, 400.000000
+              -85.487599, 32.603788, 400.000000
+              -85.487501, 32.603844, 400.000000
+              -85.487402, 32.603901, 400.000000
+              -85.487303, 32.603957, 400.000000
+              -85.487205, 32.604014, 400.000000
+              -85.487106, 32.604070, 400.000000
+              -85.487007, 32.604127, 400.000000
+              -85.486909, 32.604183, 400.000000
+              -85.486810, 32.604240, 400.000000
+              -85.486711, 32.604296, 400.000000
+              -85.486613, 32.604353, 400.000000
+              -85.486514, 32.604409, 400.000000
+              -85.486415, 32.604466, 400.000000
+              -85.486350, 32.604550, 400.000000
+              -85.486327, 32.604648, 400.000000
+              -85.486352, 32.604747, 400.000000
+              -85.486413, 32.604833, 400.000000
+              -85.486475, 32.604919, 400.000000
+              -85.486536, 32.605005, 400.000000
+              -85.486598, 32.605091, 400.000000
+              -85.486659, 32.605177, 400.000000
+              -85.486721, 32.605264, 400.000000
+              -85.486782, 32.605350, 400.000000
+              -85.486844, 32.605436, 400.000000
+              -85.486905, 32.605522, 400.000000
+              -85.486967, 32.605608, 400.000000
+              -85.487028, 32.605694, 400.000000
+              -85.487090, 32.605780, 400.000000
+              -85.487151, 32.605866, 400.000000
+              -85.487213, 32.605953, 400.000000
+              -85.487274, 32.606039, 400.000000
+              -85.487336, 32.606125, 400.000000
+              -85.487397, 32.606211, 400.000000
+              -85.487493, 32.606271, 400.000000
+              -85.487609, 32.606295, 400.000000
+              -85.487727, 32.606280, 400.000000
+              -85.487829, 32.606228, 400.000000
+              -85.487900, 32.606147, 400.000000
+              -85.487929, 32.606050, 400.000000
+              -85.487911, 32.605951, 400.000000
+              -85.487849, 32.605865, 400.000000
+              -85.487787, 32.605779, 400.000000
+              -85.487725, 32.605693, 400.000000
+              -85.487663, 32.605607, 400.000000
+              -85.487601, 32.605522, 400.000000
+              -85.487538, 32.605436, 400.000000
+              -85.487476, 32.605350, 400.000000
+              -85.487414, 32.605264, 400.000000
+              -85.487352, 32.605178, 400.000000
+              -85.487290, 32.605093, 400.000000
+              -85.487228, 32.605007, 400.000000
+              -85.487165, 32.604921, 400.000000
+              -85.487103, 32.604835, 400.000000
+              -85.487041, 32.604750, 400.000000
+              -85.486979, 32.604664, 400.000000
+              -85.486917, 32.604578, 400.000000
+              -85.486855, 32.604492, 400.000000
+              -85.486792, 32.604406, 400.000000
+              -85.486730, 32.604321, 400.000000
+              -85.486668, 32.604235, 400.000000
+              -85.486606, 32.604149, 400.000000
+              -85.486544, 32.604063, 400.000000
+              -85.486482, 32.603977, 400.000000
+              -85.486419, 32.603892, 400.000000
+              -85.486357, 32.603806, 400.000000
+              -85.486295, 32.603720, 400.000000
+              -85.486233, 32.603634, 400.000000
+              -85.486171, 32.603548, 400.000000
+              -85.486109, 32.603463, 400.000000
+              -85.486046, 32.603377, 400.000000
+              -85.485984, 32.603291, 400.000000
+              -85.485922, 32.603205, 400.000000
+              -85.485860, 32.603120, 400.000000
+              -85.485798, 32.603034, 400.000000
+              -85.485736, 32.602948, 400.000000
+              -85.485674, 32.602862, 400.000000
+              -85.485611, 32.602776, 400.000000
+              -85.485549, 32.602691, 400.000000
+              -85.485487, 32.602605, 400.000000
+              -85.485425, 32.602519, 400.000000
+              -85.485363, 32.602433, 400.000000
+              -85.485301, 32.602347, 400.000000
+              -85.485239, 32.602262, 400.000000
+              -85.485176, 32.602176, 400.000000
+              -85.485158, 32.602076, 400.000000
+              -85.485186, 32.601979, 400.000000
+              -85.485256, 32.601898, 400.000000
+              -85.485358, 32.601845, 400.000000
+              -85.485476, 32.601830, 400.000000
+              -85.485592, 32.601853, 400.000000
+              -85.485688, 32.601913, 400.000000
+              -85.485751, 32.601998, 400.000000
+              -85.485808, 32.602087, 400.000000
+              -85.485864, 32.602175, 400.000000
+              -85.485921, 32.602263, 400.000000
+              -85.485978, 32.602352, 400.000000
+              -85.486035, 32.602440, 400.000000
+              -85.486092, 32.602528, 400.000000
+              -85.486149, 32.602617, 400.000000
+              -85.486206, 32.602705, 400.000000
+              -85.486263, 32.602793, 400.000000
+              -85.486320, 32.602882, 400.000000
+              -85.486377, 32.602970, 400.000000
+              -85.486434, 32.603058, 400.000000
+              -85.486491, 32.603147, 400.000000
+              -85.486548, 32.603235, 400.000000
+              -85.486604, 32.603323, 400.000000
+              -85.486661, 32.603412, 400.000000
+              -85.486718, 32.603500, 400.000000
+              -85.486775, 32.603588, 400.000000
+              -85.486859, 32.603660, 400.000000
+              -85.486942, 32.603732, 400.000000
+              -85.487025, 32.603804, 400.000000
+              -85.487109, 32.603876, 400.000000
+              -85.487192, 32.603948, 400.000000
+              -85.487275, 32.604020, 400.000000
+              -85.487359, 32.604092, 400.000000
+              -85.487442, 32.604164, 400.000000
+              -85.487526, 32.604236, 400.000000
+              -85.487609, 32.604307, 400.000000
+              -85.487692, 32.604379, 400.000000
+              -85.487776, 32.604451, 400.000000
+              -85.487859, 32.604523, 400.000000
+              -85.487942, 32.604595, 400.000000
+              -85.488026, 32.604667, 400.000000
+              -85.488109, 32.604739, 400.000000
+              -85.488192, 32.604811, 400.000000
+              -85.488276, 32.604883, 400.000000
+              -85.488359, 32.604954, 400.000000
+              -85.488443, 32.605026, 400.000000
+              -85.488526, 32.605098, 400.000000
+              -85.488609, 32.605170, 400.000000
+              -85.488693, 32.605242, 400.000000
+              -85.488776, 32.605314, 400.000000
+              -85.488859, 32.605386, 400.000000
+              -85.488943, 32.605458, 400.000000
+              -85.489026, 32.605530, 400.000000
+              -85.489110, 32.605602, 400.000000
+              -85.489193, 32.605673, 400.000000
+              -85.489276, 32.605745, 400.000000
+              -85.489360, 32.605817, 400.000000
+              -85.489443, 32.605889, 400.000000
+              -85.489526, 32.605961, 400.000000
+              -85.489610, 32.606033, 400.000000
+              -85.489693, 32.606105, 400.000000
+              -85.489777, 32.606177, 400.000000
+              -85.489860, 32.606249, 400.000000
+              -85.489943, 32.606321, 400.000000
+              -85.490027, 32.606392, 400.000000
+              -85.490110, 32.606464, 400.000000
+              -85.490220, 32.606504, 400.000000
+              -85.490339, 32.606505, 400.000000
+              -85.490450, 32.606468, 400.000000
+              -85.490535, 32.606398, 400.000000
+              -85.490582, 32.606305, 400.000000
+              -85.490584, 32.606205, 400.000000
+              -85.490540, 32.606111, 400.000000
+              -85.490483, 32.606023, 400.000000
+              -85.490427, 32.605934, 400.000000
+              -85.490371, 32.605845, 400.000000
+              -85.490315, 32.605757, 400.000000
+              -85.490259, 32.605668, 400.000000
+              -85.490203, 32.605579, 400.000000
+              -85.490146, 32.605491, 400.000000
+              -85.490090, 32.605402, 400.000000
+              -85.490034, 32.605313, 400.000000
+              -85.489978, 32.605225, 400.000000
+              -85.489922, 32.605136, 400.000000
+              -85.489865, 32.605047, 400.000000
+              -85.489809, 32.604959, 400.000000
+              -85.489753, 32.604870, 400.000000
+              -85.489697, 32.604781, 400.000000
+              -85.489641, 32.604693, 400.000000
+              -85.489585, 32.604604, 400.000000
+              -85.489528, 32.604515, 400.000000
+              -85.489472, 32.604427, 400.000000
+              -85.489416, 32.604338, 400.000000
+              -85.489360, 32.604249, 400.000000
+              -85.489304, 32.604161, 400.000000
+              -85.489248, 32.604072, 400.000000
+              -85.489192, 32.603983, 400.000000
+              -85.489135, 32.603895, 400.000000
+              -85.489079, 32.603806, 400.000000
+              -85.489023, 32.603717, 400.000000
+              -85.488967, 32.603628, 400.000000
+              -85.488911, 32.603540, 400.000000
+              -85.488855, 32.603451, 400.000000
+              -85.488798, 32.603362, 400.000000
+              -85.488742, 32.603274, 400.000000
+              -85.488686, 32.603185, 400.000000
+              -85.488630, 32.603096, 400.000000
+              -85.488574, 32.603008, 400.000000
+              -85.488482, 32.602944, 400.000000
+              -85.488368, 32.602915, 400.000000
+              -85.488249, 32.602924, 400.000000
+              -85.488140, 32.602966, 400.000000
+              -85.488031, 32.603007, 400.000000
+              -85.487922, 32.603048, 400.000000
+              -85.487813, 32.603089, 400.000000
+              -85.487705, 32.603130, 400.000000
+              -85.487596, 32.603171, 400.000000
+              -85.487487, 32.603213, 400.000000
+              -85.487378, 32.603254, 400.000000
+              -85.487269, 32.603295, 400.000000
+              -85.487160, 32.603336, 400.000000
+              -85.487052, 32.603377, 400.000000
+              -85.486943, 32.603418, 400.000000
+              -85.486834, 32.603460, 400.000000
+              -85.486725, 32.603501, 400.000000
+              -85.486616, 32.603542, 400.000000
+              -85.486534, 32.603615, 400.000000
+              -85.486492, 32.603709, 400.000000
+              -85.486496, 32.603810, 400.000000
+              -85.486545, 32.603901, 400.000000
+              -85.486631, 32.603970, 400.000000
+              -85.486743, 32.604006, 400.000000
+              -85.486862, 32.604003, 400.000000
+              -85.486971, 32.603962, 400.000000
+              -85.487069, 32.603905, 400.000000
+              -85.487168, 32.603848, 400.000000
+              -85.487266, 32.603791, 400.000000
+              -85.487364, 32.603734, 400.000000
+              -85.487463, 32.603677, 400.000000
+              -85.487561, 32.603620, 400.000000
+              -85.487659, 32.603563, 400.000000
+              -85.487758, 32.603506, 400.000000
+              -85.487856, 32.603450, 400.000000
+              -85.487954, 32.603393, 400.000000
+              -85.488053, 32.603336, 400.000000
+              -85.488151, 32.603279, 400.000000
+              -85.488249, 32.603222, 400.000000
+              -85.488348, 32.603165, 400.000000
+              -85.488446, 32.603108, 400.000000
+              -85.488544, 32.603051, 400.000000
+              -85.488643, 32.602994, 400.000000
+              -85.488741, 32.602937, 400.000000
+              -85.488840, 32.602880, 400.000000
+              -85.488938, 32.602823, 400.000000
+              -85.489036, 32.602767, 400.000000
+              -85.489135, 32.602710, 400.000000
+              -85.489251, 32.602689, 400.000000
+              -85.489369, 32.602707, 400.000000
+              -85.489469, 32.602762, 400.000000
+              -85.489536, 32.602845, 400.000000
+              -85.489561, 32.602943, 400.000000
+              -85.489539, 32.603042, 400.000000
+              -85.489474, 32.603126, 400.000000
+              -85.489397, 32.603202, 400.000000
+              -85.489319, 32.603279, 400.000000
+              -85.489241, 32.603355, 400.000000
+              -85.489163, 32.603431, 400.000000
+              -85.489086, 32.603508, 400.000000
+              -85.489008, 32.603584, 400.000000
+              -85.488930, 32.603660, 400.000000
+              -85.488853, 32.603736, 400.000000
+              -85.488775, 32.603813, 400.000000
+              -85.488697, 32.603889, 400.000000
+              -85.488620, 32.603965, 400.000000
+              -85.488542, 32.604041, 400.000000
+              -85.488464, 32.604118, 400.000000
+              -85.488387, 32.604194, 400.000000
+              -85.488309, 32.604270, 400.000000
+              -85.488231, 32.604347, 400.000000
+              -85.488154, 32.604423, 400.000000
+              -85.488076, 32.604499, 400.000000
+              -85.487998, 32.604576, 400.000000
+              -85.487921, 32.604652, 400.000000
+              -85.487843, 32.604728, 400.000000
+              -85.487765, 32.604804, 400.000000
+              -85.487688, 32.604881, 400.000000
+              -85.487610, 32.604957, 400.000000
+              -85.487532, 32.605033, 400.000000
+              -85.487454, 32.605110, 400.000000
+              -85.487377, 32.605186, 400.000000
+              -85.487299, 32.605262, 400.000000
+              -85.487213, 32.605332, 400.000000
+              -85.487128, 32.605402, 400.000000
+              -85.487042, 32.605472, 400.000000
+              -85.486931, 32.605509, 400.000000
+              -85.486812, 32.605507, 400.000000
+              -85.486702, 32.605467, 400.000000
+              -85.486619, 32.605395, 400.000000
+              -85.486575, 32.605302, 400.000000
+              -85.486578, 32.605201, 400.000000
+              -85.486625, 32.605109, 400.000000
+              -85.486711, 32.605039, 400.000000
+              -85.486822, 32.605002, 400.000000
+              -85.486941, 32.605004, 400.000000
+              -85.487050, 32.605044, 400.000000
+              -85.487147, 32.605102, 400.000000
+              -85.487244, 32.605161, 400.000000
+              -85.487308, 32.605246, 400.000000
+              -85.487327, 32.605345, 400.000000
+              -85.487300, 32.605443, 400.000000
+              -85.487248, 32.605534, 400.000000
+              -85.487197, 32.605624, 400.000000
+              -85.487145, 32.605715, 400.000000
+              -85.487093, 32.605805, 400.000000
+              -85.487041, 32.605896, 400.000000
+              -85.486990, 32.605986, 400.000000
+              -85.486938, 32.606077, 400.000000
+              -85.486931, 32.606177, 400.000000
+              -85.486971, 32.606272, 400.000000
+              -85.487050, 32.606347, 400.000000
+              -85.487158, 32.606391, 400.000000
+              -85.487277, 32.606398, 400.000000
+              -85.487396, 32.606406, 400.000000
+              -85.487515, 32.606414, 400.000000
+              -85.487634, 32.606422, 400.000000
+              -85.487753, 32.606429, 400.000000
+              -85.487872, 32.606437, 400.000000
+              -85.487991, 32.606445, 400.000000
+              -85.488109, 32.606453, 400.000000
+              -85.488228, 32.606460, 400.000000
+              -85.488347, 32.606468, 400.000000
+              -85.488466, 32.606476, 400.000000
+              -85.488585, 32.606484, 400.000000
+              -85.488704, 32.606491, 400.000000
+              -85.488823, 32.606499, 400.000000
+              -85.488942, 32.606507, 400.000000
+              -85.489061, 32.606515, 400.000000
+              -85.489180, 32.606522, 400.000000
+              -85.489299, 32.606530, 400.000000
+              -85.489418, 32.606538, 400.000000
+              -85.489537, 32.606545, 400.000000
+              -85.489656, 32.606553, 400.000000
+              -85.489769, 32.606522, 400.000000
+              -85.489860, 32.606457, 400.000000
+              -85.489914, 32.606367, 400.000000
+              -85.489923, 32.606267, 400.000000
+              -85.489886, 32.606171, 400.000000
+              -85.489809, 32.606095, 400.000000
+              -85.489702, 32.606049, 400.000000
+              -85.489590, 32.606016, 400.000000
+              -85.489477, 32.605983, 400.000000
+              -85.489364, 32.605950, 400.000000
+              -85.489251, 32.605917, 400.000000
+              -85.489139, 32.605884, 400.000000
+              -85.489026, 32.605851, 400.000000
+              -85.488913, 32.605818, 400.000000
+              -85.488801, 32.605785, 400.000000
+              -85.488688, 32.605752, 400.000000
+              -85.488575, 32.605719, 400.000000
+              -85.488463, 32.605686, 400.000000
+              -85.488350, 32.605653, 400.000000
+              -85.488237, 32.605620, 400.000000
+              -85.488125, 32.605587, 400.000000
+              -85.488012, 32.605554, 400.000000
+              -85.487899, 32.605521, 400.000000
+              -85.487787, 32.605488, 400.000000
+              -85.487674, 32.605455, 400.000000
+              -85.487561, 32.605422, 400.000000
+              -85.487449, 32.605389, 400.000000
+              -85.487336, 32.605356, 400.000000
+              -85.487223, 32.605323, 400.000000
+              -85.487111, 32.605290, 400.000000
+              -85.486998, 32.605257, 400.000000
+              -85.486885, 32.605224, 400.000000
+              -85.486772, 32.605191, 400.000000
+              -85.486660, 32.605157, 400.000000
+              -85.486547, 32.605124, 400.000000
+              -85.486434, 32.605091, 400.000000
+              -85.486322, 32.605058, 400.000000
+              -85.486209, 32.605025, 400.000000
+              -85.486120, 32.604958, 400.000000
+              -85.486068, 32.604868, 400.000000
+              -85.486061, 32.604768, 400.000000
+              -85.486100, 32.604673, 400.000000
+              -85.486180, 32.604598, 400.000000
+              -85.486285, 32.604550, 400.000000
+              -85.486390, 32.604502, 400.000000
+              -85.486495, 32.604455, 400.000000
+              -85.486600, 32.604407, 400.000000
+              -85.486705, 32.604360, 400.000000
+              -85.486810, 32.604312, 400.000000
+              -85.486915, 32.604264, 400.000000
+              -85.487020, 32.604217, 400.000000
+              -85.487125, 32.604169, 400.000000
+              -85.487230, 32.604122, 400.000000
+              -85.487335, 32.604074, 400.000000
+              -85.487441, 32.604026, 400.000000
+              -85.487546, 32.603979, 400.000000
+              -85.487651, 32.603931, 400.000000
+              -85.487756, 32.603883, 400.000000
+              -85.487861, 32.603836, 400.000000
+              -85.487966, 32.603788, 400.000000
+              -85.488071, 32.603741, 400.000000
+              -85.488176, 32.603693, 400.000000
+              -85.488281, 32.603645, 400.000000
+              -85.488386, 32.603598, 400.000000
+              -85.488491, 32.603550, 400.000000
+              -85.488596, 32.603502, 400.000000
+              -85.488701, 32.603455, 400.000000
+              -85.488820, 32.603445, 400.000000
+              -85.488934, 32.603474, 400.000000
+              -85.489027, 32.603537, 400.000000
+              -85.489083, 32.603626, 400.000000
+              -85.489108, 32.603724, 400.000000
+              -85.489133, 32.603822, 400.000000
+              -85.489157, 32.603921, 400.000000
+              -85.489182, 32.604019, 400.000000
+              -85.489207, 32.604117, 400.000000
+              -85.489232, 32.604216, 400.000000
+              -85.489256, 32.604314, 400.000000
+              -85.489281, 32.604412, 400.000000
+              -85.489306, 32.604511, 400.000000
+              -85.489330, 32.604609, 400.000000
+              -85.489355, 32.604707, 400.000000
+              -85.489380, 32.604806, 400.000000
+              -85.489405, 32.604904, 400.000000
+              -85.489429, 32.605002, 400.000000
+              -85.489454, 32.605101, 400.000000
+              -85.489479, 32.605199, 400.000000
+              -85.489503, 32.605297, 400.000000
+              -85.489528, 32.605396, 400.000000
+              -85.489553, 32.605494, 400.000000
+              -85.489578, 32.605592, 400.000000
+              -85.489602, 32.605691, 400.000000
+              -85.489627, 32.605789, 400.000000
+              -85.489652, 32.605887, 400.000000
+              -85.489676, 32.605986, 400.000000
+              -85.489701, 32.606084, 400.000000
+              -85.489726, 32.606182, 400.000000
+              -85.489750, 32.606281, 400.000000
+              -85.489775, 32.606379, 400.000000
+              -85.489753, 32.606478, 400.000000
+              -85.489688, 32.606562, 400.000000
+              -85.489589, 32.606619, 400.000000
+              -85.489473, 32.606639, 400.000000
+              -85.489355, 32.606621, 400.000000
+              -85.489255, 32.606566, 400.000000
+              -85.489188, 32.606483, 400.000000
+              -85.489163, 32.606385, 400.000000
+              -85.489155, 32.606285, 400.000000
+              -85.489147, 32.606184, 400.000000
+              -85.489140, 32.606084, 400.000000
+              -85.489132, 32.605984, 400.000000
+              -85.489124, 32.605883, 400.000000
+              -85.489116, 32.605783, 400.000000
+              -85.489108, 32.605683, 400.000000
+              -85.489100, 32.605583, 400.000000
+              -85.489092, 32.605482, 400.000000
+              -85.489084, 32.605382, 400.000000
+              -85.489076, 32.605282, 400.000000
+              -85.489068, 32.605181, 400.000000
+              -85.489060, 32.605081, 400.000000
+              -85.489053, 32.604981, 400.000000
+              -85.489045, 32.604881, 400.000000
+              -85.489037, 32.604780, 400.000000
+              -85.489029, 32.604680, 400.000000
+              -85.489021, 32.604580, 400.000000
+              -85.489013, 32.604479, 400.000000
+              -85.489005, 32.604379, 400.000000
+              -85.488998, 32.604279, 400.000000
+              -85.488990, 32.604179, 400.000000
+              -85.488982, 32.604078, 400.000000
+              -85.488974, 32.603978, 400.000000
+              -85.488966, 32.603878, 400.000000
+              -85.488959, 32.603777, 400.000000
+              -85.488951, 32.603677, 400.000000
+              -85.488990, 32.603582, 400.000000
+              -85.489068, 32.603507, 400.000000
+              -85.489176, 32.603462, 400.000000
+              -85.489295, 32.603456, 400.000000
+              -85.489407, 32.603488, 400.000000
+              -85.489497, 32.603555, 400.000000
+              -85.489550, 32.603645, 400.000000
+              -85.489557, 32.603745, 400.000000
+              -85.489562, 32.603846, 400.000000
+              -85.489566, 32.603946, 400.000000
+              -85.489570, 32.604047, 400.000000
+              -85.489575, 32.604147, 400.000000
+              -85.489579, 32.604247, 400.000000
+              -85.489583, 32.604348, 400.000000
+              -85.489588, 32.604448, 400.000000
+              -85.489592, 32.604549, 400.000000
+              -85.489596, 32.604649, 400.000000
+              -85.489601, 32.604750, 400.000000
+              -85.489605, 32.604850, 400.000000
+              -85.489609, 32.604951, 400.000000
+              -85.489613, 32.605051, 400.000000
+              -85.489618, 32.605151, 400.000000
+              -85.489622, 32.605252, 400.000000
+              -85.489626, 32.605352, 400.000000
+              -85.489630, 32.605453, 400.000000
+              -85.489634, 32.605553, 400.000000
+              -85.489638, 32.605654, 400.000000
+              -85.489643, 32.605754, 400.000000
+              -85.489647, 32.605855, 400.000000
+              -85.489651, 32.605955, 400.000000
+              -85.489655, 32.606055, 400.000000
+              -85.489659, 32.606156, 400.000000
+              -85.489617, 32.606250, 400.000000
+              -85.489535, 32.606323, 400.000000
+              -85.489426, 32.606365, 400.000000
+              -85.489307, 32.606368, 400.000000
+              -85.489195, 32.606332, 400.000000
+              -85.489108, 32.606263, 400.000000
+              -85.489024, 32.606193, 400.000000
+              -85.488939, 32.606122, 400.000000
+              -85.488854, 32.606051, 400.000000
+              -85.488770, 32.605980, 400.000000
+              -85.488685, 32.605909, 400.000000
+              -85.488600, 32.605838, 400.000000
+              -85.488516, 32.605768, 400.000000
+              -85.488431, 32.605697, 400.000000
+              -85.488346, 32.605626, 400.000000
+              -85.488262, 32.605555, 400.000000
+              -85.488216, 32.605462, 400.000000
+              -85.488215, 32.605362, 400.000000
+              -85.488260, 32.605269, 400.000000
+              -85.488326, 32.605185, 400.000000
+              -85.488391, 32.605101, 400.000000
+              -85.488457, 32.605017, 400.000000
+              -85.488523, 32.604933, 400.000000
+              -85.488589, 32.604849, 400.000000
+              -85.488654, 32.604765, 400.000000
+              -85.488720, 32.604682, 400.000000
+              -85.488786, 32.604598, 400.000000
+              -85.488851, 32.604514, 400.000000
+              -85.488917, 32.604430, 400.000000
+              -85.488983, 32.604346, 400.000000
+              -85.489049, 32.604262, 400.000000
+              -85.489114, 32.604178, 400.000000
+              -85.489180, 32.604094, 400.000000
+              -85.489246, 32.604011, 400.000000
+              -85.489312, 32.603927, 400.000000
+              -85.489377, 32.603843, 400.000000
+              -85.489443, 32.603759, 400.000000
+              -85.489509, 32.603675, 400.000000
+              -85.489574, 32.603591, 400.000000
+              -85.489597, 32.603492, 400.000000
+              -85.489573, 32.603394, 400.000000
+              -85.489506, 32.603311, 400.000000
+              -85.489407, 32.603255, 400.000000
+              -85.489289, 32.603236, 400.000000
+              -85.489172, 32.603255, 400.000000
+              -85.489055, 32.603273, 400.000000
+              -85.488938, 32.603292, 400.000000
+              -85.488820, 32.603310, 400.000000
+              -85.488703, 32.603329, 400.000000
+              -85.488586, 32.603347, 400.000000
+              -85.488469, 32.603366, 400.000000
+              -85.488351, 32.603385, 400.000000
+              -85.488234, 32.603403, 400.000000
+              -85.488117, 32.603422, 400.000000
+              -85.487999, 32.603440, 400.000000
+              -85.487883, 32.603419, 400.000000
+              -85.487784, 32.603363, 400.000000
+              -85.487719, 32.603279, 400.000000
+              -85.487697, 32.603180, 400.000000
+              -85.487722, 32.603081, 400.000000
+              -85.487789, 32.602998, 400.000000
+              -85.487889, 32.602944, 400.000000
+              -85.488002, 32.602910, 400.000000
+              -85.488114, 32.602877, 400.000000
+              -85.488227, 32.602844, 400.000000
+              -85.488339, 32.602811, 400.000000
+              -85.488452, 32.602778, 400.000000
+              -85.488565, 32.602745, 400.000000
+              -85.488677, 32.602712, 400.000000
+              -85.488790, 32.602679, 400.000000
+              -85.488903, 32.602645, 400.000000
+              -85.489015, 32.602612, 400.000000
+              -85.489128, 32.602579, 400.000000
+              -85.489241, 32.602546, 400.000000
+              -85.489353, 32.602513, 400.000000
+              -85.489466, 32.602480, 400.000000
+              -85.489579, 32.602447, 400.000000
+              -85.489691, 32.602413, 400.000000
+              -85.489804, 32.602380, 400.000000
+              -85.489916, 32.602347, 400.000000
+              -85.490029, 32.602314, 400.000000
+              -85.490142, 32.602281, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #27</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.490142</longitude>
+            <latitude>32.602281</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.490142, 32.602281</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #28</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #28</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489246</longitude>
+            <latitude>32.602643</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.489246, 32.602643</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #28</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.489246</longitude>
+            <latitude>32.602643</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType4</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.489246, 32.602643, 400.000000
+              -85.489246, 32.602643, 400.000000
+              -85.489246, 32.602643, 400.000000
+              -85.489246, 32.602643, 400.000000
+              -85.489246, 32.602643, 400.000000
+              -85.489200, 32.602736, 400.000000
+              -85.489116, 32.602807, 400.000000
+              -85.489006, 32.602845, 400.000000
+              -85.488894, 32.602880, 400.000000
+              -85.488782, 32.602915, 400.000000
+              -85.488670, 32.602950, 400.000000
+              -85.488558, 32.602985, 400.000000
+              -85.488446, 32.603020, 400.000000
+              -85.488335, 32.603055, 400.000000
+              -85.488223, 32.603090, 400.000000
+              -85.488111, 32.603125, 400.000000
+              -85.487999, 32.603160, 400.000000
+              -85.487887, 32.603195, 400.000000
+              -85.487775, 32.603230, 400.000000
+              -85.487663, 32.603265, 400.000000
+              -85.487551, 32.603300, 400.000000
+              -85.487440, 32.603335, 400.000000
+              -85.487328, 32.603370, 400.000000
+              -85.487216, 32.603404, 400.000000
+              -85.487104, 32.603439, 400.000000
+              -85.486992, 32.603474, 400.000000
+              -85.486880, 32.603509, 400.000000
+              -85.486768, 32.603544, 400.000000
+              -85.486657, 32.603579, 400.000000
+              -85.486545, 32.603614, 400.000000
+              -85.486433, 32.603649, 400.000000
+              -85.486321, 32.603684, 400.000000
+              -85.486209, 32.603719, 400.000000
+              -85.486097, 32.603754, 400.000000
+              -85.485985, 32.603789, 400.000000
+              -85.485873, 32.603824, 400.000000
+              -85.485762, 32.603859, 400.000000
+              -85.485650, 32.603894, 400.000000
+              -85.485538, 32.603929, 400.000000
+              -85.485426, 32.603964, 400.000000
+              -85.485314, 32.603998, 400.000000
+              -85.485202, 32.604033, 400.000000
+              -85.485090, 32.604068, 400.000000
+              -85.484971, 32.604065, 400.000000
+              -85.484863, 32.604023, 400.000000
+              -85.484782, 32.603949, 400.000000
+              -85.484740, 32.603855, 400.000000
+              -85.484745, 32.603754, 400.000000
+              -85.484795, 32.603663, 400.000000
+              -85.484882, 32.603595, 400.000000
+              -85.484994, 32.603560, 400.000000
+              -85.485112, 32.603547, 400.000000
+              -85.485231, 32.603535, 400.000000
+              -85.485349, 32.603522, 400.000000
+              -85.485467, 32.603509, 400.000000
+              -85.485582, 32.603536, 400.000000
+              -85.485680, 32.603594, 400.000000
+              -85.485777, 32.603652, 400.000000
+              -85.485874, 32.603711, 400.000000
+              -85.485971, 32.603769, 400.000000
+              -85.486069, 32.603827, 400.000000
+              -85.486166, 32.603885, 400.000000
+              -85.486263, 32.603944, 400.000000
+              -85.486360, 32.604002, 400.000000
+              -85.486458, 32.604060, 400.000000
+              -85.486555, 32.604118, 400.000000
+              -85.486652, 32.604176, 400.000000
+              -85.486749, 32.604235, 400.000000
+              -85.486847, 32.604293, 400.000000
+              -85.486944, 32.604351, 400.000000
+              -85.487041, 32.604409, 400.000000
+              -85.487138, 32.604468, 400.000000
+              -85.487236, 32.604526, 400.000000
+              -85.487333, 32.604584, 400.000000
+              -85.487430, 32.604642, 400.000000
+              -85.487527, 32.604701, 400.000000
+              -85.487625, 32.604759, 400.000000
+              -85.487722, 32.604817, 400.000000
+              -85.487819, 32.604875, 400.000000
+              -85.487916, 32.604934, 400.000000
+              -85.488013, 32.604992, 400.000000
+              -85.488111, 32.605050, 400.000000
+              -85.488208, 32.605108, 400.000000
+              -85.488305, 32.605166, 400.000000
+              -85.488402, 32.605225, 400.000000
+              -85.488500, 32.605283, 400.000000
+              -85.488597, 32.605341, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #28</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488597</longitude>
+            <latitude>32.605341</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488597, 32.605341</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #29</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #29</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488595</longitude>
+            <latitude>32.603066</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488595, 32.603066</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #29</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488595</longitude>
+            <latitude>32.603066</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType5</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.488595, 32.603066, 400.000000
+              -85.488595, 32.603066, 400.000000
+              -85.488595, 32.603066, 400.000000
+              -85.488595, 32.603066, 400.000000
+              -85.488595, 32.603066, 400.000000
+              -85.488549, 32.603159, 400.000000
+              -85.488465, 32.603230, 400.000000
+              -85.488355, 32.603268, 400.000000
+              -85.488235, 32.603268, 400.000000
+              -85.488116, 32.603261, 400.000000
+              -85.487997, 32.603253, 400.000000
+              -85.487884, 32.603285, 400.000000
+              -85.487792, 32.603349, 400.000000
+              -85.487701, 32.603413, 400.000000
+              -85.487609, 32.603477, 400.000000
+              -85.487517, 32.603542, 400.000000
+              -85.487425, 32.603606, 400.000000
+              -85.487333, 32.603670, 400.000000
+              -85.487241, 32.603734, 400.000000
+              -85.487150, 32.603798, 400.000000
+              -85.487058, 32.603863, 400.000000
+              -85.486966, 32.603927, 400.000000
+              -85.486874, 32.603991, 400.000000
+              -85.486782, 32.604055, 400.000000
+              -85.486691, 32.604119, 400.000000
+              -85.486599, 32.604184, 400.000000
+              -85.486507, 32.604248, 400.000000
+              -85.486415, 32.604312, 400.000000
+              -85.486323, 32.604376, 400.000000
+              -85.486232, 32.604440, 400.000000
+              -85.486140, 32.604504, 400.000000
+              -85.486048, 32.604569, 400.000000
+              -85.485956, 32.604633, 400.000000
+              -85.485864, 32.604697, 400.000000
+              -85.485773, 32.604761, 400.000000
+              -85.485681, 32.604825, 400.000000
+              -85.485589, 32.604890, 400.000000
+              -85.485497, 32.604954, 400.000000
+              -85.485405, 32.605018, 400.000000
+              -85.485313, 32.605082, 400.000000
+              -85.485222, 32.605146, 400.000000
+              -85.485130, 32.605211, 400.000000
+              -85.485074, 32.605299, 400.000000
+              -85.485063, 32.605400, 400.000000
+              -85.485098, 32.605496, 400.000000
+              -85.485175, 32.605573, 400.000000
+              -85.485280, 32.605620, 400.000000
+              -85.485394, 32.605650, 400.000000
+              -85.485508, 32.605680, 400.000000
+              -85.485622, 32.605710, 400.000000
+              -85.485735, 32.605740, 400.000000
+              -85.485849, 32.605771, 400.000000
+              -85.485963, 32.605801, 400.000000
+              -85.486077, 32.605831, 400.000000
+              -85.486191, 32.605861, 400.000000
+              -85.486304, 32.605891, 400.000000
+              -85.486418, 32.605921, 400.000000
+              -85.486532, 32.605952, 400.000000
+              -85.486646, 32.605982, 400.000000
+              -85.486760, 32.606012, 400.000000
+              -85.486874, 32.606042, 400.000000
+              -85.486987, 32.606072, 400.000000
+              -85.487101, 32.606102, 400.000000
+              -85.487215, 32.606133, 400.000000
+              -85.487329, 32.606163, 400.000000
+              -85.487443, 32.606193, 400.000000
+              -85.487556, 32.606223, 400.000000
+              -85.487670, 32.606253, 400.000000
+              -85.487784, 32.606283, 400.000000
+              -85.487898, 32.606314, 400.000000
+              -85.488012, 32.606344, 400.000000
+              -85.488125, 32.606374, 400.000000
+              -85.488239, 32.606404, 400.000000
+              -85.488353, 32.606434, 400.000000
+              -85.488467, 32.606464, 400.000000
+              -85.488581, 32.606495, 400.000000
+              -85.488700, 32.606486, 400.000000
+              -85.488805, 32.606439, 400.000000
+              -85.488882, 32.606362, 400.000000
+              -85.488918, 32.606266, 400.000000
+              -85.488907, 32.606166, 400.000000
+              -85.488852, 32.606077, 400.000000
+              -85.488761, 32.606013, 400.000000
+              -85.488666, 32.605951, 400.000000
+              -85.488572, 32.605890, 400.000000
+              -85.488477, 32.605828, 400.000000
+              -85.488418, 32.605741, 400.000000
+              -85.488403, 32.605641, 400.000000
+              -85.488434, 32.605544, 400.000000
+              -85.488507, 32.605465, 400.000000
+              -85.488611, 32.605415, 400.000000
+              -85.488729, 32.605402, 400.000000
+              -85.488844, 32.605428, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #29</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488844</longitude>
+            <latitude>32.605428</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488844, 32.605428</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #30</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #30</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485274</longitude>
+            <latitude>32.604577</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.485274, 32.604577</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #30</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485274</longitude>
+            <latitude>32.604577</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType0</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.485274, 32.604577, 400.000000
+              -85.485274, 32.604577, 400.000000
+              -85.485274, 32.604577, 400.000000
+              -85.485274, 32.604577, 400.000000
+              -85.485320, 32.604670, 400.000000
+              -85.485404, 32.604741, 400.000000
+              -85.485514, 32.604779, 400.000000
+              -85.485632, 32.604793, 400.000000
+              -85.485751, 32.604807, 400.000000
+              -85.485869, 32.604821, 400.000000
+              -85.485987, 32.604835, 400.000000
+              -85.486105, 32.604849, 400.000000
+              -85.486223, 32.604863, 400.000000
+              -85.486341, 32.604876, 400.000000
+              -85.486460, 32.604890, 400.000000
+              -85.486578, 32.604904, 400.000000
+              -85.486696, 32.604918, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #30</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.486696</longitude>
+            <latitude>32.604918</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.486696, 32.604918</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>UAV #31</name>
+        <visibility>1</visibility>
+        <Placemark>
+          <name>Start #31</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485317</longitude>
+            <latitude>32.606033</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.485317, 32.606033</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>Telemetry #31</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.485317</longitude>
+            <latitude>32.606033</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <styleUrl>#lineType1</styleUrl>
+          <LineString>
+            <extrude>1</extrude>
+            <tessallate>1</tessallate>
+            <altitudeMode>absolute</altitudeMode>
+            <coordinates>
+              -85.485317, 32.606033, 400.000000
+              -85.485317, 32.606033, 400.000000
+              -85.485317, 32.606033, 400.000000
+              -85.485317, 32.606033, 400.000000
+              -85.485363, 32.606126, 400.000000
+              -85.485447, 32.606197, 400.000000
+              -85.485557, 32.606235, 400.000000
+              -85.485677, 32.606235, 400.000000
+              -85.485787, 32.606197, 400.000000
+              -85.485871, 32.606126, 400.000000
+              -85.485947, 32.606048, 400.000000
+              -85.486022, 32.605970, 400.000000
+              -85.486097, 32.605892, 400.000000
+              -85.486173, 32.605814, 400.000000
+              -85.486248, 32.605736, 400.000000
+              -85.486323, 32.605658, 400.000000
+              -85.486398, 32.605580, 400.000000
+              -85.486474, 32.605502, 400.000000
+              -85.486549, 32.605424, 400.000000
+              -85.486624, 32.605346, 400.000000
+              -85.486700, 32.605268, 400.000000
+              -85.486775, 32.605191, 400.000000
+              -85.486850, 32.605113, 400.000000
+              -85.486926, 32.605035, 400.000000
+              -85.487001, 32.604957, 400.000000
+              -85.487076, 32.604879, 400.000000
+              -85.487152, 32.604801, 400.000000
+              -85.487227, 32.604723, 400.000000
+              -85.487302, 32.604645, 400.000000
+              -85.487378, 32.604567, 400.000000
+              -85.487453, 32.604489, 400.000000
+              -85.487528, 32.604411, 400.000000
+              -85.487604, 32.604333, 400.000000
+              -85.487679, 32.604255, 400.000000
+              -85.487754, 32.604177, 400.000000
+              -85.487830, 32.604099, 400.000000
+              -85.487905, 32.604021, 400.000000
+              -85.487980, 32.603943, 400.000000
+              -85.488056, 32.603865, 400.000000
+              -85.488131, 32.603787, 400.000000
+              -85.488206, 32.603710, 400.000000
+              -85.488282, 32.603632, 400.000000
+              -85.488357, 32.603554, 400.000000
+              -85.488432, 32.603476, 400.000000
+              -85.488507, 32.603398, 400.000000
+              -85.488565, 32.603309, 400.000000
+            </coordinates>
+          </LineString>
+        </Placemark>
+        <Placemark>
+          <name>End #31</name>
+          <visibility>1</visibility>
+          <LookAt>
+            <longitude>-85.488565</longitude>
+            <latitude>32.603309</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>4451.842204068102</range>
+          </LookAt>
+          <Point>
+            <coordinates>-85.488565, 32.603309</coordinates>
+          </Point>
+        </Placemark>
+      </Folder>
+    </Folder>
+  </Document>
+</kml>
