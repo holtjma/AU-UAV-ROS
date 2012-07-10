@@ -26,7 +26,7 @@ Compiled with g++.
 #define WAYPOINTS_PER_PLANE 50
 
 //amount of space in meters between each plane at start
-#define BUFFER_SPACE 24.0 //meters
+#define BUFFER_SPACE 36.0 //meters
 
 //output directory
 #define OUTPUT_DIRECTORY "/home/matt/generator/courses/quickgen"
@@ -38,7 +38,7 @@ const int numPlanes[] = {4, 8, 16, 32};
 const int fieldSizes[] = {500, 1000}; //meters
 
 //seed values for RNG
-const int seed = time(0);
+const int seed = time(NULL);
 
 //END USER DEFINED SETTINGS
 //*********************************************************************
@@ -131,16 +131,18 @@ void generateCourse(int numberOfPlanes, int fieldLength, int courseNumber)
 			newPoint.altitude = MIN_ALTITUDE + rand()%(altitudeDifference+1);
 			
 			//make sure our distance between each other point is enough
-			for(int i = 0; i < planeid; i++)
+			bool isTooClose = false;
+			for(int i = 0; i < planeid && !isTooClose; i++)
 			{
 				if(distanceBetween(newPoint, planeStarts[i]) < BUFFER_SPACE)
 				{
 					//subtract a value to put us back where we were and re-roll the dice
+					isTooClose = true;
 					planeid--;
-					continue;
 				}
 			}
-			
+			if(isTooClose) continue;
+
 			//save our point for later
 			planeStarts[planeid] = newPoint;
 			
@@ -185,6 +187,8 @@ int main()
 	int numPlaneLength = sizeof(numPlanes) / sizeof(int);
 	int fieldSizesLength = sizeof(fieldSizes) / sizeof(int);
 	
+	srand(seed);
+
 	printf("\nSettings:\n");
 	printf("Output directory: %s\n", OUTPUT_DIRECTORY);
 	printf("Course Corner: (%lf, %lf)\n", NORTH_MOST_LATITUDE, WEST_MOST_LONGITUDE);

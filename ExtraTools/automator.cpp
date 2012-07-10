@@ -12,6 +12,7 @@ Compiled with G++.
 #include <signal.h>
 #include <string>
 #include <string.h>
+#include <sys/wait.h>
 
 //normal time + 30 as buffer time
 #define SIMULATION_TIME 600
@@ -117,8 +118,9 @@ int main()
 				sleep(SLEEP_TIME);
 				printf("Killing Process ID #%d\n", pid);
 				kill(pid, SIGTERM);
+				waitpid(pid, NULL, 0);
 				
-				//give the SIGINT time to work
+				//give the SIGTERM time to work
 				sleep(BUFFER_TIME);
 			}
 		}
